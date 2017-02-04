@@ -87,12 +87,9 @@
     <Reference Include="AutoItX3.Assembly">
       <HintPath>External Files\AutoItX3.Assembly.dll</HintPath>
     </Reference>
-    <Reference Include="Telegram">
-<<<<<<< HEAD
-      <HintPath>..\..\..\..\Downloads\Compressed\Telegram\Telegram.dll</HintPath>
-=======
+    <Reference Include="Telegram, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\Telegram Desktop\Telegram.dll</HintPath>
->>>>>>> refs/remotes/origin/master
     </Reference>
     <Reference Include="Tesseract, Version=3.0.2.0, Culture=neutral, PublicKeyToken=ebeb3d86bef60cbe, processorArchitecture=MSIL">
       <HintPath>..\packages\Tesseract.3.0.2.0\lib\net45\Tesseract.dll</HintPath>

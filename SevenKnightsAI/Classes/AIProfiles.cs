@@ -254,13 +254,12 @@ namespace SevenKnightsAI.Classes
                     this.ST_TelegramToken
                 },
                 {
-<<<<<<< HEAD
                     "ST_TelegramEnable",
                     this.ST_TelegramEnable
-=======
+                },
+                {
                     "ST_TelegramChatID",
                     this.ST_TelegramChatID
->>>>>>> refs/remotes/origin/master
                 },
                 {
                     "ST_ForegroundMode",

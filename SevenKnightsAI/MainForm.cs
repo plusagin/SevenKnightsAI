@@ -2008,55 +2008,139 @@ namespace SevenKnightsAI
         {
             if (this.backgroundWorker1.CancellationPending)
             {
-<<<<<<< HEAD
                 e.Cancel = true;
                 return;
-            } else {
+            }
+            else
+            {
                 while (true)
-=======
-                bot.update = "true";
-                if(bot.message_text == "/start" || bot.message_text == "/Start")
-                {
-                    bot.sendKeyboard.keyboard_R1_1 = "/StartBot";
-                    bot.sendKeyboard.keyboard_R1_2 = "/StopBot";
-                    bot.sendKeyboard.keyboard_R1_3 = "/PauseBot";
-                    bot.sendKeyboard.keyboard_R1_4 = "/ResumeBot";
-                    bot.sendKeyboard.keyboard_R2_1 = "/EnableMode";
-                    bot.sendKeyboard.keyboard_R2_2 = "/DisableMode";
-                    bot.sendKeyboard.send(bot.chat_id, "Welcome to Seven Knights AI Telegram Bot.");
-                }
-                if(bot.message_text == "/StartBot")
->>>>>>> refs/remotes/origin/master
                 {
                     bot.update = "true";
-                    if (bot.message_text == "Start AI")
+                    if (bot.message_text == "/start" || bot.message_text == "/Start")
                     {
-                        if (!this.started)
+                        bot.sendKeyboard.keyboard_R1_1 = "/StartBot";
+                        bot.sendKeyboard.keyboard_R1_2 = "/StopBot";
+                        bot.sendKeyboard.keyboard_R1_3 = "/PauseBot";
+                        bot.sendKeyboard.keyboard_R1_4 = "/ResumeBot";
+                        bot.sendKeyboard.keyboard_R2_1 = "/EnableMode";
+                        bot.sendKeyboard.keyboard_R2_2 = "/DisableMode";
+                        bot.sendKeyboard.send(bot.chat_id, "Welcome to Seven Knights AI Telegram Bot.");
+                    }
+                    if (bot.message_text == "/StartBot")
+                    {
+                        bot.update = "true";
+                        if (bot.message_text == "Start AI")
                         {
-                            this.StartAI();
-                            bot.sendMessage.send(bot.chat_id, "AI Started!");
+                            if (!this.started)
+                            {
+                                this.StartAI();
+                                bot.sendMessage.send(bot.chat_id, "AI Started!");
+                            }
+                            else
+                            {
+                                bot.sendMessage.send(bot.chat_id, "AI Already Started!");
+                            }
+                        }
+
+                        if (bot.message_text == "Stop AI")
+                        {
+
+                        }
+                        if (bot.message_text == "/StopBot")
+                        {
+
+                            if (this.started)
+                            {
+                                this.StopAI();
+                                bot.sendMessage.send(bot.chat_id, "Bot Stopped");
+                            }
+                            else
+                            {
+                                bot.sendMessage.send(bot.chat_id, "Bot Already Stopped");
+                            }
+                        }
+                        if (bot.message_text == "Enable Mode")
+                        {
+                            bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
+                            bot.send_inline_keyboard.keyboard_R1_1_callback_data = "EnableAdventure";
+                            bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
+                            bot.send_inline_keyboard.keyboard_R1_2_callback_data = "EnableArena";
+                            bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
+                            bot.send_inline_keyboard.keyboard_R1_3_callback_data = "EnableGoldChamber";
+                            bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
+                            bot.send_inline_keyboard.keyboard_R1_4_callback_data = "EnableRaid";
+                            bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Enable : ");
+                        }
+                        if (bot.data == "EnableAdventure")
+                        {
+                            this.AISettings.AD_Enable = true;
+                        }
+                        if (bot.data == "EnableArena")
+                        {
+                            this.AISettings.AR_Enable = true;
+                        }
+                        if (bot.data == "EnableGoldChamber")
+                        {
+                            this.AISettings.GC_Enable = true;
+                        }
+                        if (bot.data == "EnableRaid")
+                        {
+                            this.AISettings.RD_Enable = true;
+                        }
+                        if (bot.message_text == "Disable Mode")
+                        {
+                            bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
+                            bot.send_inline_keyboard.keyboard_R1_1_callback_data = "DisableAdventure";
+                            bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
+                            bot.send_inline_keyboard.keyboard_R1_2_callback_data = "DisableArena";
+                            bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
+                            bot.send_inline_keyboard.keyboard_R1_3_callback_data = "DisableGoldChamber";
+                            bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
+                            bot.send_inline_keyboard.keyboard_R1_4_callback_data = "DisableRaid";
+                            bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Disable : ");
+                        }
+                        if (bot.data == "DisableAdventure")
+                        {
+                            this.AISettings.AD_Enable = false;
+                        }
+                        if (bot.data == "DisableArena")
+                        {
+                            this.AISettings.AR_Enable = false;
+                        }
+                        if (bot.data == "DisableGoldChamber")
+                        {
+                            this.AISettings.GC_Enable = false;
+                        }
+                        if (bot.data == "DisableRaid")
+                        {
+                            this.AISettings.RD_Enable = false;
+                        }
+                    }
+                    if (bot.message_text == "/PauseBot")
+                    {
+                        if (this.started)
+                        {
+                            this.PauseAI();
+                            bot.sendMessage.send(bot.chat_id, "Bot Paused");
                         }
                         else
                         {
-                            bot.sendMessage.send(bot.chat_id, "AI Already Started!");
+                            bot.sendMessage.send(bot.chat_id, "Bot Not Running");
                         }
                     }
-<<<<<<< HEAD
-                    if (bot.message_text == "Stop AI") {
-=======
-                }
-                if(bot.message_text == "/StopBot") {
->>>>>>> refs/remotes/origin/master
-                        if (this.started)
+                    if (bot.message_text == "/ResumeBot")
+                    {
+                        if (this.AIProfiles.TMP_Paused)
                         {
-                            this.StopAI();
-                            bot.sendMessage.send(bot.chat_id, "Bot Stopped");
-                        } else
+                            this.ResumeAI();
+                            bot.sendMessage.send(bot.chat_id, "Bot Resume");
+                        }
+                        else
                         {
-                            bot.sendMessage.send(bot.chat_id, "Bot Already Stopped");
+                            bot.sendMessage.send(bot.chat_id, "Bot Not Paused");
                         }
                     }
-                    if (bot.message_text == "Enable Mode")
+                    if (bot.message_text == "/EnableMode")
                     {
                         bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
                         bot.send_inline_keyboard.keyboard_R1_1_callback_data = "EnableAdventure";
@@ -2068,7 +2152,7 @@ namespace SevenKnightsAI
                         bot.send_inline_keyboard.keyboard_R1_4_callback_data = "EnableRaid";
                         bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Enable : ");
                     }
-                    if(bot.data == "EnableAdventure")
+                    if (bot.data == "EnableAdventure")
                     {
                         this.AISettings.AD_Enable = true;
                     }
@@ -2084,7 +2168,7 @@ namespace SevenKnightsAI
                     {
                         this.AISettings.RD_Enable = true;
                     }
-                    if (bot.message_text == "Disable Mode")
+                    if (bot.message_text == "/DisableMode")
                     {
                         bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
                         bot.send_inline_keyboard.keyboard_R1_1_callback_data = "DisableAdventure";
@@ -2112,85 +2196,6 @@ namespace SevenKnightsAI
                     {
                         this.AISettings.RD_Enable = false;
                     }
-                }
-              if(bot.message_text == "/PauseBot")
-                {
-                    if (this.started)
-                    {
-                        this.PauseAI();
-                        bot.sendMessage.send(bot.chat_id, "Bot Paused");
-                    }
-                    else
-                    {
-                        bot.sendMessage.send(bot.chat_id, "Bot Not Running");
-                    }
-                }
-              if(bot.message_text == "/ResumeBot")
-                {
-                    if (this.AIProfiles.TMP_Paused)
-                    {
-                        this.ResumeAI();
-                        bot.sendMessage.send(bot.chat_id, "Bot Resume");
-                    }else
-                    {
-                        bot.sendMessage.send(bot.chat_id, "Bot Not Paused");
-                    }
-                }
-                if (bot.message_text == "/EnableMode")
-                {
-                    bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
-                    bot.send_inline_keyboard.keyboard_R1_1_callback_data = "EnableAdventure";
-                    bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
-                    bot.send_inline_keyboard.keyboard_R1_2_callback_data = "EnableArena";
-                    bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
-                    bot.send_inline_keyboard.keyboard_R1_3_callback_data = "EnableGoldChamber";
-                    bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
-                    bot.send_inline_keyboard.keyboard_R1_4_callback_data = "EnableRaid";
-                    bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Enable : ");
-                }
-                if (bot.data == "EnableAdventure")
-                {
-                    this.AISettings.AD_Enable = true;
-                }
-                if (bot.data == "EnableArena")
-                {
-                    this.AISettings.AR_Enable = true;
-                }
-                if (bot.data == "EnableGoldChamber")
-                {
-                    this.AISettings.GC_Enable = true;
-                }
-                if (bot.data == "EnableRaid")
-                {
-                    this.AISettings.RD_Enable = true;
-                }
-                if (bot.message_text == "/DisableMode")
-                {
-                    bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
-                    bot.send_inline_keyboard.keyboard_R1_1_callback_data = "DisableAdventure";
-                    bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
-                    bot.send_inline_keyboard.keyboard_R1_2_callback_data = "DisableArena";
-                    bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
-                    bot.send_inline_keyboard.keyboard_R1_3_callback_data = "DisableGoldChamber";
-                    bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
-                    bot.send_inline_keyboard.keyboard_R1_4_callback_data = "DisableRaid";
-                    bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Disable : ");
-                }
-                if (bot.data == "DisableAdventure")
-                {
-                    this.AISettings.AD_Enable = false;
-                }
-                if (bot.data == "DisableArena")
-                {
-                    this.AISettings.AR_Enable = false;
-                }
-                if (bot.data == "DisableGoldChamber")
-                {
-                    this.AISettings.GC_Enable = false;
-                }
-                if (bot.data == "DisableRaid")
-                {
-                    this.AISettings.RD_Enable = false;
                 }
             }
         }
