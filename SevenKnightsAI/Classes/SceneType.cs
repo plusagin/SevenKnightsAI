@@ -113,6 +113,7 @@ namespace SevenKnightsAI.Classes
         SPECIAL_DUNGEON_END,
         SPECIAL_DUNGEON_LOST,
         SPECIAL_DUNGEON_LOOT,
+        SPECIAL_DUNGEON_MAX,
         OUT_OF_DUNGEON_KEYS_POPUP
     }
 }

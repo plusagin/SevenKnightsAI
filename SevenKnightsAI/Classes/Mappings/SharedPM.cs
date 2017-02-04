@@ -98,9 +98,25 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill11 = new PixelMapping
         {
             X = 576,
-            Y = 351,
+            Y = 326,
             Color = 0,
             Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping Fight_Skill11_Q1_1 = new PixelMapping
+        {
+            X = 593,
+            Y = 325,
+            Color = 16772254,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping Fight_Skill11_Q1_2 = new PixelMapping
+        {
+            X = 593,
+            Y = 333,
+            Color = 15387516,
+            Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Fight_Skill10 = new PixelMapping
@@ -154,10 +170,27 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill12 = new PixelMapping
         {
             X = 662,
-            Y = 351,
+            Y = 326,
             Color = 0,
             Type = MappingType.BUTTON
         };
+
+        public static readonly PixelMapping Fight_Skill12_Q1_1 = new PixelMapping
+        {
+            X = 679,
+            Y = 325,
+            Color = 16772254,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping Fight_Skill12_Q1_2 = new PixelMapping
+        {
+            X = 679,
+            Y = 333,
+            Color = 15453309,
+            Type = MappingType.ANCHOR
+        };
+
 
         public static readonly PixelMapping Fight_Skill3 = new PixelMapping
         {
@@ -186,9 +219,25 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill13 = new PixelMapping
         {
             X = 747,
-            Y = 351,
+            Y = 326,
             Color = 0,
             Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping Fight_Skill13_Q1_1 = new PixelMapping
+        {
+            X = 764,
+            Y = 325,
+            Color = 16772254,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping Fight_Skill13_Q1_2 = new PixelMapping
+        {
+            X = 764,
+            Y = 333,
+            Color = 15387516,
+            Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Fight_Skill4 = new PixelMapping
@@ -218,9 +267,25 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill14 = new PixelMapping
         {
             X = 832,
-            Y = 351,
+            Y = 326,
             Color = 0,
             Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping Fight_Skill14_Q1_1 = new PixelMapping
+        {
+            X = 850,
+            Y = 325,
+            Color = 16772254,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping Fight_Skill14_Q1_2 = new PixelMapping
+        {
+            X = 850,
+            Y = 333,
+            Color = 15453309,
+            Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Fight_Skill5 = new PixelMapping
@@ -249,15 +314,15 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Fight_Skill15 = new PixelMapping
         {
-            X = 918,
-            Y = 351,
+            X = 920,
+            Y = 326,
             Color = 0,
             Type = MappingType.BUTTON
         };
 
         public static readonly PixelMapping Fight_Skill15_Q1_1 = new PixelMapping
         {
-            X = 936,
+            X = 935,
             Y = 325,
             Color = 16772254,
             Type = MappingType.ANCHOR
@@ -266,8 +331,8 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill15_Q1_2 = new PixelMapping
         {
             X = 935,
-            Y = 334,
-            Color = 14400884,
+            Y = 333,
+            Color = 15387516,
             Type = MappingType.ANCHOR
         };
 
@@ -366,6 +431,8 @@ namespace SevenKnightsAI.Classes.Mappings
             Color = 15453309,
             Type = MappingType.ANCHOR
         };
+
+
 
         public static readonly PixelMapping Fight_SpeedButton = new PixelMapping
         {

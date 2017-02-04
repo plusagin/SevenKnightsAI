@@ -54,7 +54,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Tab1 = new PixelMapping
         {
-            X = 62,
+            X = 106,
             Y = 81,
             Color = 0,
             Type = MappingType.BUTTON
@@ -62,7 +62,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Tab2 = new PixelMapping
         {
-            X = 181,
+            X = 222,
             Y = 81,
             Color = 0,
             Type = MappingType.BUTTON
@@ -70,7 +70,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Tab3 = new PixelMapping
         {
-            X = 277,
+            X = 340,
             Y = 81,
             Color = 0,
             Type = MappingType.BUTTON
@@ -78,7 +78,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Tab4 = new PixelMapping
         {
-            X = 372,
+            X = 455,
             Y = 81,
             Color = 0,
             Type = MappingType.BUTTON
@@ -154,6 +154,30 @@ namespace SevenKnightsAI.Classes.Mappings
             Y = 197,
             Color = 0,
             Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping MaxKeyPlusBG = new PixelMapping
+        {
+            X = 706,
+            Y = 28,
+            Color = 3748123,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping MaxCardPlusBG = new PixelMapping
+        {
+            X = 843,
+            Y = 28,
+            Color = 3748123,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping MaxYellowTik = new PixelMapping
+        {
+            X = 418,
+            Y = 399,
+            Color = 16758810,
+            Type = MappingType.BOTH
         };
     }
 }

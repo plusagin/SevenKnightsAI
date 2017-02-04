@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Threading;
 using System.Windows.Forms;
+using Telegram;
 
 namespace SevenKnightsAI
 {
@@ -60,7 +61,7 @@ namespace SevenKnightsAI
             }
         };
 
-        private readonly List<Button>[] _skillButtons = new List<Button>[7];
+        private readonly List<Button>[] _skillButtons = new List<Button>[10];
 
         private readonly Color COLOR_SEQUENCE_ERROR = Color.FromArgb(255, 127, 123);
 
@@ -984,14 +985,51 @@ namespace SevenKnightsAI
             this.ST_forceActiveCheckBox.Checked = this.AIProfiles.ST_BlueStacksForceActive;
             this.ST_pushbulletCheckBox.Checked = this.AIProfiles.ST_PushbulletEnable;
             this.ST_pushbulletEmailTextBox.Text = this.AIProfiles.ST_PushbulletEmail;
+            this.ST_TelegramEnable.Checked = this.AIProfiles.ST_TelegramEnable;
+            this.ST_TelegramTokenTextBox.Text = this.AIProfiles.ST_TelegramToken;
             this.ST_foregroundMode.Checked = this.AIProfiles.ST_ForegroundMode;
         }
 
         private void InitSpecialDungeonTab()
         {
+            for (int i = 7; i < 10; i++)
+            {
+                this._skillButtons[i] = new List<Button>();
+            }
             this.SPD_dunTabComboBox.SelectedIndex = this.AISettings.SPD_DunTab;
             this.SPD_dunSlotComboBox.SelectedIndex = this.AISettings.SPD_DunSlot;
             this.SPD_dunDifficultyComboBox.SelectedIndex = this.AISettings.SPD_DunDifficult;
+
+            this.SPD_wave1LoopCheckBox.Checked = this.AISettings.SPD_Wave1Loop;
+            this.SPD_wave2LoopCheckBox.Checked = this.AISettings.SPD_Wave2Loop;
+            this.SPD_wave3LoopCheckBox.Checked = this.AISettings.SPD_Wave3Loop;
+            switch (this.AISettings.SPD_SkillType)
+            {
+                case SkillType.Auto:
+                    this.SPD_autoSkillRadio.Checked = true;
+                    break;
+
+                case SkillType.Manual:
+                    this.SPD_manualSkillRadio.Checked = true;
+                    break;
+
+                case SkillType.Both:
+                    this.SPD_bothSkillRadio.Checked = true;
+                    break;
+            }
+            Panel[] wavePanels = new Panel[]
+            {
+                this.SPD_wave1Panel,
+                this.SPD_wave2Panel,
+                this.SPD_wave3Panel
+            };
+            int[][] waveSkill = new int[][]
+            {
+                this.AISettings.SPD_Wave1Skills,
+                this.AISettings.SPD_Wave2Skills,
+                this.AISettings.SPD_Wave3Skills
+            };
+            this.LoadWaveSkills(wavePanels, waveSkill, 7);
         }
 
         private void LG_clearButton_Click(object sender, EventArgs e)
@@ -1530,6 +1568,10 @@ namespace SevenKnightsAI
                     this.AISettings.RD_SkillType = skillType;
                     return;
 
+                case 3:
+                    this.AISettings.SPD_SkillType = skillType;
+                    return;
+
                 default:
                     return;
             }
@@ -1615,6 +1657,18 @@ namespace SevenKnightsAI
                     this.AISettings.RD_Team2Skills = array;
                     return;
 
+                case 7:
+                    this.AISettings.SPD_Wave1Skills = array;
+                    return;
+
+                case 8:
+                    this.AISettings.SPD_Wave2Skills = array;
+                    return;
+
+                case 9:
+                    this.AISettings.SPD_Wave3Skills = array;
+                    return;
+
                 default:
                     return;
             }
@@ -1683,6 +1737,18 @@ namespace SevenKnightsAI
 
                 case 6:
                     this.AISettings.RD_Team2Loop = @checked;
+                    return;
+
+                case 7:
+                    this.AISettings.SPD_Wave1Loop = @checked;
+                    return;
+
+                case 8:
+                    this.AISettings.SPD_Wave2Loop = @checked;
+                    return;
+
+                case 9:
+                    this.AISettings.SPD_Wave3Loop = @checked;
                     return;
 
                 default:
@@ -1846,6 +1912,7 @@ namespace SevenKnightsAI
             this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.BackgroundWorkerOnCompleted);
             this.started = true;
             this.aiButton.Text = "Stop AI";
+            tabControl.SelectedIndex = 5;
             this.EnablePause(true);
             this.LG_LogPixel.Enabled = true;
             this.LG_SaveScreen.Enabled = true;
@@ -1935,6 +2002,253 @@ namespace SevenKnightsAI
                 default:
                     return;
             }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (this.backgroundWorker1.CancellationPending)
+            {
+<<<<<<< HEAD
+                e.Cancel = true;
+                return;
+            } else {
+                while (true)
+=======
+                bot.update = "true";
+                if(bot.message_text == "/start" || bot.message_text == "/Start")
+                {
+                    bot.sendKeyboard.keyboard_R1_1 = "/StartBot";
+                    bot.sendKeyboard.keyboard_R1_2 = "/StopBot";
+                    bot.sendKeyboard.keyboard_R1_3 = "/PauseBot";
+                    bot.sendKeyboard.keyboard_R1_4 = "/ResumeBot";
+                    bot.sendKeyboard.keyboard_R2_1 = "/EnableMode";
+                    bot.sendKeyboard.keyboard_R2_2 = "/DisableMode";
+                    bot.sendKeyboard.send(bot.chat_id, "Welcome to Seven Knights AI Telegram Bot.");
+                }
+                if(bot.message_text == "/StartBot")
+>>>>>>> refs/remotes/origin/master
+                {
+                    bot.update = "true";
+                    if (bot.message_text == "Start AI")
+                    {
+                        if (!this.started)
+                        {
+                            this.StartAI();
+                            bot.sendMessage.send(bot.chat_id, "AI Started!");
+                        }
+                        else
+                        {
+                            bot.sendMessage.send(bot.chat_id, "AI Already Started!");
+                        }
+                    }
+<<<<<<< HEAD
+                    if (bot.message_text == "Stop AI") {
+=======
+                }
+                if(bot.message_text == "/StopBot") {
+>>>>>>> refs/remotes/origin/master
+                        if (this.started)
+                        {
+                            this.StopAI();
+                            bot.sendMessage.send(bot.chat_id, "Bot Stopped");
+                        } else
+                        {
+                            bot.sendMessage.send(bot.chat_id, "Bot Already Stopped");
+                        }
+                    }
+                    if (bot.message_text == "Enable Mode")
+                    {
+                        bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
+                        bot.send_inline_keyboard.keyboard_R1_1_callback_data = "EnableAdventure";
+                        bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
+                        bot.send_inline_keyboard.keyboard_R1_2_callback_data = "EnableArena";
+                        bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
+                        bot.send_inline_keyboard.keyboard_R1_3_callback_data = "EnableGoldChamber";
+                        bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
+                        bot.send_inline_keyboard.keyboard_R1_4_callback_data = "EnableRaid";
+                        bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Enable : ");
+                    }
+                    if(bot.data == "EnableAdventure")
+                    {
+                        this.AISettings.AD_Enable = true;
+                    }
+                    if (bot.data == "EnableArena")
+                    {
+                        this.AISettings.AR_Enable = true;
+                    }
+                    if (bot.data == "EnableGoldChamber")
+                    {
+                        this.AISettings.GC_Enable = true;
+                    }
+                    if (bot.data == "EnableRaid")
+                    {
+                        this.AISettings.RD_Enable = true;
+                    }
+                    if (bot.message_text == "Disable Mode")
+                    {
+                        bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
+                        bot.send_inline_keyboard.keyboard_R1_1_callback_data = "DisableAdventure";
+                        bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
+                        bot.send_inline_keyboard.keyboard_R1_2_callback_data = "DisableArena";
+                        bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
+                        bot.send_inline_keyboard.keyboard_R1_3_callback_data = "DisableGoldChamber";
+                        bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
+                        bot.send_inline_keyboard.keyboard_R1_4_callback_data = "DisableRaid";
+                        bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Disable : ");
+                    }
+                    if (bot.data == "DisableAdventure")
+                    {
+                        this.AISettings.AD_Enable = false;
+                    }
+                    if (bot.data == "DisableArena")
+                    {
+                        this.AISettings.AR_Enable = false;
+                    }
+                    if (bot.data == "DisableGoldChamber")
+                    {
+                        this.AISettings.GC_Enable = false;
+                    }
+                    if (bot.data == "DisableRaid")
+                    {
+                        this.AISettings.RD_Enable = false;
+                    }
+                }
+              if(bot.message_text == "/PauseBot")
+                {
+                    if (this.started)
+                    {
+                        this.PauseAI();
+                        bot.sendMessage.send(bot.chat_id, "Bot Paused");
+                    }
+                    else
+                    {
+                        bot.sendMessage.send(bot.chat_id, "Bot Not Running");
+                    }
+                }
+              if(bot.message_text == "/ResumeBot")
+                {
+                    if (this.AIProfiles.TMP_Paused)
+                    {
+                        this.ResumeAI();
+                        bot.sendMessage.send(bot.chat_id, "Bot Resume");
+                    }else
+                    {
+                        bot.sendMessage.send(bot.chat_id, "Bot Not Paused");
+                    }
+                }
+                if (bot.message_text == "/EnableMode")
+                {
+                    bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
+                    bot.send_inline_keyboard.keyboard_R1_1_callback_data = "EnableAdventure";
+                    bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
+                    bot.send_inline_keyboard.keyboard_R1_2_callback_data = "EnableArena";
+                    bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
+                    bot.send_inline_keyboard.keyboard_R1_3_callback_data = "EnableGoldChamber";
+                    bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
+                    bot.send_inline_keyboard.keyboard_R1_4_callback_data = "EnableRaid";
+                    bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Enable : ");
+                }
+                if (bot.data == "EnableAdventure")
+                {
+                    this.AISettings.AD_Enable = true;
+                }
+                if (bot.data == "EnableArena")
+                {
+                    this.AISettings.AR_Enable = true;
+                }
+                if (bot.data == "EnableGoldChamber")
+                {
+                    this.AISettings.GC_Enable = true;
+                }
+                if (bot.data == "EnableRaid")
+                {
+                    this.AISettings.RD_Enable = true;
+                }
+                if (bot.message_text == "/DisableMode")
+                {
+                    bot.send_inline_keyboard.keyboard_R1_1 = "Adventure";
+                    bot.send_inline_keyboard.keyboard_R1_1_callback_data = "DisableAdventure";
+                    bot.send_inline_keyboard.keyboard_R1_2 = "Arena";
+                    bot.send_inline_keyboard.keyboard_R1_2_callback_data = "DisableArena";
+                    bot.send_inline_keyboard.keyboard_R1_3 = "Gold Chamber";
+                    bot.send_inline_keyboard.keyboard_R1_3_callback_data = "DisableGoldChamber";
+                    bot.send_inline_keyboard.keyboard_R1_4 = "Raid";
+                    bot.send_inline_keyboard.keyboard_R1_4_callback_data = "DisableRaid";
+                    bot.send_inline_keyboard.send(bot.chat_id, "Select Mode You Want To Disable : ");
+                }
+                if (bot.data == "DisableAdventure")
+                {
+                    this.AISettings.AD_Enable = false;
+                }
+                if (bot.data == "DisableArena")
+                {
+                    this.AISettings.AR_Enable = false;
+                }
+                if (bot.data == "DisableGoldChamber")
+                {
+                    this.AISettings.GC_Enable = false;
+                }
+                if (bot.data == "DisableRaid")
+                {
+                    this.AISettings.RD_Enable = false;
+                }
+            }
+        }
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            bool @checked = checkBox.Checked;
+            this.AIProfiles.ST_TelegramEnable = @checked;
+            if(checkBox.Checked == true) { 
+            CheckForIllegalCrossThreadCalls = false;
+            backgroundWorker1.RunWorkerAsync();
+            }else
+            {
+                backgroundWorker1.CancelAsync();
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (bot.update == "false")
+            {
+                MessageBox.Show("Token Error");
+            }
+            else
+            {
+                bot.token = this.AIProfiles.ST_TelegramToken;
+                MessageBox.Show("Token Good");
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string text = textBox.Text;
+            this.AIProfiles.ST_TelegramToken = text;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (WebClient wc = new WebClient())
+            {
+                string json = wc.DownloadString("https://api.telegram.org/bot"+this.AIProfiles.ST_TelegramToken+"/getupdates?offset=0");
+                var test = JSON.Parse(json);
+                if (json.Length > 23) { 
+                foreach(JSONNode r in test["result"].AsArray)
+                {
+                        string test2 = r["message"]["chat"]["id"];
+                        ST_TelegramChatIDTB.Text = test2;
+                }
+                }
+            }
+        }
+
+        private void ST_TelegramChatIDTB_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string text = textBox.Text;
+            this.AIProfiles.ST_TelegramChatID = text;
         }
     }
 }

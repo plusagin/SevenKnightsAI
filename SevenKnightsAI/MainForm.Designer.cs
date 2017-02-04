@@ -173,7 +173,6 @@
             this.GC_pos1CheckBox = new System.Windows.Forms.CheckBox();
             this.GC_formationLabel = new System.Windows.Forms.Label();
             this.GC_teamLabel = new System.Windows.Forms.Label();
-            this.SPD_enableCheckbox = new System.Windows.Forms.CheckBox();
             this.GC_enableCheckBox = new System.Windows.Forms.CheckBox();
             this.arenaTab = new System.Windows.Forms.TabPage();
             this.AR_limitLabel = new System.Windows.Forms.Label();
@@ -323,14 +322,15 @@
             this.ST_delayLabel = new System.Windows.Forms.Label();
             this.ST_delayTrackBar = new System.Windows.Forms.TrackBar();
             this.spDunTab = new System.Windows.Forms.TabPage();
+            this.SPD_enableCheckbox = new System.Windows.Forms.CheckBox();
             this.SPDtimesLabel = new System.Windows.Forms.Label();
             this.SPD_limitNumericBox = new System.Windows.Forms.NumericUpDown();
             this.SPD_limitCheckBox = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.SPD_mainPanel = new System.Windows.Forms.Panel();
             this.SPD_skillGroupBox = new System.Windows.Forms.GroupBox();
             this.SPD_bothSkillRadio = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.SPD_wave3Panel = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.SPD_wave3LoopCheckBox = new System.Windows.Forms.CheckBox();
             this.SPD_w3Skill15Button = new System.Windows.Forms.Button();
             this.SPD_w3Skill10Button = new System.Windows.Forms.Button();
@@ -349,48 +349,63 @@
             this.SPDw3Label = new System.Windows.Forms.Label();
             this.SPD_w3Skill01Button = new System.Windows.Forms.Button();
             this.SPD_wave2Panel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.SPD_wave2LoopCheckBox = new System.Windows.Forms.CheckBox();
-            this.SPD_w2Skill15Button = new System.Windows.Forms.Button();
             this.SPD_w2Skill10Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill05Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill04Button = new System.Windows.Forms.Button();
             this.SPD_w2Skill09Button = new System.Windows.Forms.Button();
-            this.SPD_w2Skill14Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill03Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill02Button = new System.Windows.Forms.Button();
             this.SPD_w2Skill08Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill01Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill15Button = new System.Windows.Forms.Button();
             this.SPD_w2Skill07Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill14Button = new System.Windows.Forms.Button();
             this.SPD_w2Skill13Button = new System.Windows.Forms.Button();
             this.SPD_w2Skill06Button = new System.Windows.Forms.Button();
-            this.SPD_w2Skill05Button = new System.Windows.Forms.Button();
             this.SPD_w2Skill12Button = new System.Windows.Forms.Button();
-            this.SPD_w2Skill04Button = new System.Windows.Forms.Button();
-            this.SPD_w2Skill03Button = new System.Windows.Forms.Button();
-            this.SPD_w2Skill11Button = new System.Windows.Forms.Button();
-            this.SPD_w2Skill02Button = new System.Windows.Forms.Button();
             this.SPDw2Label = new System.Windows.Forms.Label();
-            this.SPD_w2Skill01Button = new System.Windows.Forms.Button();
+            this.SPD_w2Skill11Button = new System.Windows.Forms.Button();
             this.SPD_manualSkillRadio = new System.Windows.Forms.RadioButton();
             this.SPD_autoSkillRadio = new System.Windows.Forms.RadioButton();
             this.SPD_wave1Panel = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.SPD_wave1LoopCheckBox = new System.Windows.Forms.CheckBox();
-            this.SPD_w1Skill15Button = new System.Windows.Forms.Button();
             this.SPD_w1Skill10Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill14Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill09Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill13Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill08Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill12Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill07Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill11Button = new System.Windows.Forms.Button();
-            this.SPD_w1Skill06Button = new System.Windows.Forms.Button();
             this.SPD_w1Skill05Button = new System.Windows.Forms.Button();
+            this.SPD_w1Skill09Button = new System.Windows.Forms.Button();
             this.SPD_w1Skill04Button = new System.Windows.Forms.Button();
+            this.SPD_w1Skill08Button = new System.Windows.Forms.Button();
             this.SPD_w1Skill03Button = new System.Windows.Forms.Button();
+            this.SPD_w1Skill07Button = new System.Windows.Forms.Button();
             this.SPD_w1Skill02Button = new System.Windows.Forms.Button();
-            this.SPDw1Label = new System.Windows.Forms.Label();
+            this.SPD_w1Skill06Button = new System.Windows.Forms.Button();
             this.SPD_w1Skill01Button = new System.Windows.Forms.Button();
+            this.SPD_w1Skill15Button = new System.Windows.Forms.Button();
+            this.SPD_w1Skill14Button = new System.Windows.Forms.Button();
+            this.SPD_w1Skill13Button = new System.Windows.Forms.Button();
+            this.SPD_w1Skill12Button = new System.Windows.Forms.Button();
+            this.SPDw1Label = new System.Windows.Forms.Label();
+            this.SPD_w1Skill011Button = new System.Windows.Forms.Button();
+            this.SPD_dunDifficultyComboBox = new System.Windows.Forms.ComboBox();
             this.SPD_dunSlotComboBox = new System.Windows.Forms.ComboBox();
             this.SPDdifficultyLabel = new System.Windows.Forms.Label();
             this.SPD_dunTabComboBox = new System.Windows.Forms.ComboBox();
             this.SPDdunSlotLabel = new System.Windows.Forms.Label();
             this.SPDdunTabLabel = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ST_TelegramChatIDTB = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.ST_TelegramEnable = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ST_TelegramTokenTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.adminToolStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.profileToolStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -435,7 +450,19 @@
             this.goldLabel = new System.Windows.Forms.Label();
             this.resourcesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.aiPause = new System.Windows.Forms.Button();
-            this.SPD_dunDifficultyComboBox = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+<<<<<<< HEAD
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+=======
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+>>>>>>> refs/remotes/origin/master
             this.tabControl.SuspendLayout();
             this.adventureTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AD_limitNumericBox)).BeginInit();
@@ -492,9 +519,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.SPD_limitNumericBox)).BeginInit();
             this.SPD_mainPanel.SuspendLayout();
             this.SPD_skillGroupBox.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.SPD_wave3Panel.SuspendLayout();
             this.SPD_wave2Panel.SuspendLayout();
             this.SPD_wave1Panel.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.summaryGroupBox.SuspendLayout();
             this.keysTableLayoutPanel.SuspendLayout();
@@ -523,6 +554,7 @@
             this.tabControl.Controls.Add(this.logTab);
             this.tabControl.Controls.Add(this.settingsTab);
             this.tabControl.Controls.Add(this.spDunTab);
+            this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Location = new System.Drawing.Point(4, 86);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -1079,7 +1111,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label13.Location = new System.Drawing.Point(51, 13);
+            this.label13.Location = new System.Drawing.Point(50, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(27, 10);
             this.label13.TabIndex = 0;
@@ -1154,7 +1186,7 @@
             // AD_wave3Label
             // 
             this.AD_wave3Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.AD_wave3Label.Location = new System.Drawing.Point(4, 4);
+            this.AD_wave3Label.Location = new System.Drawing.Point(3, 3);
             this.AD_wave3Label.Name = "AD_wave3Label";
             this.AD_wave3Label.Size = new System.Drawing.Size(41, 13);
             this.AD_wave3Label.TabIndex = 0;
@@ -1301,7 +1333,7 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label12.Location = new System.Drawing.Point(51, 12);
+            this.label12.Location = new System.Drawing.Point(50, 12);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(27, 10);
             this.label12.TabIndex = 0;
@@ -1376,7 +1408,7 @@
             // AD_wave2Label
             // 
             this.AD_wave2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.AD_wave2Label.Location = new System.Drawing.Point(4, 5);
+            this.AD_wave2Label.Location = new System.Drawing.Point(3, 3);
             this.AD_wave2Label.Name = "AD_wave2Label";
             this.AD_wave2Label.Size = new System.Drawing.Size(41, 14);
             this.AD_wave2Label.TabIndex = 0;
@@ -1450,7 +1482,7 @@
             this.AD_wave1Panel.Controls.Add(this.AD_wave1Label);
             this.AD_wave1Panel.Controls.Add(this.AD_w1Skill11Button);
             this.AD_wave1Panel.Controls.Add(this.AD_w1Skill01Button);
-            this.AD_wave1Panel.Location = new System.Drawing.Point(7, 78);
+            this.AD_wave1Panel.Location = new System.Drawing.Point(6, 78);
             this.AD_wave1Panel.Name = "AD_wave1Panel";
             this.AD_wave1Panel.Size = new System.Drawing.Size(241, 76);
             this.AD_wave1Panel.TabIndex = 10;
@@ -1688,7 +1720,6 @@
             this.goldChamberTab.Controls.Add(this.GC_limitNumericBox);
             this.goldChamberTab.Controls.Add(this.GC_limitCheckBox);
             this.goldChamberTab.Controls.Add(this.GC_mainPanel);
-            this.goldChamberTab.Controls.Add(this.SPD_enableCheckbox);
             this.goldChamberTab.Controls.Add(this.GC_enableCheckBox);
             this.goldChamberTab.Location = new System.Drawing.Point(4, 22);
             this.goldChamberTab.Name = "goldChamberTab";
@@ -2390,18 +2421,6 @@
             this.GC_teamLabel.TabIndex = 19;
             this.GC_teamLabel.Text = "Team";
             // 
-            // SPD_enableCheckbox
-            // 
-            this.SPD_enableCheckbox.AutoSize = true;
-            this.SPD_enableCheckbox.Location = new System.Drawing.Point(142, 7);
-            this.SPD_enableCheckbox.Name = "SPD_enableCheckbox";
-            this.SPD_enableCheckbox.Size = new System.Drawing.Size(108, 17);
-            this.SPD_enableCheckbox.TabIndex = 1;
-            this.SPD_enableCheckbox.Tag = "4";
-            this.SPD_enableCheckbox.Text = "Special Dungeon";
-            this.SPD_enableCheckbox.UseVisualStyleBackColor = true;
-            this.SPD_enableCheckbox.CheckedChanged += new System.EventHandler(this.enableCheckBox_CheckedChanged);
-            // 
             // GC_enableCheckBox
             // 
             this.GC_enableCheckBox.AutoSize = true;
@@ -2411,7 +2430,7 @@
             this.GC_enableCheckBox.Name = "GC_enableCheckBox";
             this.GC_enableCheckBox.Size = new System.Drawing.Size(129, 17);
             this.GC_enableCheckBox.TabIndex = 1;
-            this.GC_enableCheckBox.Tag = "4";
+            this.GC_enableCheckBox.Tag = "1";
             this.GC_enableCheckBox.Text = "Enable Gold Chamber";
             this.GC_enableCheckBox.UseVisualStyleBackColor = true;
             this.GC_enableCheckBox.CheckedChanged += new System.EventHandler(this.enableCheckBox_CheckedChanged);
@@ -2657,7 +2676,7 @@
             // 
             // RD_DragonLVNum
             // 
-            this.RD_DragonLVNum.Location = new System.Drawing.Point(100, 25);
+            this.RD_DragonLVNum.Location = new System.Drawing.Point(102, 25);
             this.RD_DragonLVNum.Maximum = new decimal(new int[] {
             99,
             0,
@@ -4135,11 +4154,11 @@
             // ST_delayValueLabel
             // 
             this.ST_delayValueLabel.AutoSize = true;
-            this.ST_delayValueLabel.Location = new System.Drawing.Point(219, 22);
+            this.ST_delayValueLabel.Location = new System.Drawing.Point(249, 22);
             this.ST_delayValueLabel.Name = "ST_delayValueLabel";
             this.ST_delayValueLabel.Size = new System.Drawing.Size(47, 13);
             this.ST_delayValueLabel.TabIndex = 2;
-            this.ST_delayValueLabel.Text = "1500 ms";
+            this.ST_delayValueLabel.Text = "1700 ms";
             // 
             // ST_delayLabel
             // 
@@ -4155,23 +4174,23 @@
             this.ST_delayTrackBar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ST_delayTrackBar.LargeChange = 100;
             this.ST_delayTrackBar.Location = new System.Drawing.Point(56, 19);
-            this.ST_delayTrackBar.Maximum = 2000;
+            this.ST_delayTrackBar.Maximum = 2500;
             this.ST_delayTrackBar.Minimum = 500;
             this.ST_delayTrackBar.Name = "ST_delayTrackBar";
-            this.ST_delayTrackBar.Size = new System.Drawing.Size(162, 27);
+            this.ST_delayTrackBar.Size = new System.Drawing.Size(188, 27);
             this.ST_delayTrackBar.SmallChange = 10;
             this.ST_delayTrackBar.TabIndex = 0;
             this.ST_delayTrackBar.TickFrequency = 100;
             this.ST_delayTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ST_delayTrackBar.Value = 1500;
+            this.ST_delayTrackBar.Value = 1700;
             this.ST_delayTrackBar.ValueChanged += new System.EventHandler(this.ST_delayTrackBar_ValueChanged);
             // 
             // spDunTab
             // 
+            this.spDunTab.Controls.Add(this.SPD_enableCheckbox);
             this.spDunTab.Controls.Add(this.SPDtimesLabel);
             this.spDunTab.Controls.Add(this.SPD_limitNumericBox);
             this.spDunTab.Controls.Add(this.SPD_limitCheckBox);
-            this.spDunTab.Controls.Add(this.checkBox9);
             this.spDunTab.Controls.Add(this.SPD_mainPanel);
             this.spDunTab.Location = new System.Drawing.Point(4, 22);
             this.spDunTab.Name = "spDunTab";
@@ -4180,6 +4199,18 @@
             this.spDunTab.TabIndex = 8;
             this.spDunTab.Text = "SpecialDun";
             this.spDunTab.UseVisualStyleBackColor = true;
+            // 
+            // SPD_enableCheckbox
+            // 
+            this.SPD_enableCheckbox.AutoSize = true;
+            this.SPD_enableCheckbox.Location = new System.Drawing.Point(9, 7);
+            this.SPD_enableCheckbox.Name = "SPD_enableCheckbox";
+            this.SPD_enableCheckbox.Size = new System.Drawing.Size(144, 17);
+            this.SPD_enableCheckbox.TabIndex = 25;
+            this.SPD_enableCheckbox.Tag = "4";
+            this.SPD_enableCheckbox.Text = "Enable Special Dungeon";
+            this.SPD_enableCheckbox.UseVisualStyleBackColor = true;
+            this.SPD_enableCheckbox.CheckedChanged += new System.EventHandler(this.enableCheckBox_CheckedChanged);
             // 
             // SPDtimesLabel
             // 
@@ -4208,18 +4239,6 @@
             this.SPD_limitCheckBox.Text = "Limit";
             this.SPD_limitCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(6, 7);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(150, 17);
-            this.checkBox9.TabIndex = 20;
-            this.checkBox9.Tag = "4";
-            this.checkBox9.Text = "Enable Special Dungeoun";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            this.checkBox9.Visible = false;
-            // 
             // SPD_mainPanel
             // 
             this.SPD_mainPanel.Controls.Add(this.SPD_skillGroupBox);
@@ -4237,7 +4256,7 @@
             // SPD_skillGroupBox
             // 
             this.SPD_skillGroupBox.Controls.Add(this.SPD_bothSkillRadio);
-            this.SPD_skillGroupBox.Controls.Add(this.panel1);
+            this.SPD_skillGroupBox.Controls.Add(this.SPD_wave3Panel);
             this.SPD_skillGroupBox.Controls.Add(this.SPD_wave2Panel);
             this.SPD_skillGroupBox.Controls.Add(this.SPD_manualSkillRadio);
             this.SPD_skillGroupBox.Controls.Add(this.SPD_autoSkillRadio);
@@ -4247,7 +4266,7 @@
             this.SPD_skillGroupBox.Size = new System.Drawing.Size(254, 324);
             this.SPD_skillGroupBox.TabIndex = 24;
             this.SPD_skillGroupBox.TabStop = false;
-            this.SPD_skillGroupBox.Tag = "1";
+            this.SPD_skillGroupBox.Tag = "3";
             this.SPD_skillGroupBox.Text = "Skill Management";
             // 
             // SPD_bothSkillRadio
@@ -4260,31 +4279,42 @@
             this.SPD_bothSkillRadio.Tag = "2";
             this.SPD_bothSkillRadio.Text = "Both";
             this.SPD_bothSkillRadio.UseVisualStyleBackColor = true;
+            this.SPD_bothSkillRadio.CheckedChanged += new System.EventHandler(this.skillTypeRadio_CheckedChanged);
             // 
-            // panel1
+            // SPD_wave3Panel
             // 
-            this.panel1.Controls.Add(this.SPD_wave3LoopCheckBox);
-            this.panel1.Controls.Add(this.SPD_w3Skill15Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill10Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill09Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill14Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill08Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill07Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill13Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill06Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill05Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill12Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill04Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill03Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill11Button);
-            this.panel1.Controls.Add(this.SPD_w3Skill02Button);
-            this.panel1.Controls.Add(this.SPDw3Label);
-            this.panel1.Controls.Add(this.SPD_w3Skill01Button);
-            this.panel1.Location = new System.Drawing.Point(7, 242);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(241, 76);
-            this.panel1.TabIndex = 9;
-            this.panel1.Tag = "4";
+            this.SPD_wave3Panel.Controls.Add(this.label5);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_wave3LoopCheckBox);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill15Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill10Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill09Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill14Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill08Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill07Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill13Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill06Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill05Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill12Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill04Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill03Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill11Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill02Button);
+            this.SPD_wave3Panel.Controls.Add(this.SPDw3Label);
+            this.SPD_wave3Panel.Controls.Add(this.SPD_w3Skill01Button);
+            this.SPD_wave3Panel.Location = new System.Drawing.Point(6, 242);
+            this.SPD_wave3Panel.Name = "SPD_wave3Panel";
+            this.SPD_wave3Panel.Size = new System.Drawing.Size(241, 76);
+            this.SPD_wave3Panel.TabIndex = 9;
+            this.SPD_wave3Panel.Tag = "9";
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label5.Location = new System.Drawing.Point(50, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 10);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "A.Skill";
             // 
             // SPD_wave3LoopCheckBox
             // 
@@ -4297,6 +4327,7 @@
             this.SPD_wave3LoopCheckBox.Text = "Loop";
             this.SPD_wave3LoopCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SPD_wave3LoopCheckBox.UseVisualStyleBackColor = true;
+            this.SPD_wave3LoopCheckBox.CheckedChanged += new System.EventHandler(this.skillLoopCheckBox_CheckedChanged);
             // 
             // SPD_w3Skill15Button
             // 
@@ -4305,8 +4336,9 @@
             this.SPD_w3Skill15Button.Name = "SPD_w3Skill15Button";
             this.SPD_w3Skill15Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill15Button.TabIndex = 10;
-            this.SPD_w3Skill15Button.Tag = "14";
+            this.SPD_w3Skill15Button.Tag = "9";
             this.SPD_w3Skill15Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill15Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill10Button
             // 
@@ -4315,8 +4347,9 @@
             this.SPD_w3Skill10Button.Name = "SPD_w3Skill10Button";
             this.SPD_w3Skill10Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill10Button.TabIndex = 10;
-            this.SPD_w3Skill10Button.Tag = "9";
+            this.SPD_w3Skill10Button.Tag = "4";
             this.SPD_w3Skill10Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill10Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill09Button
             // 
@@ -4325,8 +4358,9 @@
             this.SPD_w3Skill09Button.Name = "SPD_w3Skill09Button";
             this.SPD_w3Skill09Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill09Button.TabIndex = 9;
-            this.SPD_w3Skill09Button.Tag = "8";
+            this.SPD_w3Skill09Button.Tag = "3";
             this.SPD_w3Skill09Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill09Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill14Button
             // 
@@ -4335,8 +4369,9 @@
             this.SPD_w3Skill14Button.Name = "SPD_w3Skill14Button";
             this.SPD_w3Skill14Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill14Button.TabIndex = 9;
-            this.SPD_w3Skill14Button.Tag = "13";
+            this.SPD_w3Skill14Button.Tag = "8";
             this.SPD_w3Skill14Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill14Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill08Button
             // 
@@ -4345,8 +4380,9 @@
             this.SPD_w3Skill08Button.Name = "SPD_w3Skill08Button";
             this.SPD_w3Skill08Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill08Button.TabIndex = 8;
-            this.SPD_w3Skill08Button.Tag = "7";
+            this.SPD_w3Skill08Button.Tag = "2";
             this.SPD_w3Skill08Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill08Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill07Button
             // 
@@ -4355,8 +4391,9 @@
             this.SPD_w3Skill07Button.Name = "SPD_w3Skill07Button";
             this.SPD_w3Skill07Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill07Button.TabIndex = 7;
-            this.SPD_w3Skill07Button.Tag = "6";
+            this.SPD_w3Skill07Button.Tag = "1";
             this.SPD_w3Skill07Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill07Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill13Button
             // 
@@ -4365,8 +4402,9 @@
             this.SPD_w3Skill13Button.Name = "SPD_w3Skill13Button";
             this.SPD_w3Skill13Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill13Button.TabIndex = 8;
-            this.SPD_w3Skill13Button.Tag = "12";
+            this.SPD_w3Skill13Button.Tag = "7";
             this.SPD_w3Skill13Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill13Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill06Button
             // 
@@ -4375,18 +4413,20 @@
             this.SPD_w3Skill06Button.Name = "SPD_w3Skill06Button";
             this.SPD_w3Skill06Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill06Button.TabIndex = 6;
-            this.SPD_w3Skill06Button.Tag = "5";
+            this.SPD_w3Skill06Button.Tag = "0";
             this.SPD_w3Skill06Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill06Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill05Button
             // 
             this.SPD_w3Skill05Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w3Skill05Button.Location = new System.Drawing.Point(205, 2);
+            this.SPD_w3Skill05Button.Location = new System.Drawing.Point(205, 3);
             this.SPD_w3Skill05Button.Name = "SPD_w3Skill05Button";
             this.SPD_w3Skill05Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill05Button.TabIndex = 5;
-            this.SPD_w3Skill05Button.Tag = "4";
+            this.SPD_w3Skill05Button.Tag = "14";
             this.SPD_w3Skill05Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill05Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill12Button
             // 
@@ -4395,28 +4435,31 @@
             this.SPD_w3Skill12Button.Name = "SPD_w3Skill12Button";
             this.SPD_w3Skill12Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill12Button.TabIndex = 7;
-            this.SPD_w3Skill12Button.Tag = "11";
+            this.SPD_w3Skill12Button.Tag = "6";
             this.SPD_w3Skill12Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill12Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill04Button
             // 
             this.SPD_w3Skill04Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w3Skill04Button.Location = new System.Drawing.Point(173, 2);
+            this.SPD_w3Skill04Button.Location = new System.Drawing.Point(173, 3);
             this.SPD_w3Skill04Button.Name = "SPD_w3Skill04Button";
             this.SPD_w3Skill04Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill04Button.TabIndex = 4;
-            this.SPD_w3Skill04Button.Tag = "3";
+            this.SPD_w3Skill04Button.Tag = "13";
             this.SPD_w3Skill04Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill04Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill03Button
             // 
             this.SPD_w3Skill03Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w3Skill03Button.Location = new System.Drawing.Point(141, 2);
+            this.SPD_w3Skill03Button.Location = new System.Drawing.Point(141, 3);
             this.SPD_w3Skill03Button.Name = "SPD_w3Skill03Button";
             this.SPD_w3Skill03Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill03Button.TabIndex = 3;
-            this.SPD_w3Skill03Button.Tag = "2";
+            this.SPD_w3Skill03Button.Tag = "12";
             this.SPD_w3Skill03Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill03Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill11Button
             // 
@@ -4425,61 +4468,75 @@
             this.SPD_w3Skill11Button.Name = "SPD_w3Skill11Button";
             this.SPD_w3Skill11Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill11Button.TabIndex = 6;
-            this.SPD_w3Skill11Button.Tag = "10";
+            this.SPD_w3Skill11Button.Tag = "5";
             this.SPD_w3Skill11Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill11Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w3Skill02Button
             // 
             this.SPD_w3Skill02Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w3Skill02Button.Location = new System.Drawing.Point(109, 2);
+            this.SPD_w3Skill02Button.Location = new System.Drawing.Point(109, 3);
             this.SPD_w3Skill02Button.Name = "SPD_w3Skill02Button";
             this.SPD_w3Skill02Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill02Button.TabIndex = 2;
-            this.SPD_w3Skill02Button.Tag = "1";
+            this.SPD_w3Skill02Button.Tag = "11";
             this.SPD_w3Skill02Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill02Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPDw3Label
             // 
-            this.SPDw3Label.Location = new System.Drawing.Point(6, 7);
+            this.SPDw3Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.SPDw3Label.Location = new System.Drawing.Point(3, 3);
             this.SPDw3Label.Name = "SPDw3Label";
             this.SPDw3Label.Size = new System.Drawing.Size(60, 13);
             this.SPDw3Label.TabIndex = 0;
-            this.SPDw3Label.Text = "Wave 3";
+            this.SPDw3Label.Text = "Wave3";
             // 
             // SPD_w3Skill01Button
             // 
             this.SPD_w3Skill01Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w3Skill01Button.Location = new System.Drawing.Point(77, 2);
+            this.SPD_w3Skill01Button.Location = new System.Drawing.Point(77, 3);
             this.SPD_w3Skill01Button.Name = "SPD_w3Skill01Button";
             this.SPD_w3Skill01Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w3Skill01Button.TabIndex = 1;
-            this.SPD_w3Skill01Button.Tag = "0";
+            this.SPD_w3Skill01Button.Tag = "10";
             this.SPD_w3Skill01Button.UseVisualStyleBackColor = true;
+            this.SPD_w3Skill01Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_wave2Panel
             // 
+            this.SPD_wave2Panel.Controls.Add(this.label4);
             this.SPD_wave2Panel.Controls.Add(this.SPD_wave2LoopCheckBox);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill15Button);
             this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill10Button);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill05Button);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill04Button);
             this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill09Button);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill14Button);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill03Button);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill02Button);
             this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill08Button);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill01Button);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill15Button);
             this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill07Button);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill14Button);
             this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill13Button);
             this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill06Button);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill05Button);
             this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill12Button);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill04Button);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill03Button);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill11Button);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill02Button);
             this.SPD_wave2Panel.Controls.Add(this.SPDw2Label);
-            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill01Button);
-            this.SPD_wave2Panel.Location = new System.Drawing.Point(7, 160);
+            this.SPD_wave2Panel.Controls.Add(this.SPD_w2Skill11Button);
+            this.SPD_wave2Panel.Location = new System.Drawing.Point(6, 160);
             this.SPD_wave2Panel.Name = "SPD_wave2Panel";
             this.SPD_wave2Panel.Size = new System.Drawing.Size(241, 76);
             this.SPD_wave2Panel.TabIndex = 9;
-            this.SPD_wave2Panel.Tag = "4";
+            this.SPD_wave2Panel.Tag = "8";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label4.Location = new System.Drawing.Point(50, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 10);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "A.Skill";
             // 
             // SPD_wave2LoopCheckBox
             // 
@@ -4492,164 +4549,181 @@
             this.SPD_wave2LoopCheckBox.Text = "Loop";
             this.SPD_wave2LoopCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SPD_wave2LoopCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w2Skill15Button
-            // 
-            this.SPD_w2Skill15Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill15Button.Location = new System.Drawing.Point(205, 50);
-            this.SPD_w2Skill15Button.Name = "SPD_w2Skill15Button";
-            this.SPD_w2Skill15Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill15Button.TabIndex = 10;
-            this.SPD_w2Skill15Button.Tag = "14";
-            this.SPD_w2Skill15Button.UseVisualStyleBackColor = true;
+            this.SPD_wave2LoopCheckBox.CheckedChanged += new System.EventHandler(this.skillLoopCheckBox_CheckedChanged);
             // 
             // SPD_w2Skill10Button
             // 
             this.SPD_w2Skill10Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill10Button.Location = new System.Drawing.Point(205, 26);
+            this.SPD_w2Skill10Button.Location = new System.Drawing.Point(205, 50);
             this.SPD_w2Skill10Button.Name = "SPD_w2Skill10Button";
             this.SPD_w2Skill10Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w2Skill10Button.TabIndex = 10;
             this.SPD_w2Skill10Button.Tag = "9";
             this.SPD_w2Skill10Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill10Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w2Skill05Button
+            // 
+            this.SPD_w2Skill05Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w2Skill05Button.Location = new System.Drawing.Point(205, 26);
+            this.SPD_w2Skill05Button.Name = "SPD_w2Skill05Button";
+            this.SPD_w2Skill05Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w2Skill05Button.TabIndex = 10;
+            this.SPD_w2Skill05Button.Tag = "4";
+            this.SPD_w2Skill05Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill05Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w2Skill04Button
+            // 
+            this.SPD_w2Skill04Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w2Skill04Button.Location = new System.Drawing.Point(173, 26);
+            this.SPD_w2Skill04Button.Name = "SPD_w2Skill04Button";
+            this.SPD_w2Skill04Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w2Skill04Button.TabIndex = 9;
+            this.SPD_w2Skill04Button.Tag = "3";
+            this.SPD_w2Skill04Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill04Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w2Skill09Button
             // 
             this.SPD_w2Skill09Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill09Button.Location = new System.Drawing.Point(173, 26);
+            this.SPD_w2Skill09Button.Location = new System.Drawing.Point(173, 50);
             this.SPD_w2Skill09Button.Name = "SPD_w2Skill09Button";
             this.SPD_w2Skill09Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w2Skill09Button.TabIndex = 9;
             this.SPD_w2Skill09Button.Tag = "8";
             this.SPD_w2Skill09Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill09Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
-            // SPD_w2Skill14Button
+            // SPD_w2Skill03Button
             // 
-            this.SPD_w2Skill14Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill14Button.Location = new System.Drawing.Point(173, 50);
-            this.SPD_w2Skill14Button.Name = "SPD_w2Skill14Button";
-            this.SPD_w2Skill14Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill14Button.TabIndex = 9;
-            this.SPD_w2Skill14Button.Tag = "13";
-            this.SPD_w2Skill14Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill03Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w2Skill03Button.Location = new System.Drawing.Point(141, 26);
+            this.SPD_w2Skill03Button.Name = "SPD_w2Skill03Button";
+            this.SPD_w2Skill03Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w2Skill03Button.TabIndex = 8;
+            this.SPD_w2Skill03Button.Tag = "2";
+            this.SPD_w2Skill03Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill03Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w2Skill02Button
+            // 
+            this.SPD_w2Skill02Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w2Skill02Button.Location = new System.Drawing.Point(109, 26);
+            this.SPD_w2Skill02Button.Name = "SPD_w2Skill02Button";
+            this.SPD_w2Skill02Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w2Skill02Button.TabIndex = 7;
+            this.SPD_w2Skill02Button.Tag = "1";
+            this.SPD_w2Skill02Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill02Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w2Skill08Button
             // 
             this.SPD_w2Skill08Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill08Button.Location = new System.Drawing.Point(141, 26);
+            this.SPD_w2Skill08Button.Location = new System.Drawing.Point(141, 50);
             this.SPD_w2Skill08Button.Name = "SPD_w2Skill08Button";
             this.SPD_w2Skill08Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w2Skill08Button.TabIndex = 8;
             this.SPD_w2Skill08Button.Tag = "7";
             this.SPD_w2Skill08Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill08Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w2Skill01Button
+            // 
+            this.SPD_w2Skill01Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w2Skill01Button.Location = new System.Drawing.Point(77, 26);
+            this.SPD_w2Skill01Button.Name = "SPD_w2Skill01Button";
+            this.SPD_w2Skill01Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w2Skill01Button.TabIndex = 6;
+            this.SPD_w2Skill01Button.Tag = "0";
+            this.SPD_w2Skill01Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill01Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w2Skill15Button
+            // 
+            this.SPD_w2Skill15Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w2Skill15Button.Location = new System.Drawing.Point(205, 3);
+            this.SPD_w2Skill15Button.Name = "SPD_w2Skill15Button";
+            this.SPD_w2Skill15Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w2Skill15Button.TabIndex = 5;
+            this.SPD_w2Skill15Button.Tag = "14";
+            this.SPD_w2Skill15Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill15Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w2Skill07Button
             // 
             this.SPD_w2Skill07Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill07Button.Location = new System.Drawing.Point(109, 26);
+            this.SPD_w2Skill07Button.Location = new System.Drawing.Point(109, 50);
             this.SPD_w2Skill07Button.Name = "SPD_w2Skill07Button";
             this.SPD_w2Skill07Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w2Skill07Button.TabIndex = 7;
             this.SPD_w2Skill07Button.Tag = "6";
             this.SPD_w2Skill07Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill07Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w2Skill14Button
+            // 
+            this.SPD_w2Skill14Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w2Skill14Button.Location = new System.Drawing.Point(173, 3);
+            this.SPD_w2Skill14Button.Name = "SPD_w2Skill14Button";
+            this.SPD_w2Skill14Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w2Skill14Button.TabIndex = 4;
+            this.SPD_w2Skill14Button.Tag = "13";
+            this.SPD_w2Skill14Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill14Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w2Skill13Button
             // 
             this.SPD_w2Skill13Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill13Button.Location = new System.Drawing.Point(141, 50);
+            this.SPD_w2Skill13Button.Location = new System.Drawing.Point(141, 3);
             this.SPD_w2Skill13Button.Name = "SPD_w2Skill13Button";
             this.SPD_w2Skill13Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill13Button.TabIndex = 8;
+            this.SPD_w2Skill13Button.TabIndex = 3;
             this.SPD_w2Skill13Button.Tag = "12";
             this.SPD_w2Skill13Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill13Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w2Skill06Button
             // 
             this.SPD_w2Skill06Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill06Button.Location = new System.Drawing.Point(77, 26);
+            this.SPD_w2Skill06Button.Location = new System.Drawing.Point(77, 50);
             this.SPD_w2Skill06Button.Name = "SPD_w2Skill06Button";
             this.SPD_w2Skill06Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w2Skill06Button.TabIndex = 6;
             this.SPD_w2Skill06Button.Tag = "5";
             this.SPD_w2Skill06Button.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w2Skill05Button
-            // 
-            this.SPD_w2Skill05Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill05Button.Location = new System.Drawing.Point(205, 2);
-            this.SPD_w2Skill05Button.Name = "SPD_w2Skill05Button";
-            this.SPD_w2Skill05Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill05Button.TabIndex = 5;
-            this.SPD_w2Skill05Button.Tag = "4";
-            this.SPD_w2Skill05Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill06Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w2Skill12Button
             // 
             this.SPD_w2Skill12Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill12Button.Location = new System.Drawing.Point(109, 50);
+            this.SPD_w2Skill12Button.Location = new System.Drawing.Point(109, 3);
             this.SPD_w2Skill12Button.Name = "SPD_w2Skill12Button";
             this.SPD_w2Skill12Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill12Button.TabIndex = 7;
+            this.SPD_w2Skill12Button.TabIndex = 2;
             this.SPD_w2Skill12Button.Tag = "11";
             this.SPD_w2Skill12Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill12Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
-            // SPD_w2Skill04Button
+            // SPDw2Label
             // 
-            this.SPD_w2Skill04Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill04Button.Location = new System.Drawing.Point(173, 2);
-            this.SPD_w2Skill04Button.Name = "SPD_w2Skill04Button";
-            this.SPD_w2Skill04Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill04Button.TabIndex = 4;
-            this.SPD_w2Skill04Button.Tag = "3";
-            this.SPD_w2Skill04Button.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w2Skill03Button
-            // 
-            this.SPD_w2Skill03Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill03Button.Location = new System.Drawing.Point(141, 2);
-            this.SPD_w2Skill03Button.Name = "SPD_w2Skill03Button";
-            this.SPD_w2Skill03Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill03Button.TabIndex = 3;
-            this.SPD_w2Skill03Button.Tag = "2";
-            this.SPD_w2Skill03Button.UseVisualStyleBackColor = true;
+            this.SPDw2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.SPDw2Label.Location = new System.Drawing.Point(3, 3);
+            this.SPDw2Label.Name = "SPDw2Label";
+            this.SPDw2Label.Size = new System.Drawing.Size(60, 13);
+            this.SPDw2Label.TabIndex = 0;
+            this.SPDw2Label.Text = "Wave2";
             // 
             // SPD_w2Skill11Button
             // 
             this.SPD_w2Skill11Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill11Button.Location = new System.Drawing.Point(77, 50);
+            this.SPD_w2Skill11Button.Location = new System.Drawing.Point(77, 3);
             this.SPD_w2Skill11Button.Name = "SPD_w2Skill11Button";
             this.SPD_w2Skill11Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill11Button.TabIndex = 6;
+            this.SPD_w2Skill11Button.TabIndex = 1;
             this.SPD_w2Skill11Button.Tag = "10";
             this.SPD_w2Skill11Button.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w2Skill02Button
-            // 
-            this.SPD_w2Skill02Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill02Button.Location = new System.Drawing.Point(109, 2);
-            this.SPD_w2Skill02Button.Name = "SPD_w2Skill02Button";
-            this.SPD_w2Skill02Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill02Button.TabIndex = 2;
-            this.SPD_w2Skill02Button.Tag = "1";
-            this.SPD_w2Skill02Button.UseVisualStyleBackColor = true;
-            // 
-            // SPDw2Label
-            // 
-            this.SPDw2Label.Location = new System.Drawing.Point(6, 7);
-            this.SPDw2Label.Name = "SPDw2Label";
-            this.SPDw2Label.Size = new System.Drawing.Size(60, 13);
-            this.SPDw2Label.TabIndex = 0;
-            this.SPDw2Label.Text = "Wave 2";
-            // 
-            // SPD_w2Skill01Button
-            // 
-            this.SPD_w2Skill01Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w2Skill01Button.Location = new System.Drawing.Point(77, 2);
-            this.SPD_w2Skill01Button.Name = "SPD_w2Skill01Button";
-            this.SPD_w2Skill01Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w2Skill01Button.TabIndex = 1;
-            this.SPD_w2Skill01Button.Tag = "0";
-            this.SPD_w2Skill01Button.UseVisualStyleBackColor = true;
+            this.SPD_w2Skill11Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_manualSkillRadio
             // 
@@ -4661,6 +4735,7 @@
             this.SPD_manualSkillRadio.Tag = "1";
             this.SPD_manualSkillRadio.Text = "Manual Skill";
             this.SPD_manualSkillRadio.UseVisualStyleBackColor = true;
+            this.SPD_manualSkillRadio.CheckedChanged += new System.EventHandler(this.skillTypeRadio_CheckedChanged);
             // 
             // SPD_autoSkillRadio
             // 
@@ -4674,31 +4749,42 @@
             this.SPD_autoSkillRadio.Tag = "0";
             this.SPD_autoSkillRadio.Text = "Auto Skill";
             this.SPD_autoSkillRadio.UseVisualStyleBackColor = true;
+            this.SPD_autoSkillRadio.CheckedChanged += new System.EventHandler(this.skillTypeRadio_CheckedChanged);
             // 
             // SPD_wave1Panel
             // 
+            this.SPD_wave1Panel.Controls.Add(this.label3);
             this.SPD_wave1Panel.Controls.Add(this.SPD_wave1LoopCheckBox);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill15Button);
             this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill10Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill14Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill09Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill13Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill08Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill12Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill07Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill11Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill06Button);
             this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill05Button);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill09Button);
             this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill04Button);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill08Button);
             this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill03Button);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill07Button);
             this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill02Button);
-            this.SPD_wave1Panel.Controls.Add(this.SPDw1Label);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill06Button);
             this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill01Button);
-            this.SPD_wave1Panel.Location = new System.Drawing.Point(7, 78);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill15Button);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill14Button);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill13Button);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill12Button);
+            this.SPD_wave1Panel.Controls.Add(this.SPDw1Label);
+            this.SPD_wave1Panel.Controls.Add(this.SPD_w1Skill011Button);
+            this.SPD_wave1Panel.Location = new System.Drawing.Point(6, 78);
             this.SPD_wave1Panel.Name = "SPD_wave1Panel";
             this.SPD_wave1Panel.Size = new System.Drawing.Size(241, 76);
             this.SPD_wave1Panel.TabIndex = 8;
-            this.SPD_wave1Panel.Tag = "3";
+            this.SPD_wave1Panel.Tag = "7";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label3.Location = new System.Drawing.Point(50, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 10);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "A.Skill";
             // 
             // SPD_wave1LoopCheckBox
             // 
@@ -4711,164 +4797,196 @@
             this.SPD_wave1LoopCheckBox.Text = "Loop";
             this.SPD_wave1LoopCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.SPD_wave1LoopCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w1Skill15Button
-            // 
-            this.SPD_w1Skill15Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill15Button.Location = new System.Drawing.Point(205, 50);
-            this.SPD_w1Skill15Button.Name = "SPD_w1Skill15Button";
-            this.SPD_w1Skill15Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill15Button.TabIndex = 10;
-            this.SPD_w1Skill15Button.Tag = "14";
-            this.SPD_w1Skill15Button.UseVisualStyleBackColor = true;
+            this.SPD_wave1LoopCheckBox.CheckedChanged += new System.EventHandler(this.skillLoopCheckBox_CheckedChanged);
             // 
             // SPD_w1Skill10Button
             // 
             this.SPD_w1Skill10Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill10Button.Location = new System.Drawing.Point(205, 26);
+            this.SPD_w1Skill10Button.Location = new System.Drawing.Point(204, 50);
             this.SPD_w1Skill10Button.Name = "SPD_w1Skill10Button";
             this.SPD_w1Skill10Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w1Skill10Button.TabIndex = 10;
             this.SPD_w1Skill10Button.Tag = "9";
             this.SPD_w1Skill10Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill10Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
-            // SPD_w1Skill14Button
+            // SPD_w1Skill05Button
             // 
-            this.SPD_w1Skill14Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill14Button.Location = new System.Drawing.Point(173, 50);
-            this.SPD_w1Skill14Button.Name = "SPD_w1Skill14Button";
-            this.SPD_w1Skill14Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill14Button.TabIndex = 9;
-            this.SPD_w1Skill14Button.Tag = "13";
-            this.SPD_w1Skill14Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill05Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill05Button.Location = new System.Drawing.Point(204, 26);
+            this.SPD_w1Skill05Button.Name = "SPD_w1Skill05Button";
+            this.SPD_w1Skill05Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill05Button.TabIndex = 10;
+            this.SPD_w1Skill05Button.Tag = "4";
+            this.SPD_w1Skill05Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill05Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w1Skill09Button
             // 
             this.SPD_w1Skill09Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill09Button.Location = new System.Drawing.Point(173, 26);
+            this.SPD_w1Skill09Button.Location = new System.Drawing.Point(172, 50);
             this.SPD_w1Skill09Button.Name = "SPD_w1Skill09Button";
             this.SPD_w1Skill09Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w1Skill09Button.TabIndex = 9;
             this.SPD_w1Skill09Button.Tag = "8";
             this.SPD_w1Skill09Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill09Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
-            // SPD_w1Skill13Button
+            // SPD_w1Skill04Button
             // 
-            this.SPD_w1Skill13Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill13Button.Location = new System.Drawing.Point(141, 50);
-            this.SPD_w1Skill13Button.Name = "SPD_w1Skill13Button";
-            this.SPD_w1Skill13Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill13Button.TabIndex = 8;
-            this.SPD_w1Skill13Button.Tag = "12";
-            this.SPD_w1Skill13Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill04Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill04Button.Location = new System.Drawing.Point(172, 26);
+            this.SPD_w1Skill04Button.Name = "SPD_w1Skill04Button";
+            this.SPD_w1Skill04Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill04Button.TabIndex = 9;
+            this.SPD_w1Skill04Button.Tag = "3";
+            this.SPD_w1Skill04Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill04Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w1Skill08Button
             // 
             this.SPD_w1Skill08Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill08Button.Location = new System.Drawing.Point(141, 26);
+            this.SPD_w1Skill08Button.Location = new System.Drawing.Point(140, 50);
             this.SPD_w1Skill08Button.Name = "SPD_w1Skill08Button";
             this.SPD_w1Skill08Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w1Skill08Button.TabIndex = 8;
             this.SPD_w1Skill08Button.Tag = "7";
             this.SPD_w1Skill08Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill08Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
-            // SPD_w1Skill12Button
+            // SPD_w1Skill03Button
             // 
-            this.SPD_w1Skill12Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill12Button.Location = new System.Drawing.Point(109, 50);
-            this.SPD_w1Skill12Button.Name = "SPD_w1Skill12Button";
-            this.SPD_w1Skill12Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill12Button.TabIndex = 7;
-            this.SPD_w1Skill12Button.Tag = "11";
-            this.SPD_w1Skill12Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill03Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill03Button.Location = new System.Drawing.Point(140, 26);
+            this.SPD_w1Skill03Button.Name = "SPD_w1Skill03Button";
+            this.SPD_w1Skill03Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill03Button.TabIndex = 8;
+            this.SPD_w1Skill03Button.Tag = "2";
+            this.SPD_w1Skill03Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill03Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w1Skill07Button
             // 
             this.SPD_w1Skill07Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill07Button.Location = new System.Drawing.Point(109, 26);
+            this.SPD_w1Skill07Button.Location = new System.Drawing.Point(108, 50);
             this.SPD_w1Skill07Button.Name = "SPD_w1Skill07Button";
             this.SPD_w1Skill07Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w1Skill07Button.TabIndex = 7;
             this.SPD_w1Skill07Button.Tag = "6";
             this.SPD_w1Skill07Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill07Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
-            // SPD_w1Skill11Button
+            // SPD_w1Skill02Button
             // 
-            this.SPD_w1Skill11Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill11Button.Location = new System.Drawing.Point(77, 50);
-            this.SPD_w1Skill11Button.Name = "SPD_w1Skill11Button";
-            this.SPD_w1Skill11Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill11Button.TabIndex = 6;
-            this.SPD_w1Skill11Button.Tag = "10";
-            this.SPD_w1Skill11Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill02Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill02Button.Location = new System.Drawing.Point(108, 26);
+            this.SPD_w1Skill02Button.Name = "SPD_w1Skill02Button";
+            this.SPD_w1Skill02Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill02Button.TabIndex = 7;
+            this.SPD_w1Skill02Button.Tag = "1";
+            this.SPD_w1Skill02Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill02Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w1Skill06Button
             // 
             this.SPD_w1Skill06Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill06Button.Location = new System.Drawing.Point(77, 26);
+            this.SPD_w1Skill06Button.Location = new System.Drawing.Point(76, 50);
             this.SPD_w1Skill06Button.Name = "SPD_w1Skill06Button";
             this.SPD_w1Skill06Button.Size = new System.Drawing.Size(23, 23);
             this.SPD_w1Skill06Button.TabIndex = 6;
             this.SPD_w1Skill06Button.Tag = "5";
             this.SPD_w1Skill06Button.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w1Skill05Button
-            // 
-            this.SPD_w1Skill05Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill05Button.Location = new System.Drawing.Point(205, 2);
-            this.SPD_w1Skill05Button.Name = "SPD_w1Skill05Button";
-            this.SPD_w1Skill05Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill05Button.TabIndex = 5;
-            this.SPD_w1Skill05Button.Tag = "4";
-            this.SPD_w1Skill05Button.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w1Skill04Button
-            // 
-            this.SPD_w1Skill04Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill04Button.Location = new System.Drawing.Point(173, 2);
-            this.SPD_w1Skill04Button.Name = "SPD_w1Skill04Button";
-            this.SPD_w1Skill04Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill04Button.TabIndex = 4;
-            this.SPD_w1Skill04Button.Tag = "3";
-            this.SPD_w1Skill04Button.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w1Skill03Button
-            // 
-            this.SPD_w1Skill03Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill03Button.Location = new System.Drawing.Point(141, 2);
-            this.SPD_w1Skill03Button.Name = "SPD_w1Skill03Button";
-            this.SPD_w1Skill03Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill03Button.TabIndex = 3;
-            this.SPD_w1Skill03Button.Tag = "2";
-            this.SPD_w1Skill03Button.UseVisualStyleBackColor = true;
-            // 
-            // SPD_w1Skill02Button
-            // 
-            this.SPD_w1Skill02Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill02Button.Location = new System.Drawing.Point(109, 2);
-            this.SPD_w1Skill02Button.Name = "SPD_w1Skill02Button";
-            this.SPD_w1Skill02Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill02Button.TabIndex = 2;
-            this.SPD_w1Skill02Button.Tag = "1";
-            this.SPD_w1Skill02Button.UseVisualStyleBackColor = true;
-            // 
-            // SPDw1Label
-            // 
-            this.SPDw1Label.Location = new System.Drawing.Point(6, 7);
-            this.SPDw1Label.Name = "SPDw1Label";
-            this.SPDw1Label.Size = new System.Drawing.Size(60, 13);
-            this.SPDw1Label.TabIndex = 0;
-            this.SPDw1Label.Text = "Wave 1";
+            this.SPD_w1Skill06Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // SPD_w1Skill01Button
             // 
             this.SPD_w1Skill01Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.SPD_w1Skill01Button.Location = new System.Drawing.Point(77, 2);
+            this.SPD_w1Skill01Button.Location = new System.Drawing.Point(76, 26);
             this.SPD_w1Skill01Button.Name = "SPD_w1Skill01Button";
             this.SPD_w1Skill01Button.Size = new System.Drawing.Size(23, 23);
-            this.SPD_w1Skill01Button.TabIndex = 1;
+            this.SPD_w1Skill01Button.TabIndex = 6;
             this.SPD_w1Skill01Button.Tag = "0";
             this.SPD_w1Skill01Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill01Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w1Skill15Button
+            // 
+            this.SPD_w1Skill15Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill15Button.Location = new System.Drawing.Point(204, 3);
+            this.SPD_w1Skill15Button.Name = "SPD_w1Skill15Button";
+            this.SPD_w1Skill15Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill15Button.TabIndex = 5;
+            this.SPD_w1Skill15Button.Tag = "14";
+            this.SPD_w1Skill15Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill15Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w1Skill14Button
+            // 
+            this.SPD_w1Skill14Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill14Button.Location = new System.Drawing.Point(172, 3);
+            this.SPD_w1Skill14Button.Name = "SPD_w1Skill14Button";
+            this.SPD_w1Skill14Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill14Button.TabIndex = 4;
+            this.SPD_w1Skill14Button.Tag = "13";
+            this.SPD_w1Skill14Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill14Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w1Skill13Button
+            // 
+            this.SPD_w1Skill13Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill13Button.Location = new System.Drawing.Point(140, 3);
+            this.SPD_w1Skill13Button.Name = "SPD_w1Skill13Button";
+            this.SPD_w1Skill13Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill13Button.TabIndex = 3;
+            this.SPD_w1Skill13Button.Tag = "12";
+            this.SPD_w1Skill13Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill13Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_w1Skill12Button
+            // 
+            this.SPD_w1Skill12Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill12Button.Location = new System.Drawing.Point(108, 3);
+            this.SPD_w1Skill12Button.Name = "SPD_w1Skill12Button";
+            this.SPD_w1Skill12Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill12Button.TabIndex = 2;
+            this.SPD_w1Skill12Button.Tag = "11";
+            this.SPD_w1Skill12Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill12Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPDw1Label
+            // 
+            this.SPDw1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.SPDw1Label.Location = new System.Drawing.Point(3, 3);
+            this.SPDw1Label.Name = "SPDw1Label";
+            this.SPDw1Label.Size = new System.Drawing.Size(60, 13);
+            this.SPDw1Label.TabIndex = 0;
+            this.SPDw1Label.Text = "Wave1";
+            // 
+            // SPD_w1Skill011Button
+            // 
+            this.SPD_w1Skill011Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.SPD_w1Skill011Button.Location = new System.Drawing.Point(76, 3);
+            this.SPD_w1Skill011Button.Name = "SPD_w1Skill011Button";
+            this.SPD_w1Skill011Button.Size = new System.Drawing.Size(23, 23);
+            this.SPD_w1Skill011Button.TabIndex = 1;
+            this.SPD_w1Skill011Button.Tag = "10";
+            this.SPD_w1Skill011Button.UseVisualStyleBackColor = true;
+            this.SPD_w1Skill011Button.Click += new System.EventHandler(this.skillButton_Click);
+            // 
+            // SPD_dunDifficultyComboBox
+            // 
+            this.SPD_dunDifficultyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SPD_dunDifficultyComboBox.FormattingEnabled = true;
+            this.SPD_dunDifficultyComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.SPD_dunDifficultyComboBox.Location = new System.Drawing.Point(74, 56);
+            this.SPD_dunDifficultyComboBox.Name = "SPD_dunDifficultyComboBox";
+            this.SPD_dunDifficultyComboBox.Size = new System.Drawing.Size(52, 21);
+            this.SPD_dunDifficultyComboBox.TabIndex = 3;
+            this.SPD_dunDifficultyComboBox.Tag = "2";
+            this.SPD_dunDifficultyComboBox.SelectedIndexChanged += new System.EventHandler(this.spdSelectedIndexChanged);
             // 
             // SPD_dunSlotComboBox
             // 
@@ -4902,8 +5020,7 @@
             "1",
             "2",
             "3",
-            "4",
-            "5"});
+            "4"});
             this.SPD_dunTabComboBox.Location = new System.Drawing.Point(74, 4);
             this.SPD_dunTabComboBox.Name = "SPD_dunTabComboBox";
             this.SPD_dunTabComboBox.Size = new System.Drawing.Size(52, 21);
@@ -4927,6 +5044,193 @@
             this.SPDdunTabLabel.TabIndex = 19;
             this.SPDdunTabLabel.Text = "DunTab";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(488, 366);
+            this.tabPage1.TabIndex = 9;
+            this.tabPage1.Text = "Telegram";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ST_TelegramChatIDTB);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.ST_TelegramEnable);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.ST_TelegramTokenTextBox);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(476, 165);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Telegram Setting";
+            // 
+            // ST_TelegramChatIDTB
+            // 
+            this.ST_TelegramChatIDTB.Enabled = false;
+            this.ST_TelegramChatIDTB.Location = new System.Drawing.Point(296, 93);
+            this.ST_TelegramChatIDTB.Multiline = true;
+            this.ST_TelegramChatIDTB.Name = "ST_TelegramChatIDTB";
+            this.ST_TelegramChatIDTB.Size = new System.Drawing.Size(176, 20);
+            this.ST_TelegramChatIDTB.TabIndex = 14;
+            this.ST_TelegramChatIDTB.TextChanged += new System.EventHandler(this.ST_TelegramChatIDTB_TextChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(296, 65);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(40, 13);
+            this.label19.TabIndex = 13;
+            this.label19.Text = "ChatID";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(296, 128);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(173, 29);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "GetID";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Image = global::SevenKnightsAI.Properties.Resources.Telegram_logo_svg;
+            this.pictureBox1.Location = new System.Drawing.Point(6, 65);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(99, 82);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label18
+            // 
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label18.Location = new System.Drawing.Point(30, 39);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(396, 13);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "You will need to create a Telegram Bot and install the app on your device.";
+            // 
+            // ST_TelegramEnable
+            // 
+            this.ST_TelegramEnable.AutoSize = true;
+            this.ST_TelegramEnable.Location = new System.Drawing.Point(9, 19);
+            this.ST_TelegramEnable.Name = "ST_TelegramEnable";
+            this.ST_TelegramEnable.Size = new System.Drawing.Size(131, 17);
+            this.ST_TelegramEnable.TabIndex = 9;
+            this.ST_TelegramEnable.Text = "Enable Telegram BOT";
+            this.ST_TelegramEnable.UseVisualStyleBackColor = true;
+            this.ST_TelegramEnable.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(114, 128);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(176, 29);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Token Test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // ST_TelegramTokenTextBox
+            // 
+<<<<<<< HEAD
+            this.ST_TelegramTokenTextBox.Location = new System.Drawing.Point(114, 93);
+            this.ST_TelegramTokenTextBox.Multiline = true;
+            this.ST_TelegramTokenTextBox.Name = "ST_TelegramTokenTextBox";
+            this.ST_TelegramTokenTextBox.Size = new System.Drawing.Size(356, 20);
+            this.ST_TelegramTokenTextBox.TabIndex = 6;
+            this.ST_TelegramTokenTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+=======
+            this.textBox1.Location = new System.Drawing.Point(114, 93);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(176, 20);
+            this.textBox1.TabIndex = 6;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+>>>>>>> refs/remotes/origin/master
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(111, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Telegram Token";
+            // 
+            // groupBox1
+            // 
+<<<<<<< HEAD
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.label19);
+=======
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.label20);
+>>>>>>> refs/remotes/origin/master
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Location = new System.Drawing.Point(6, 177);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(476, 169);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Command : ";
+            // 
+<<<<<<< HEAD
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 104);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(192, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "[NotAvailable]Resume AI - Resume Bot";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 79);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(174, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "[NotAvailable]Pause AI - Pause Bot";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 54);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Stop AI - Stopping Bot";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Start AI - Starting Bot";
+            // 
+=======
+>>>>>>> refs/remotes/origin/master
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -5378,20 +5682,92 @@
             this.aiPause.UseVisualStyleBackColor = true;
             this.aiPause.Click += new System.EventHandler(this.aiPause_Click);
             // 
-            // SPD_dunDifficultyComboBox
+            // backgroundWorker1
             // 
-            this.SPD_dunDifficultyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SPD_dunDifficultyComboBox.FormattingEnabled = true;
-            this.SPD_dunDifficultyComboBox.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.SPD_dunDifficultyComboBox.Location = new System.Drawing.Point(74, 56);
-            this.SPD_dunDifficultyComboBox.Name = "SPD_dunDifficultyComboBox";
-            this.SPD_dunDifficultyComboBox.Size = new System.Drawing.Size(52, 21);
-            this.SPD_dunDifficultyComboBox.TabIndex = 3;
-            this.SPD_dunDifficultyComboBox.Tag = "2";
-            this.SPD_dunDifficultyComboBox.SelectedIndexChanged += new System.EventHandler(this.spdSelectedIndexChanged);
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+<<<<<<< HEAD
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(262, 27);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(199, 13);
+            this.label19.TabIndex = 4;
+            this.label19.Text = "[Test]Enable Mode - Enable Some Mode";
+=======
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(23, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(345, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "/Start : Start Telegram Bot + Show Keyboard Command in Telegram Bot";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(23, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(172, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "/StartBot : Start Seven Knights Bot";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(23, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(188, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "/PauseBot : Pause Seven Knights Bot";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(23, 93);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(172, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "/StopBot : Stop Seven Knights Bot";
+>>>>>>> refs/remotes/origin/master
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+<<<<<<< HEAD
+            this.label20.Location = new System.Drawing.Point(262, 54);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(203, 13);
+            this.label20.TabIndex = 5;
+            this.label20.Text = "[Test]Disable Mode - Disable Some Mode";
+=======
+            this.label20.Location = new System.Drawing.Point(23, 116);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(206, 13);
+            this.label20.TabIndex = 4;
+            this.label20.Text = "/ResumeBot : Resume Seven Knights Bot";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(265, 47);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(144, 13);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "/EnableMode : Enable Mode";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(265, 71);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(148, 13);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "/DisableMode : Disable Mode";
+>>>>>>> refs/remotes/origin/master
             // 
             // MainForm
             // 
@@ -5501,9 +5877,15 @@
             this.SPD_mainPanel.ResumeLayout(false);
             this.SPD_skillGroupBox.ResumeLayout(false);
             this.SPD_skillGroupBox.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.SPD_wave3Panel.ResumeLayout(false);
             this.SPD_wave2Panel.ResumeLayout(false);
             this.SPD_wave1Panel.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.summaryGroupBox.ResumeLayout(false);
@@ -6426,51 +6808,50 @@
         private System.Windows.Forms.Label SPDtimesLabel;
         private System.Windows.Forms.NumericUpDown SPD_limitNumericBox;
         private System.Windows.Forms.CheckBox SPD_limitCheckBox;
-        private System.Windows.Forms.CheckBox checkBox9;
         private System.Windows.Forms.Panel SPD_mainPanel;
         private System.Windows.Forms.GroupBox SPD_skillGroupBox;
         private System.Windows.Forms.RadioButton SPD_bothSkillRadio;
         private System.Windows.Forms.Panel SPD_wave2Panel;
         private System.Windows.Forms.CheckBox SPD_wave2LoopCheckBox;
+        private System.Windows.Forms.Button SPD_w2Skill05Button;
+        private System.Windows.Forms.Button SPD_w2Skill04Button;
+        private System.Windows.Forms.Button SPD_w2Skill03Button;
+        private System.Windows.Forms.Button SPD_w2Skill02Button;
+        private System.Windows.Forms.Button SPD_w2Skill01Button;
+        private System.Windows.Forms.Button SPD_w2Skill15Button;
+        private System.Windows.Forms.Button SPD_w2Skill14Button;
+        private System.Windows.Forms.Button SPD_w2Skill13Button;
+        private System.Windows.Forms.Button SPD_w2Skill12Button;
+        private System.Windows.Forms.Label SPDw2Label;
+        private System.Windows.Forms.Button SPD_w2Skill11Button;
+        private System.Windows.Forms.RadioButton SPD_manualSkillRadio;
+        private System.Windows.Forms.RadioButton SPD_autoSkillRadio;
+        private System.Windows.Forms.Panel SPD_wave1Panel;
+        private System.Windows.Forms.CheckBox SPD_wave1LoopCheckBox;
+        private System.Windows.Forms.Button SPD_w1Skill05Button;
+        private System.Windows.Forms.Button SPD_w1Skill04Button;
+        private System.Windows.Forms.Button SPD_w1Skill03Button;
+        private System.Windows.Forms.Button SPD_w1Skill02Button;
+        private System.Windows.Forms.Button SPD_w1Skill01Button;
+        private System.Windows.Forms.Button SPD_w1Skill15Button;
+        private System.Windows.Forms.Button SPD_w1Skill14Button;
+        private System.Windows.Forms.Button SPD_w1Skill13Button;
+        private System.Windows.Forms.Button SPD_w1Skill12Button;
+        private System.Windows.Forms.Label SPDw1Label;
+        private System.Windows.Forms.Button SPD_w1Skill011Button;
+        private System.Windows.Forms.ComboBox SPD_dunTabComboBox;
+        private System.Windows.Forms.Label SPDdunTabLabel;
         private System.Windows.Forms.Button SPD_w2Skill10Button;
         private System.Windows.Forms.Button SPD_w2Skill09Button;
         private System.Windows.Forms.Button SPD_w2Skill08Button;
         private System.Windows.Forms.Button SPD_w2Skill07Button;
         private System.Windows.Forms.Button SPD_w2Skill06Button;
-        private System.Windows.Forms.Button SPD_w2Skill05Button;
-        private System.Windows.Forms.Button SPD_w2Skill04Button;
-        private System.Windows.Forms.Button SPD_w2Skill03Button;
-        private System.Windows.Forms.Button SPD_w2Skill02Button;
-        private System.Windows.Forms.Label SPDw2Label;
-        private System.Windows.Forms.Button SPD_w2Skill01Button;
-        private System.Windows.Forms.RadioButton SPD_manualSkillRadio;
-        private System.Windows.Forms.RadioButton SPD_autoSkillRadio;
-        private System.Windows.Forms.Panel SPD_wave1Panel;
-        private System.Windows.Forms.CheckBox SPD_wave1LoopCheckBox;
         private System.Windows.Forms.Button SPD_w1Skill10Button;
         private System.Windows.Forms.Button SPD_w1Skill09Button;
         private System.Windows.Forms.Button SPD_w1Skill08Button;
         private System.Windows.Forms.Button SPD_w1Skill07Button;
         private System.Windows.Forms.Button SPD_w1Skill06Button;
-        private System.Windows.Forms.Button SPD_w1Skill05Button;
-        private System.Windows.Forms.Button SPD_w1Skill04Button;
-        private System.Windows.Forms.Button SPD_w1Skill03Button;
-        private System.Windows.Forms.Button SPD_w1Skill02Button;
-        private System.Windows.Forms.Label SPDw1Label;
-        private System.Windows.Forms.Button SPD_w1Skill01Button;
-        private System.Windows.Forms.ComboBox SPD_dunTabComboBox;
-        private System.Windows.Forms.Label SPDdunTabLabel;
-        private System.Windows.Forms.Button SPD_w2Skill15Button;
-        private System.Windows.Forms.Button SPD_w2Skill14Button;
-        private System.Windows.Forms.Button SPD_w2Skill13Button;
-        private System.Windows.Forms.Button SPD_w2Skill12Button;
-        private System.Windows.Forms.Button SPD_w2Skill11Button;
-        private System.Windows.Forms.Button SPD_w1Skill15Button;
-        private System.Windows.Forms.Button SPD_w1Skill14Button;
-        private System.Windows.Forms.Button SPD_w1Skill13Button;
-        private System.Windows.Forms.Button SPD_w1Skill12Button;
-        private System.Windows.Forms.Button SPD_w1Skill11Button;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel SPD_wave3Panel;
         private System.Windows.Forms.CheckBox SPD_wave3LoopCheckBox;
         private System.Windows.Forms.Button SPD_w3Skill15Button;
         private System.Windows.Forms.Button SPD_w3Skill10Button;
@@ -6501,7 +6882,6 @@
         private System.Windows.Forms.Button GC_w1Skill13Button;
         private System.Windows.Forms.Button GC_w1Skill12Button;
         private System.Windows.Forms.Button GC_w1Skill11Button;
-        private System.Windows.Forms.CheckBox SPD_enableCheckbox;
         private System.Windows.Forms.TabPage spDunTab;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
@@ -6511,5 +6891,34 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox SPD_dunDifficultyComboBox;
+        private System.Windows.Forms.CheckBox SPD_enableCheckbox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox ST_TelegramEnable;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox ST_TelegramTokenTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label18;
+<<<<<<< HEAD
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+=======
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox ST_TelegramChatIDTB;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+>>>>>>> refs/remotes/origin/master
     }
 }

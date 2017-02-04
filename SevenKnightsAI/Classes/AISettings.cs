@@ -204,6 +204,27 @@ namespace SevenKnightsAI.Classes
         [XmlElement(ElementName = "SPD_DunDifficul")]
         public int SPD_DunDifficult;
 
+        [XmlElement(ElementName = "SPD_Wave1Loop")]
+        public bool SPD_Wave1Loop;
+
+        [XmlElement(ElementName = "SPD_Wave1Skills")]
+        public int[] SPD_Wave1Skills;
+
+        [XmlElement(ElementName = "SPD_Wave2Loop")]
+        public bool SPD_Wave2Loop;
+
+        [XmlElement(ElementName = "SPD_Wave2Skills")]
+        public int[] SPD_Wave2Skills;
+
+        [XmlElement(ElementName = "SPD_Wave3Loop")]
+        public bool SPD_Wave3Loop;
+
+        [XmlElement(ElementName = "SPD_Wave3Skills")]
+        public int[] SPD_Wave3Skills;
+
+        [XmlElement(ElementName = "SPD_SkillType")]
+        public SkillType SPD_SkillType;
+
         [XmlElement(ElementName = "RS_BuyKeyHonors")]
         public bool RS_BuyKeyHonors;
 
@@ -344,6 +365,10 @@ namespace SevenKnightsAI.Classes
             this.SPD_DunTab = 0;
             this.SPD_DunSlot = 0;
             this.SPD_DunDifficult = 0;
+            this.SPD_Wave1Loop = false;
+            this.SPD_Wave2Loop = false;
+            this.SPD_Wave3Loop = false;
+            this.SPD_SkillType = SkillType.Both;
             this.RS_SellHeroes = false;
             this.RS_SellHeroStars = 1;
             this.RS_SellHeroAmount = 0;
@@ -762,6 +787,48 @@ namespace SevenKnightsAI.Classes
                 try
                 {
                     aISettings.SPD_DunDifficult = Convert.ToInt32(dictionary["SPD_DunDifficult"]);
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave1Loop = (bool)dictionary["SPD_Wave1Loop"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave2Loop = (bool)dictionary["SPD_Wave2Loop"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave3Loop = (bool)dictionary["SPD_Wave3Loop"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave1Skills = ((dictionary["SPD_Wave1Skills"] == null) ? null : ((JArray)dictionary["SPD_Wave1Skills"]).ToObject<int[]>());
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave2Skills = ((dictionary["SPD_Wave2Skills"] == null) ? null : ((JArray)dictionary["SPD_Wave2Skills"]).ToObject<int[]>());
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave3Skills = ((dictionary["SPD_Wave3Skills"] == null) ? null : ((JArray)dictionary["SPD_Wave3Skills"]).ToObject<int[]>());
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_SkillType = (SkillType)Convert.ToInt32(dictionary["SPD_SkillType"]);
                 }
                 catch (Exception)
                 { }
@@ -1215,6 +1282,34 @@ namespace SevenKnightsAI.Classes
                 {
                     "SPD_DunDifficult",
                     this.SPD_DunDifficult
+                },
+                {
+                    "SPD_Wave1Loop",
+                    this.SPD_Wave1Loop
+                },
+                {
+                    "SPD_Wave2Loop",
+                    this.SPD_Wave2Loop
+                },
+                {
+                    "SPD_Wave3Loop",
+                    this.SPD_Wave3Loop
+                },
+                {
+                    "SPD_Wave1Skills",
+                    this.SPD_Wave1Skills
+                },
+                {
+                    "SPD_Wave2Skills",
+                    this.SPD_Wave2Skills
+                },
+                {
+                    "SPD_Wave3Skills",
+                    this.SPD_Wave3Skills
+                },
+                {
+                    "SPD_SkillType",
+                    this.SPD_SkillType
                 },
                 {
                     "RS_SellHeroes",
