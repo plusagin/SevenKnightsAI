@@ -63,6 +63,9 @@ namespace SevenKnightsAI.Classes
         [XmlElement(ElementName = "RD_StopOnDragonFound")]
         public bool RD_StopOnDragonFound;
 
+        [XmlElement(ElementName = "RD_TryOwnDragon")]
+        public bool RD_TryOwnDragon;
+
         [XmlElement(ElementName = "AD_StopOnLV30")]
         public bool AD_StopOnLV30;
 
@@ -183,6 +186,45 @@ namespace SevenKnightsAI.Classes
         [XmlElement(ElementName = "RD_Team2Skills")]
         public int[] RD_Team2Skills;
 
+        [XmlElement(ElementName = "RD_EnableDragonLV")]
+        public bool RD_EnableDragonLV;
+
+        [XmlElement(ElementName = "RD_DragonLV")]
+        public int RD_DragonLV;
+
+        [XmlElement(ElementName = "SPD_Enable")]
+        public bool SPD_Enable;
+
+        [XmlElement(ElementName = "SPD_DunTab")]
+        public int SPD_DunTab;
+
+        [XmlElement(ElementName = "SPD_DunSlot")]
+        public int SPD_DunSlot;
+
+        [XmlElement(ElementName = "SPD_DunDifficul")]
+        public int SPD_DunDifficult;
+
+        [XmlElement(ElementName = "SPD_Wave1Loop")]
+        public bool SPD_Wave1Loop;
+
+        [XmlElement(ElementName = "SPD_Wave1Skills")]
+        public int[] SPD_Wave1Skills;
+
+        [XmlElement(ElementName = "SPD_Wave2Loop")]
+        public bool SPD_Wave2Loop;
+
+        [XmlElement(ElementName = "SPD_Wave2Skills")]
+        public int[] SPD_Wave2Skills;
+
+        [XmlElement(ElementName = "SPD_Wave3Loop")]
+        public bool SPD_Wave3Loop;
+
+        [XmlElement(ElementName = "SPD_Wave3Skills")]
+        public int[] SPD_Wave3Skills;
+
+        [XmlElement(ElementName = "SPD_SkillType")]
+        public SkillType SPD_SkillType;
+
         [XmlElement(ElementName = "RS_BuyKeyHonors")]
         public bool RS_BuyKeyHonors;
 
@@ -288,9 +330,10 @@ namespace SevenKnightsAI.Classes
             this.AD_Continuous = false;
             this.AD_ElementHeroesOnly = false;
             this.AD_SkillType = SkillType.Both;
-            this.AD_StopOnFullHeroes = true;
-            this.AD_StopOnFullItems = true;
-            this.RD_StopOnDragonFound = true;
+            this.AD_StopOnFullHeroes = false;
+            this.AD_StopOnFullItems = false;
+            this.RD_StopOnDragonFound = false;
+            this.RD_TryOwnDragon = false;
             this.AD_StopOnLV30 = true;
             this.AD_CheckingHeroes = true;
             this.AD_Wave1Loop = false;
@@ -310,12 +353,22 @@ namespace SevenKnightsAI.Classes
             this.AR_UseRubyAmount = 0;
             this.RD_Enable = true;
             this.RD_EnableLimit = false;
+            this.RD_EnableDragonLV = false;
             this.RD_EnableDragonLimit = false;
             this.RD_DragonLimit = 1;
-            this.RD_Limit = 0;
+            this.RD_DragonLV = 1;
+            this.RD_Limit = 1;
             this.RD_SkillType = SkillType.Both;
             this.RD_Team1Loop = false;
             this.RD_Team2Loop = false;
+            this.SPD_Enable = false;
+            this.SPD_DunTab = 0;
+            this.SPD_DunSlot = 0;
+            this.SPD_DunDifficult = 0;
+            this.SPD_Wave1Loop = false;
+            this.SPD_Wave2Loop = false;
+            this.SPD_Wave3Loop = false;
+            this.SPD_SkillType = SkillType.Both;
             this.RS_SellHeroes = false;
             this.RS_SellHeroStars = 1;
             this.RS_SellHeroAmount = 0;
@@ -476,6 +529,12 @@ namespace SevenKnightsAI.Classes
                 try
                 {
                     aISettings.RD_StopOnDragonFound = (bool)dictionary["RD_StopOnDragonFound"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.RD_TryOwnDragon = (bool)dictionary["RD_TryOwnDragon"];
                 }
                 catch (Exception)
                 { }
@@ -649,6 +708,12 @@ namespace SevenKnightsAI.Classes
                 { }
                 try
                 {
+                    aISettings.RD_EnableDragonLV = (bool)dictionary["RD_EnableDragonLV"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
                     aISettings.RD_Limit = Convert.ToInt32(dictionary["RD_Limit"]);
                 }
                 catch (Exception)
@@ -673,6 +738,12 @@ namespace SevenKnightsAI.Classes
                 { }
                 try
                 {
+                    aISettings.RD_DragonLV = Convert.ToInt32(dictionary["RD_DragonLV"]);
+                }
+                catch (Exception)
+                { }
+                try
+                {
                     aISettings.RD_SkillType = (SkillType)Convert.ToInt32(dictionary["RD_SkillType"]);
                 }
                 catch (Exception)
@@ -692,6 +763,72 @@ namespace SevenKnightsAI.Classes
                 try
                 {
                     aISettings.RD_Team1Loop = (bool)dictionary["RD_Team1Loop"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Enable = (bool)dictionary["SPD_Enable"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_DunTab = Convert.ToInt32(dictionary["SPD_DunTab"]);
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_DunSlot = Convert.ToInt32(dictionary["SPD_DunSlot"]);
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_DunDifficult = Convert.ToInt32(dictionary["SPD_DunDifficult"]);
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave1Loop = (bool)dictionary["SPD_Wave1Loop"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave2Loop = (bool)dictionary["SPD_Wave2Loop"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave3Loop = (bool)dictionary["SPD_Wave3Loop"];
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave1Skills = ((dictionary["SPD_Wave1Skills"] == null) ? null : ((JArray)dictionary["SPD_Wave1Skills"]).ToObject<int[]>());
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave2Skills = ((dictionary["SPD_Wave2Skills"] == null) ? null : ((JArray)dictionary["SPD_Wave2Skills"]).ToObject<int[]>());
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_Wave3Skills = ((dictionary["SPD_Wave3Skills"] == null) ? null : ((JArray)dictionary["SPD_Wave3Skills"]).ToObject<int[]>());
+                }
+                catch (Exception)
+                { }
+                try
+                {
+                    aISettings.SPD_SkillType = (SkillType)Convert.ToInt32(dictionary["SPD_SkillType"]);
                 }
                 catch (Exception)
                 { }
@@ -971,6 +1108,10 @@ namespace SevenKnightsAI.Classes
                     this.RD_StopOnDragonFound
                 },
                 {
+                    "RD_TryOwnDragon",
+                    this.RD_TryOwnDragon
+                },
+                {
                     "AD_StopOnLV30",
                     this.AD_StopOnLV30
                 },
@@ -1083,6 +1224,14 @@ namespace SevenKnightsAI.Classes
                     this.RD_EnableLimit
                 },
                 {
+                    "RD_EnableDragonLV",
+                    this.RD_EnableDragonLV
+                },
+                {
+                    "RD_DragonLV",
+                    this.RD_DragonLV
+                },
+                {
                     "RD_Limit",
                     this.RD_Limit
                 },
@@ -1117,6 +1266,50 @@ namespace SevenKnightsAI.Classes
                 {
                     "RD_Team2Loop",
                     this.RD_Team2Loop
+                },
+                {
+                    "SPD_Enable",
+                    this.SPD_Enable
+                },
+                {
+                    "SPD_DunTab",
+                    this.SPD_DunTab
+                },
+                {
+                    "SPD_DunSlot",
+                    this.SPD_DunSlot
+                },
+                {
+                    "SPD_DunDifficult",
+                    this.SPD_DunDifficult
+                },
+                {
+                    "SPD_Wave1Loop",
+                    this.SPD_Wave1Loop
+                },
+                {
+                    "SPD_Wave2Loop",
+                    this.SPD_Wave2Loop
+                },
+                {
+                    "SPD_Wave3Loop",
+                    this.SPD_Wave3Loop
+                },
+                {
+                    "SPD_Wave1Skills",
+                    this.SPD_Wave1Skills
+                },
+                {
+                    "SPD_Wave2Skills",
+                    this.SPD_Wave2Skills
+                },
+                {
+                    "SPD_Wave3Skills",
+                    this.SPD_Wave3Skills
+                },
+                {
+                    "SPD_SkillType",
+                    this.SPD_SkillType
                 },
                 {
                     "RS_SellHeroes",

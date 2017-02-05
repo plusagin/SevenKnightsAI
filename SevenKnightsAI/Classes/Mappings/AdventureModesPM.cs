@@ -8,8 +8,8 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping AdventureButton = new PixelMapping
         {
-            X = 254,
-            Y = 200,
+            X = 72,
+            Y = 100,
             Color = 0,
             Type = MappingType.BUTTON
         };

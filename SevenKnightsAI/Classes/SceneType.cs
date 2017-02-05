@@ -80,6 +80,7 @@ namespace SevenKnightsAI.Classes
         LOOT_HERO,
         LOOT_ITEM,
         SHOP,
+        SHOPSELECT,
         SHOP_BUY_POPUP,
         SHOP_BUY_FAILED_POPUP,
         SHOP_PURCHASE_COMPLETE_POPUP,
@@ -105,5 +106,14 @@ namespace SevenKnightsAI.Classes
         ANIVERSARY_POPUP,
         RACHEL_PACKADGE_POPUP,
         EVENT_PACKADGE_POPUP,
+        EXITPM_POPUP,
+        SPECIAL_DUNGEON_LOBBY,
+        SPECIAL_DUNGEON_READY,
+        SPECIAL_DUNGEON_FIGHT,
+        SPECIAL_DUNGEON_END,
+        SPECIAL_DUNGEON_LOST,
+        SPECIAL_DUNGEON_LOOT,
+        SPECIAL_DUNGEON_MAX,
+        OUT_OF_DUNGEON_KEYS_POPUP
     }
 }

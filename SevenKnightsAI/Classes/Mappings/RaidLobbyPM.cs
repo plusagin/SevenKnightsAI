@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace SevenKnightsAI.Classes.Mappings
 {
@@ -19,12 +20,67 @@ namespace SevenKnightsAI.Classes.Mappings
             Color = 0,
             Type = MappingType.BUTTON
         };
+        public static readonly PixelMapping CheckPos1 = new PixelMapping
+        {
+            X = 264,
+            Y = 184,
+            Color = 16754182,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping CheckPos2 = new PixelMapping
+        {
+            X = 264,
+            Y = 258,
+            Color = 16754182,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping CheckPos3 = new PixelMapping
+        {
+            X = 264,
+            Y = 332,
+            Color = 16754182,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping CheckPos4 = new PixelMapping
+        {
+            X = 264,
+            Y = 406,
+            Color = 16754182,
+            Type = MappingType.BOTH
+        };
 
         public static readonly PixelMapping EnterButton = new PixelMapping
         {
             X = 868,
             Y = 200,
-            Color = 13873749,
+            Color = 0,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping EnterButton2 = new PixelMapping
+        {
+            X = 868,
+            Y = 270,
+            Color = 0,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping EnterButton3 = new PixelMapping
+        {
+            X = 868,
+            Y = 350,
+            Color = 0,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping EnterButton4 = new PixelMapping
+        {
+            X = 868,
+            Y = 420,
+            Color = 0,
             Type = MappingType.BOTH
         };
 
@@ -80,7 +136,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 718,
             Y = 57,
-            Color = 13183490,
+            Color = 12986369,
             Type = MappingType.ANCHOR
         };
 
@@ -90,6 +146,98 @@ namespace SevenKnightsAI.Classes.Mappings
             Y = 130,
             Color = 0,
             Type = MappingType.BUTTON
+        };
+
+        public static readonly int SCROLL_DELTA = 138;
+
+        public static readonly int SCROLL_DOUBLE_DELTA = 275;
+
+        public static readonly PixelMapping ScrollAreaDown = new PixelMapping
+        {
+            X = 450,
+            Y = 430,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping ScrollAreaUp = new PixelMapping
+        {
+            X = 450,
+            Y = 170,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
+        public static readonly Rectangle DLV1 = new Rectangle
+        {
+            X = 227,
+            Y = 172,
+            Height = 30,
+            Width = 28
+        };
+
+        public static readonly Rectangle DLV2 = new Rectangle
+        {
+            X = 227,
+            Y = 247,
+            Height = 30,
+            Width = 28
+        };
+
+        public static readonly Rectangle DLV3 = new Rectangle
+        {
+            X = 227,
+            Y = 320,
+            Height = 30,
+            Width = 28
+        };
+
+        public static readonly Rectangle DLV4 = new Rectangle
+        {
+            X = 227,
+            Y = 395,
+            Height = 30,
+            Width = 28
+        };
+
+        public static readonly Rectangle Oname1 = new Rectangle
+        {
+            X = 297,
+            Y = 207,
+            Height = 24,
+            Width = 120
+        };
+
+        public static readonly Rectangle Oname2 = new Rectangle
+        {
+            X = 297,
+            Y = 282,
+            Height = 24,
+            Width = 120
+        };
+
+        public static readonly Rectangle Oname3 = new Rectangle
+        {
+            X = 297,
+            Y = 356,
+            Height = 24,
+            Width = 120
+        };
+
+        public static readonly Rectangle Oname4 = new Rectangle
+        {
+            X = 297,
+            Y = 429,
+            Height = 24,
+            Width = 120
+        };
+
+        public static readonly Rectangle EntryCount = new Rectangle
+        {
+            X = 765,
+            Y = 16,
+            Height = 22,
+            Width = 20
         };
     }
 }

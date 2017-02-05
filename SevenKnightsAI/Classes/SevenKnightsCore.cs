@@ -13,7 +13,10 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
+using System.Net;
 using Tesseract;
+using ImageMagick;
+using Telegram;
 
 namespace SevenKnightsAI.Classes
 {
@@ -59,6 +62,9 @@ namespace SevenKnightsAI.Classes
         private readonly Color COLOR_SELL_HEROES = Color.MediumVioletRed;
         private readonly Color COLOR_SELL_ITEMS = Color.SeaGreen;
         private readonly Color COLOR_WAVE = Color.RoyalBlue;
+        private readonly Color COLOR_ConditionF = Color.OrangeRed;
+        private readonly Color COLOR_ConditionT = Color.Goldenrod;
+        private readonly Color COLOR_Infomation = Color.DodgerBlue;
 
         private int AdventureCount;
         private int AdventureKeys;
@@ -121,6 +127,8 @@ namespace SevenKnightsAI.Classes
         private TimeSpan TowerKeyTime;
         private BackgroundWorker Worker;
         private string MapZone;
+        private bool DragonFound;
+        private bool SpeccialDunDifficult;
 
         #endregion Private Fields
 
@@ -142,6 +150,7 @@ namespace SevenKnightsAI.Classes
         {
             this.AIProfiles = profile;
             this.Pushbullet = new SlimPushbullet("SpD0cXpZzSFuLlNBVO6Zo2wKK0jVEkZK");
+            bot.token = this.AIProfiles.ST_TelegramToken;
             this.OneSecTimer = new System.Timers.Timer(1000.0);
             this.OneSecTimer.Elapsed += new ElapsedEventHandler(this.OnOneSecEvent);
             try
@@ -197,6 +206,7 @@ namespace SevenKnightsAI.Classes
                 if (this.AdventureLimitCount >= this.AISettings.AD_Limit)
                 {
                     this.Log("Limit reached [Adventure]", this.COLOR_LIMIT);
+                    SendMessage("Limit Reached [Adventure]");
                     this.AdventureLimitCount = 0;
                     this.NextPossibleObjective();
                 }
@@ -231,6 +241,7 @@ namespace SevenKnightsAI.Classes
                 if (this.ArenaLimitCount >= this.AISettings.AR_Limit)
                 {
                     this.Log("Limit reached [Arena]", this.COLOR_LIMIT);
+                    SendMessage("Limit Reached [Arena]");
                     this.ArenaLimitCount = 0;
                     this.NextPossibleObjective();
                 }
@@ -270,7 +281,7 @@ namespace SevenKnightsAI.Classes
                 ShopPM.Key100Ruby100
             };
             this.Log("Start buying keys", this.COLOR_BUY_KEYS);
-            this.PushNote("Buying keys", "AI will buy the keys with honors first, then with rubies.");
+            SendMessage("AI will buy the keys with honors first, then with rubies.");
             this.WeightedClick(ShopPM.KeyTab, 1.0, 1.0, 1, 0, "left");
             SevenKnightsCore.Sleep(500);
             Scene scene;
@@ -342,14 +353,16 @@ namespace SevenKnightsAI.Classes
                 mapping = array2[rS_BuyKeyRubiesType];
             }
             this.WeightedClick(mapping, 1.0, 1.0, 1, 0, "left");
-            SevenKnightsCore.Sleep(300);
+            SevenKnightsCore.Sleep(1000);
             this.CaptureFrame();
             scene = this.SceneSearch();
             if (scene != null && scene.SceneType == SceneType.SHOP_BUY_FAILED_POPUP)
             {
                 string text = string.Format("Unable to buy keys using {0}", flag ? "honors" : "rubies");
                 this.Log(text, this.COLOR_BUY_KEYS);
-                this.PushNote("Failed to buy keys", text + ".");
+                string errormessages = "Failed to buy keys "+ text +" .";
+                SendMessage(errormessages);
+
             }
             if (scene != null && scene.SceneType != SceneType.SHOP_BUY_POPUP)
             {
@@ -367,6 +380,7 @@ namespace SevenKnightsAI.Classes
             }
             this.Log("Keys bought", this.COLOR_BUY_KEYS);
             this.WeightedClick(ShopPurchaseCompletePopupPM.OkButton, 1.0, 1.0, 1, 0, "left");
+            Console.WriteLine("flag = "+flag);
             if (flag)
             {
                 this.KeysBoughtHonors++;
@@ -426,6 +440,10 @@ namespace SevenKnightsAI.Classes
 
                 case Objective.GOLD_CHAMBER:
                     message = "Gold Chamber";
+                    break;
+
+                case Objective.SPECIAL_DUNGEON:
+                    message = "Special Dungeon";
                     break;
 
                 case Objective.ARENA:
@@ -570,7 +588,7 @@ namespace SevenKnightsAI.Classes
                 this.AISettings.RS_InboxTickets
             };
             this.Log("Start collecting inbox", this.COLOR_INBOX);
-            this.PushNote("Collecting inbox", "AI is collecting your inbox.");
+            SendMessage("AI is collecting your inbox.");
             List<int> list = new List<int>();
             for (int i = 0; i < array2.Length; i++)
             {
@@ -683,7 +701,7 @@ namespace SevenKnightsAI.Classes
                 this.AISettings.RS_QuestsSocial
             };
             this.Log("Start collecting quests", this.COLOR_QUEST);
-            this.PushNote("Collecting quests", "AI is collecting quests.");
+            SendMessage("AI is collecting quests.");
             List<int> list = new List<int>();
             for (int i = 0; i < array2.Length; i++)
             {
@@ -769,7 +787,7 @@ namespace SevenKnightsAI.Classes
                 this.AISettings.RS_SpecialQuestsMonthly
             };
             this.Log("Start collecting special quests", this.COLOR_QUEST);
-            this.PushNote("Collecting special quests", "AI is collecting special quests.");
+            SendMessage("AI is collecting special quests.");
             List<int> list = new List<int>();
             for (int i = 0; i < array2.Length; i++)
             {
@@ -969,6 +987,31 @@ namespace SevenKnightsAI.Classes
                     {
                         TowerFightPM.Skill10_Q1_1,
                         TowerFightPM.Skill10_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill11_Q1_1,
+                        SharedPM.Fight_Skill11_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill12_Q1_1,
+                        SharedPM.Fight_Skill12_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill13_Q1_1,
+                        SharedPM.Fight_Skill13_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill14_Q1_1,
+                        SharedPM.Fight_Skill14_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill15_Q1_1,
+                        SharedPM.Fight_Skill15_Q1_2
                     }
                 };
             }
@@ -1025,6 +1068,31 @@ namespace SevenKnightsAI.Classes
                     {
                         SharedPM.Fight_Skill10_Q1_1,
                         SharedPM.Fight_Skill10_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill11_Q1_1,
+                        SharedPM.Fight_Skill11_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill12_Q1_1,
+                        SharedPM.Fight_Skill12_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill13_Q1_1,
+                        SharedPM.Fight_Skill13_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill14_Q1_1,
+                        SharedPM.Fight_Skill14_Q1_2
+                    },
+                    new PixelMapping[]
+                    {
+                        SharedPM.Fight_Skill15_Q1_1,
+                        SharedPM.Fight_Skill15_Q1_2
                     }
                 };
             }
@@ -1044,7 +1112,12 @@ namespace SevenKnightsAI.Classes
                 SharedPM.Fight_Skill7,
                 SharedPM.Fight_Skill8,
                 SharedPM.Fight_Skill9,
-                SharedPM.Fight_Skill10
+                SharedPM.Fight_Skill10,
+                SharedPM.Fight_Skill11,
+                SharedPM.Fight_Skill12,
+                SharedPM.Fight_Skill13,
+                SharedPM.Fight_Skill14,
+                SharedPM.Fight_Skill15
             };
         }
 
@@ -1058,7 +1131,7 @@ namespace SevenKnightsAI.Classes
         private void DoneBuyKeys()
         {
             this.Log("Done buying keys", this.COLOR_BUY_KEYS);
-            this.PushNote("Done buying keys", "AI has finished buying keys.");
+            SendMessage("AI has finished buying keys.");
             this.NextPossibleObjective();
             if (this.CurrentObjective == Objective.ADVENTURE)
             {
@@ -1083,7 +1156,7 @@ namespace SevenKnightsAI.Classes
         private void DoneCollectInbox()
         {
             this.Log("Done collecting inbox", this.COLOR_INBOX);
-            this.PushNote("Done collecting inbox", "AI has finished collecting your inbox.");
+            SendMessage("AI has finished collecting your inbox.");
             this.NextPossibleObjective();
             SevenKnightsCore.Sleep(300);
             this.Escape();
@@ -1093,7 +1166,7 @@ namespace SevenKnightsAI.Classes
         private void DoneCollectQuests()
         {
             this.Log("Done collecting quests", this.COLOR_QUEST);
-            this.PushNote("Done collecting quests", "AI has finished collecting quests.");
+            SendMessage("AI has finished collecting quests.");
             this.CollectQuestsCount++;
             if (this.CollectQuestsCount == this.CollectQuestsTotal)
             {
@@ -1107,7 +1180,8 @@ namespace SevenKnightsAI.Classes
         private void DoneCollectSpecialQuests()
         {
             this.Log("Done collecting special quests", this.COLOR_QUEST);
-            this.PushNote("Done collecting special quests", "AI has finished collecting special quests.");
+            SendMessage("AI has finished collecting special quests.");
+
             this.CollectQuestsCount++;
             if (this.CollectQuestsCount == this.CollectQuestsTotal)
             {
@@ -1121,7 +1195,7 @@ namespace SevenKnightsAI.Classes
         private void DoneManageHeroes()
         {
             this.Log("Done managing heroes", this.COLOR_HEROES_MANAGEMENT);
-            this.PushNote("Done managing heroes", "AI has finished managing your team.");
+            SendMessage("AI has finished managing your team.");
             this.HeroManageAttemps = 0;
             this.NextPossibleObjective();
             this.Escape();
@@ -1145,7 +1219,7 @@ namespace SevenKnightsAI.Classes
         private void DoneSellHeroes(int sellCount)
         {
             this.Log("Done selling heroes", this.COLOR_SELL_HEROES);
-            this.PushNote("Done selling heroes", "AI has finished selling your heroes.");
+            SendMessage("AI has finished selling your heroes.");
             if (sellCount == 0)
             {
                 this.Log("No more heroes that satisfied the conditions", this.COLOR_SELL_HEROES);
@@ -1160,7 +1234,7 @@ namespace SevenKnightsAI.Classes
         private void DoneSellItems(int sellCount)
         {
             this.Log("Done selling items", this.COLOR_SELL_ITEMS);
-            this.PushNote("Done selling items", "AI has finished selling your items.");
+            SendMessage("AI has finished selling your items.");
             if (sellCount == 0)
             {
                 this.Log("No more items that satisfied the conditions", this.COLOR_SELL_ITEMS);
@@ -1175,7 +1249,7 @@ namespace SevenKnightsAI.Classes
         private void DoneSendHonors()
         {
             this.Log("Done sending honors", this.COLOR_HONOR);
-            this.PushNote("Done sending honors", "AI has finished sending honors.");
+            SendMessage("AI has finished sending honors.");
             this.NextPossibleObjective();
             SevenKnightsCore.Sleep(300);
             this.Escape();
@@ -1319,6 +1393,7 @@ namespace SevenKnightsAI.Classes
                 if (this.GoldChamberLimitCount >= this.AISettings.GC_Limit)
                 {
                     this.Log("Limit reached [Gold Chamber]", this.COLOR_LIMIT);
+                    SendMessage("Limit reached [Gold Chamber]");
                     this.GoldChamberLimitCount = 0;
                     this.NextPossibleObjective();
                 }
@@ -1356,7 +1431,7 @@ namespace SevenKnightsAI.Classes
                 if (scene.SceneType == SceneType.INBOX_SELECT_HERO)
                 {
                     this.Log("Found a hero card that needs to be selected", this.COLOR_INBOX);
-                    this.PushNote("Found hero card", "AI will skip and not collect this card.");
+                    SendMessage("AI will skip and not collect this card.");
                     return false;
                 }
                 if (scene.SceneType != SceneType.INBOX_COLLECT_FAILED_POPUP)
@@ -1412,6 +1487,7 @@ namespace SevenKnightsAI.Classes
                 if (this.CurrentObjective != Objective.BUY_KEYS)
                 {
                     this.ChangeObjective(Objective.BUY_KEYS);
+                    SendMessage("Change Objective : Buy Keys");
                     return;
                 }
             }
@@ -1547,6 +1623,8 @@ namespace SevenKnightsAI.Classes
             this.TopazCount = -1;
             this.ReportAllResources();
             this.OneSecTimer.Enabled = true;
+            this.DragonFound = false;
+            this.SpeccialDunDifficult = false;
         }
 
         private bool IsAnyQuestsEnabled()
@@ -1561,12 +1639,12 @@ namespace SevenKnightsAI.Classes
 
         private bool IsBuyKeysHonors()
         {
-            return this.AISettings.RS_BuyKeyHonors && this.KeysBoughtHonors < this.AISettings.RS_BuyKeyHonorsAmount;
+            return this.AISettings.RS_BuyKeyHonors && this.KeysBoughtHonors <= this.AISettings.RS_BuyKeyHonorsAmount; ;
         }
 
         private bool IsBuyKeysRubies()
         {
-            return this.AISettings.RS_BuyKeyRubies && this.KeysBoughtRubies < this.AISettings.RS_BuyKeyRubiesAmount;
+            return this.AISettings.RS_BuyKeyRubies && this.KeysBoughtRubies <= this.AISettings.RS_BuyKeyRubiesAmount;
         }
 
         private bool IsGameActive()
@@ -1773,6 +1851,7 @@ namespace SevenKnightsAI.Classes
             if (!this.BlueStacks.Hook())
             {
                 errorMessage = "BlueStacks is not active or not yet initialized";
+                SendMessage("ERROR : BlueStacks is not active or not yet initialized");
                 this.LogError(errorMessage);
                 this.SynchronizationContext.Send(delegate (object callback)
                 {
@@ -1783,6 +1862,7 @@ namespace SevenKnightsAI.Classes
             if (this.BlueStacks.NeedResize() || this.BlueStacks.NeedRenderConfig())
             {
                 string text = "BlueStacks needs to be resized. Proceed?";
+                SendMessage("ERROR : Bluestacks needs to be resized.Check now!");
                 DialogResult dialogResult = MessageBox.Show(text, "Restart Required", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
                 if (dialogResult == DialogResult.OK)
                 {
@@ -1827,7 +1907,8 @@ namespace SevenKnightsAI.Classes
                             }
                             int sT_Delay = this.AIProfiles.ST_Delay;
                             SevenKnightsCore.Sleep(sT_Delay);
-                            this.IdleCounter += sT_Delay;
+                            //this.IdleCounter += sT_Delay;
+                            this.IdleCounter += 1000;
                             this.HangCounter += sT_Delay;
                             this.MapSelectCounter += sT_Delay;
                             this.CooldownInbox -= sT_Delay;
@@ -1835,6 +1916,7 @@ namespace SevenKnightsAI.Classes
                             this.CooldownSendHonors -= sT_Delay;
                             this.CooldownSellHeroes -= sT_Delay;
                             this.CooldownSellItems -= sT_Delay;
+                            SevenKnightsCore.Sleep(sT_Delay);
                             this.CaptureFrame();
                             if (this.BlueStacks.MainWindowAS.CurrentFrame != null)
                             {
@@ -1842,7 +1924,7 @@ namespace SevenKnightsAI.Classes
                                 if (this.HangCounter >= 30000)
                                 {
                                     this.Log("Restarting Seven Knights", Color.DarkRed);
-                                    this.PushNote("Restarting Seven Knights", "The game is not responding... AI will restart the game and continue.");
+                                    SendMessage("The game is not responding... AI will restart the game and continue.");
                                     this.HangCounter = 0;
                                     if (!this.BlueStacks.RestartGame(5))
                                     {
@@ -1894,8 +1976,13 @@ namespace SevenKnightsAI.Classes
                                 }
                                 if (!text2.Equals(value))
                                 {
+                                    if (IdleCounter > 10000)
+                                    {
+                                        this.Log("IdleTime = " + IdleCounter / 1000, Color.Orange);
+                                    }
                                     this.LogScene(text2);
                                     value = text2;
+                                    IdleCounter = 0;
                                 }
                                 if (flag4)
                                 {
@@ -1913,7 +2000,7 @@ namespace SevenKnightsAI.Classes
                                 }
                                 else
                                 {
-                                    if (scene.SceneType != SceneType.ADVENTURE_FIGHT && scene.SceneType != SceneType.TOWER_FIGHT && scene.SceneType != SceneType.ARENA_FIGHT && scene.SceneType != SceneType.RAID_FIGHT)
+                                    if (scene.SceneType != SceneType.ADVENTURE_FIGHT && scene.SceneType != SceneType.TOWER_FIGHT && scene.SceneType != SceneType.ARENA_FIGHT && scene.SceneType != SceneType.RAID_FIGHT && scene.SceneType != SceneType.SPECIAL_DUNGEON_FIGHT)
                                     {
                                         this.CurrentWave = 0;
                                         this.CurrentRaidTeam = 0;
@@ -1929,7 +2016,14 @@ namespace SevenKnightsAI.Classes
                                     {
                                         this.MapCheckCount = 0;
                                     }
-                                    this.IdleCounter = 0;
+                                    //this.IdleCounter = 0;
+                                    //this.Log("switch");
+#if DEBUG
+                                    if (false)
+                                    {
+                                        scene = new Scene(SceneType.RAID_DRAGON);
+                                    }
+#endif
                                     switch (scene.SceneType)
                                     {
                                         case SceneType._ANDROID_POPUP:
@@ -1993,6 +2087,10 @@ namespace SevenKnightsAI.Classes
                                             this.WeightedClick(AdsClosePM.CloseButton, 1.0, 1.0, 1, 0, "left");
                                             break;
 
+                                        case SceneType.EXITPM_POPUP:
+                                            this.WeightedClick(AdsPM.ExitNo, 1.0, 1.0, 1, 0, "left");
+                                            break;
+
                                         case SceneType.CHECK_IN:
                                             this.Escape();
                                             break;
@@ -2022,6 +2120,7 @@ namespace SevenKnightsAI.Classes
                                             this.UpdateTopaz(scene.SceneType);
                                             if (this.AISettings.RS_CollectLuckyChest && this.MatchMapping(LobbyPM.MaysLuckyChestAvailable_1, 4) && this.MatchMapping(LobbyPM.MaysLuckyChestAvailable_2, 4))
                                             {
+                                                if(!this.AISettings.SPD_Enable && this.CurrentObjective != Objective.GOLD_CHAMBER)
                                                 this.WeightedClick(LobbyPM.MaysLuckyChestButton, 1.0, 1.0, 1, 0, "left");
                                             }
                                             else if (this.AISettings.RS_CollectLuckyBox && this.EnableLuckyBox && this.MatchMapping(LobbyPM.LuckyBoxAvailable_1, 4) && this.MatchMapping(LobbyPM.LuckyBoxAvailable_2, 4))
@@ -2061,7 +2160,7 @@ namespace SevenKnightsAI.Classes
                                                         this.ChangeObjective(Objective.COLLECT_INBOX);
                                                     }
                                                 }
-                                                if (this.CurrentObjective == Objective.ADVENTURE || this.CurrentObjective == Objective.GOLD_CHAMBER || this.CurrentObjective == Objective.RAID)
+                                                if (this.CurrentObjective == Objective.ADVENTURE || this.CurrentObjective == Objective.GOLD_CHAMBER || this.CurrentObjective == Objective.RAID || this.CurrentObjective == Objective.SPECIAL_DUNGEON)
                                                 {
                                                     if (this.CurrentObjective == Objective.RAID)
                                                     {
@@ -2097,12 +2196,12 @@ namespace SevenKnightsAI.Classes
                                                 {
                                                     this.NextPossibleObjective();
                                                 }
-                                                SevenKnightsCore.Sleep(300);
+                                                SevenKnightsCore.Sleep(1000);
                                             }
                                             break;
 
                                         case SceneType.GIFT_REWARDS_POPUP:
-                                            this.PushNote("Reward Received!", "AI has collected May's Lucky Chest or Lucky Box.");
+                                            SendMessage("AI has collected May's Lucky Chest or Lucky Box.");
                                             this.WeightedClick(SharedPM.Rewards_OkButton, 1.0, 1.0, 1, 0, "left");
                                             SevenKnightsCore.Sleep(300);
                                             break;
@@ -2177,6 +2276,12 @@ namespace SevenKnightsAI.Classes
                                             else if (this.CurrentObjective == Objective.GOLD_CHAMBER)
                                             {
                                                 this.WeightedClick(AdventureModesPM.CelestialTowerButton, 1.0, 1.0, 1, 0, "left");
+
+                                            }
+                                            else if (this.CurrentObjective == Objective.SPECIAL_DUNGEON)
+                                            {
+                                                this.WeightedClick(AdventureModesPM.DailyDungeonButton, 1.0, 1.0, 1, 0, "left");
+
                                             }
                                             else if (this.CurrentObjective == Objective.RAID)
                                             {
@@ -2190,6 +2295,7 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 this.Escape();
                                             }
+                                            Sleep(1000);
                                             break;
 
                                         case SceneType.MAP_SELECT:
@@ -2252,11 +2358,12 @@ namespace SevenKnightsAI.Classes
                                             if (this.AISettings.AD_StopOnFullItems)
                                             {
                                                 this.Alert("Items Full");
+                                                SendMessage("AI has stopped because Your inventory is full");
                                                 this.Escape();
                                             }
                                             if (!flag)
                                             {
-                                                this.PushNote("Item Full!", "Your inventory is full. AI will start selling them if enabled.");
+                                                SendMessage("Your inventory is full. AI will start selling them if enabled.");
                                                 flag = true;
                                             }
                                             if (this.AISettings.RS_SellItems && this.CooldownSellItems <= 0)
@@ -2278,11 +2385,12 @@ namespace SevenKnightsAI.Classes
                                             if (this.AISettings.AD_StopOnFullHeroes)
                                             {
                                                 this.Alert("Heroes Full");
+                                                SendMessage("AI has stopped Because Your hero cards are full");
                                                 this.Escape();
                                             }
                                             if (!flag2)
                                             {
-                                                this.PushNote("Hero Full!", "Your hero cards are full. AI will start selling them if enabled.");
+                                                SendMessage("Your hero cards are full. AI will start selling them if enabled.");
                                                 flag2 = true;
                                             }
                                             if (this.AISettings.RS_SellHeroes && this.CooldownSellHeroes <= 0)
@@ -2300,8 +2408,8 @@ namespace SevenKnightsAI.Classes
                                             SevenKnightsCore.Sleep(500);
                                             break;
 
-                                        case SceneType.ADVENTURE_READY:
-                                            if (this.CurrentObjective == Objective.ADVENTURE)
+                                        case SceneType.ADVENTURE_READY: 
+                                            if (this.CurrentObjective == Objective.ADVENTURE && ExpectingScene(SceneType.ADVENTURE_READY, 3, 500))
                                             {
                                                 this.WeightedClick(AdventureReadyPM.ReadyButton, 1.0, 1.0, 1, 0, "left");
                                             }
@@ -2309,6 +2417,7 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 this.WeightedClick(AdventureReadyPM.CloseButton, 1.0, 1.0, 1, 0, "left");
                                             }
+                                            SevenKnightsCore.Sleep(500);
                                             break;
 
                                         case SceneType.ADVENTURE_START:
@@ -2336,6 +2445,24 @@ namespace SevenKnightsAI.Classes
                                                     {
                                                         this.MasteryChecked = false;
                                                         this.SelectTeam(SceneType.ADVENTURE_START);
+                                                        this.CaptureFrame();
+                                                        if (this.MatchMapping(AdventureStartPM.FriendHelp, 5))
+                                                        {
+                                                            this.WeightedClick(AdventureStartPM.FriendHelpBtn, 1.0, 1.0, 1, 0, "left");
+                                                            Sleep(sT_Delay);
+                                                        }
+                                                        /*
+                                                        if(this.MatchMapping(AdventureStartPM.BoostMode,5))
+                                                        {
+                                                            this.WeightedClick(AdventureStartPM.BoostMode, 1.0, 1.0, 1, 0, "left");
+                                                            Sleep(sT_Delay);
+                                                        }
+                                                        if(this.MatchMapping(AdventureStartPM.AutoRepeat, 5))
+                                                        {
+                                                            this.WeightedClick(AdventureStartPM.AutoRepeat, 1.0, 1.0, 1, 0, "left");
+                                                            Sleep(sT_Delay);
+                                                        }
+                                                        */
                                                         this.WeightedClick(SharedPM.PrepareFight_StartButton, 1.0, 1.0, 1, 0, "left");
                                                         SevenKnightsCore.Sleep(300);
                                                     }
@@ -2364,7 +2491,7 @@ namespace SevenKnightsAI.Classes
                                         case SceneType.ADVENTURE_LOST:
                                             this.AdventureAfterFight();
                                             this.Log("Your team lost the battle [Adventure]", this.COLOR_DEATH);
-                                            this.PushNote("You Lose! [Adventure]", "Your team has lost a battle. Continuing AI.");
+                                            SendMessage("[Adventure] Your team has lost a battle. Continuing AI.");
                                             this.WeightedClick(AdventureLostPM.AdventureButton, 1.0, 1.0, 1, 0, "left");
                                             break;
 
@@ -2412,12 +2539,13 @@ namespace SevenKnightsAI.Classes
                                         case SceneType.OUT_OF_KEYS_OFFER:
                                             if (!flag3)
                                             {
-                                                this.PushNote("Out of Keys [Adventure]", "AI will buy more keys or play other modes while waiting.");
+                                                SendMessage("[Adventure] AI will buy more keys or play other modes while waiting.");
                                                 flag3 = true;
                                             }
                                             if (this.CurrentObjective != Objective.BUY_KEYS)
                                             {
                                                 this.ChangeObjective(Objective.BUY_KEYS);
+                                                SendMessage("Change Objective : Buy Keys");
                                             }
                                             this.Escape();
                                             break;
@@ -2425,10 +2553,11 @@ namespace SevenKnightsAI.Classes
                                         case SceneType.OUT_OF_KEYS_POPUP:
                                             if (!flag3)
                                             {
-                                                this.PushNote("Out of Keys [Adventure]", "AI will buy more keys or play other modes while waiting.");
+                                                SendMessage("[Adventure] AI will buy more keys or play other modes while waiting.");
                                                 flag3 = true;
                                             }
                                             this.HandleOutOfKey(scene.SceneType);
+                                            Sleep(2000);
                                             break;
 
                                         case SceneType.TOWER_SELECT:
@@ -2482,7 +2611,7 @@ namespace SevenKnightsAI.Classes
                                         case SceneType.TOWER_LOST:
                                             this.GoldChamberAfterFight();
                                             this.Log("Your team lost the battle [Tower]", this.COLOR_DEATH);
-                                            this.PushNote("You Lose! [Tower]", "Your team has lost a battle. Continuing AI.");
+                                            SendMessage("[Gold Chamber] Your team has lost a battle. Continuing AI.");
                                             this.WeightedClick(TowerLostPM.ReadyButton, 1.0, 1.0, 1, 0, "left");
                                             break;
 
@@ -2573,11 +2702,13 @@ namespace SevenKnightsAI.Classes
                                             if (this.MatchMapping(ArenaEndPM.GetStrongerButton, 2))
                                             {
                                                 this.Log("Arena Lose", this.COLOR_ARENA);
+                                                SendMessage("[Arena] Your team has lost a battle. Continuing AI.");
                                                 this.ArenaAfterFight(false);
                                             }
                                             else
                                             {
                                                 this.Log("Arena Victory", this.COLOR_ARENA);
+                                                SendMessage("[Gold Chamber] Your team has Win a battle. Continuing AI.");
                                                 this.ArenaAfterFight(true);
                                             }
                                             if (this.CurrentObjective == Objective.ARENA)
@@ -2598,7 +2729,9 @@ namespace SevenKnightsAI.Classes
                                         case SceneType.OUT_OF_SWORDS_POPUP:
                                             if (this.ArenaUseRuby())
                                             {
+                                                string arenaTelegram = string.Format("Entering arena using Ruby ({0})", this.ArenaRubiesCount + 1);
                                                 this.Log(string.Format("Entering arena using Ruby ({0})", this.ArenaRubiesCount + 1), this.COLOR_ARENA);
+                                                SendMessage(arenaTelegram);
                                                 this.WeightedClick(OutOfSwordsPopupPM.EnterButton, 1.0, 1.0, 1, 0, "left");
                                                 SevenKnightsCore.Sleep(1000);
                                                 this.ArenaRubiesCount++;
@@ -2700,72 +2833,59 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.RAID_DRAGON:
-                                            this.Log("The dragon appears!");
+                                            this.Log("The dragon Appears!",this.COLOR_ARENA);
+                                            DragonFound = true;
                                             this.PushNote("The dragon appears!", "AI will fight the dragon or ignore it depending on your settings.");
-                                            /*
-                                            if (this.AISettings.RD_Enable)
-                                            {
-                                                this.ChangeObjective(Objective.RAID);
-                                            }
-                                            */
-                                            this.ChangeObjective(Objective.RAID);
-                                            SevenKnightsCore.Sleep(70000);
-                                            //this.WeightedClick(RaidLobbyPM.AttackedTab, 1.0, 1.0, 1, 0, "left");
-                                            this.WeightedClick(RaidDragonPM.TapArea, 1.0, 1.0, 1, 0, "left");
-                                            this.Log("end count");
+                                            SevenKnightsCore.Sleep(sT_Delay);
+                                            this.WeightedClick(RaidDragonPM.TapArea2, 1.0, 1.0, 1, 0, "left");
+                                            //this.Log("end count");
                                             if (this.AISettings.RD_StopOnDragonFound)
                                             {
                                                 this.Alert("Dragon Found");
-                                                this.Escape();
+                                                //this.Escape();
                                                 this.AIProfiles.TMP_Paused = true;
-                                                break;
                                             }
+                                            if (this.AISettings.RD_TryOwnDragon)
+                                            {
+                                                this.ChangeObjective(Objective.RAID);
+                                            }
+                                            SevenKnightsCore.Sleep(sT_Delay);
                                             break;
 
                                         case SceneType.RAID_LOBBY:
+#if DEBUG
+                                            DragonFound = false;
+#endif
                                             if (this.CurrentObjective == Objective.RAID)
                                             {
-                                                /* mastery check
-                                                if (!this.MasteryChecked && AISettings.RD_Mastery != 0)
-                                                {
-                                                    this.Escape();
-                                                }
-                                                */
                                                 if (this.EnableRaidRewards)
                                                 {
+                                                    this.Log("Go Collect Raid Reward",Color.DarkOrchid);
                                                     this.WeightedClick(RaidLobbyPM.DefeatedTab, 1.0, 1.0, 1, 0, "left");
                                                     SevenKnightsCore.Sleep(500);
                                                     this.CaptureFrame();
                                                     if (this.MatchMapping(RaidLobbyPM.EnterButton, 2))
                                                     {
+                                                        this.Log("Collect Raid Reward", Color.DarkRed);
                                                         this.WeightedClick(RaidLobbyPM.EnterButton, 1.0, 1.0, 1, 0, "left");
                                                     }
                                                     else
                                                     {
+                                                        this.Log("No Raid Reward", Color.DarkMagenta);
                                                         this.DoneRaid();
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    this.WeightedClick(RaidLobbyPM.NewTab, 1.0, 1.0, 1, 0, "left");
-                                                    SevenKnightsCore.Sleep(500);
-                                                    this.CaptureFrame();
-                                                    if (this.MatchMapping(RaidLobbyPM.EnterButton, 2))
-                                                    {
-                                                        this.WeightedClick(RaidLobbyPM.EnterButton, 1.0, 1.0, 1, 0, "left");
-                                                        this.EnableRaidRewards = true;
-                                                    }
-                                                    else
-                                                    {
-                                                        this.DoneRaid();
-                                                    }
-                                                }
+                                                    RaidDragonLobbyFind(DragonFound);
+                                                }  
                                                 this.MasteryChecked = !this.MasteryChecked;
                                             }
                                             else
                                             {
                                                 this.Escape();
                                             }
+                                            Sleep(this.AIProfiles.ST_Delay);
                                             break;
 
                                         case SceneType.RAID_READY:
@@ -2779,6 +2899,7 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 this.Escape();
                                             }
+                                            Sleep(this.AIProfiles.ST_Delay);
                                             break;
 
                                         case SceneType.RAID_START:
@@ -2791,6 +2912,7 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 this.Escape();
                                             }
+                                            Sleep(this.AIProfiles.ST_Delay);
                                             break;
 
                                         case SceneType.RAID_FIGHT:
@@ -2801,7 +2923,7 @@ namespace SevenKnightsAI.Classes
                                             this.RaidAfterFight();
                                             this.PushNote("Raid has ended!", "AI will collect the reward and if there is any.");
                                             this.WeightedClick(RaidEndPM.AgainButton, 1.0, 1.0, 1, 0, "left");
-                                            this.LongSleep(1000, 1000);
+                                            this.LongSleep(2000, 1000);
                                             break;
 
                                         case SceneType.RAID_REWARD:
@@ -2837,10 +2959,103 @@ namespace SevenKnightsAI.Classes
                                                 flag3 = true;
                                             }
                                             this.HandleOutOfKey(scene.SceneType);
+                                            Sleep(2000);
                                             break;
 
                                         case SceneType.RAID_ALREADY_ENDED_POPUP:
                                             this.DoneRaid();
+                                            break;
+
+                                        case SceneType.SPECIAL_DUNGEON_LOBBY:
+                                            PixelMapping[] tabSelect = new PixelMapping[]
+                                            {
+                                                SpecialDungeonLobbyPM.Tab1,
+                                                SpecialDungeonLobbyPM.Tab2,
+                                                SpecialDungeonLobbyPM.Tab3,
+                                                SpecialDungeonLobbyPM.Tab4
+                                                
+                                            };
+                                            PixelMapping[] slotSelect = new PixelMapping[]
+                                            {
+                                                SpecialDungeonLobbyPM.Dungeon1,
+                                                SpecialDungeonLobbyPM.Dungeon2,
+                                                SpecialDungeonLobbyPM.Dungeon3,
+                                                SpecialDungeonLobbyPM.Dungeon4
+                                            };
+                                            PixelMapping[] dificultSelect = new PixelMapping[]
+                                            {
+                                                SpecialDungeonLobbyPM.Difficult1,
+                                                SpecialDungeonLobbyPM.Difficult2,
+                                                SpecialDungeonLobbyPM.Difficult3
+                                            };
+                                            if (this.CurrentObjective == Objective.SPECIAL_DUNGEON && this.AISettings.SPD_Enable)
+                                            {
+                                                //TabSelect
+                                                this.WeightedClick(tabSelect[this.AISettings.SPD_DunTab], 1.0, 1.0, 1, 0, "left");
+                                                Sleep(800);
+                                                //SlotSelect
+                                                this.WeightedClick(slotSelect[this.AISettings.SPD_DunSlot], 1.0, 1.0, 1, 0, "left");
+                                                Sleep(800);
+                                                //Difficult
+                                                if (!SpeccialDunDifficult)
+                                                {
+                                                    this.WeightedClick(SpecialDungeonLobbyPM.DifficultButton, 1.0, 1.0, 1, 0, "left");
+                                                    Sleep(800);
+                                                    this.WeightedClick(dificultSelect[this.AISettings.SPD_DunDifficult], 1.0, 1.0, 1, 0, "left");
+                                                    SpeccialDunDifficult = true;
+                                                }
+                                                //klahan
+                                                //this.WeightedClick(SpecialDungeonLobbyPM.Dungeon2, 1.0, 1.0, 1, 0, "left");
+                                                Sleep(800);
+                                                this.WeightedClick(SpecialDungeonLobbyPM.ReadyButton, 1.0, 1.0, 1, 0, "left");
+                                            }
+                                            else
+                                            {
+                                                this.Escape();
+                                            }
+                                            break;
+
+                                        case SceneType.OUT_OF_DUNGEON_KEYS_POPUP:
+                                            Sleep(1000);
+                                            this.WeightedClick(SpecialDungeonLobbyPM.Xbutton, 1.0, 1.0, 1, 0, "left");
+                                            Sleep(500);
+                                            SpeccialDunDifficult = false;
+                                            this.Escape();
+                                            this.NextPossibleObjective();
+                                            break;
+
+                                        case SceneType.SPECIAL_DUNGEON_READY:
+                                            Sleep(2000);
+                                            if (this.AISettings.SPD_Enable)
+                                            {
+                                                //klahan
+                                                this.WeightedClick(SpecialDungeonLobbyPM.StartButton, 1.0, 1.0, 1, 0, "left");
+                                            }
+                                            else
+                                            {
+                                                this.Escape();
+                                            }
+                                            break;
+
+                                        case SceneType.SPECIAL_DUNGEON_END:
+                                            Sleep(500);                                      
+                                            this.WeightedClick(SpecialDungeonEndPM.RepaetButton, 1.0, 1.0, 1, 0, "left");
+                                            break;
+
+                                        case SceneType.SPECIAL_DUNGEON_FIGHT:
+                                            this.PerformFightTatics(scene.SceneType);
+                                            break;
+
+                                        case SceneType.SPECIAL_DUNGEON_MAX:
+                                            if (this.CurrentObjective == Objective.SPECIAL_DUNGEON)
+                                            {
+                                                
+                                                this.NextPossibleObjective();
+                                            }
+                                            else
+                                            {
+                                                this.Escape();
+                                            }
                                             break;
 
                                         case SceneType.ENTER_RAID_AGAIN_POPUP:
@@ -2876,6 +3091,9 @@ namespace SevenKnightsAI.Classes
 
                                         case SceneType.LOOT_ITEM:
                                             this.Escape();
+                                            break;
+
+                                        case SceneType.SHOPSELECT:
                                             break;
 
                                         case SceneType.SHOP:
@@ -3072,9 +3290,12 @@ namespace SevenKnightsAI.Classes
                                         case SceneType.SEND_HONOR_FULL_POPUP:
                                             this.Escape();
                                             break;
-                                    }
-                                }
-                            }
+                                    }//switch end
+                                    //this.Log("switch end");
+                                }//end elase 
+                                //this.Log("end elase");
+                            }//end big if
+                            //this.Log("end big if");
                         }
                         else if (this.AIProfiles.TMP_WaitingForKeys)
                         {
@@ -3270,13 +3491,13 @@ namespace SevenKnightsAI.Classes
                     return;
                 }
                 this.Escape();
-                SevenKnightsCore.Sleep(500);
-                if (!this.ExpectingScene(SceneType.HEROES, 5, 500))
+                SevenKnightsCore.Sleep(800);
+                if (!this.ExpectingScene(SceneType.HEROES, 8, 800))
                 {
                     return;
                 }
             }
-            SevenKnightsCore.Sleep(300);
+            SevenKnightsCore.Sleep(500);
             if (list2.Count <= 0)
             {
                 this.Log("Nothing to manage", this.COLOR_HEROES_MANAGEMENT);
@@ -3284,7 +3505,7 @@ namespace SevenKnightsAI.Classes
             }
             else
             {
-                if (!this.ExpectingScene(SceneType.HEROES, 5, 500))
+                if (!this.ExpectingScene(SceneType.HEROES, 8, 800))
                 {
                     return;
                 }
@@ -3298,9 +3519,10 @@ namespace SevenKnightsAI.Classes
                 while (num4 < 100 && !this.Worker.CancellationPending)
                 {
                     bool flag2 = false;
+                    SevenKnightsCore.Sleep(1000);
                     this.CaptureFrame();
                     Scene scene = this.SceneSearch();
-                    if (!this.ExpectingScene(SceneType.HEROES, 5, 500))
+                    if (!this.ExpectingScene(SceneType.HEROES, 8, 800))
                     {
                         return;
                     }
@@ -3322,7 +3544,7 @@ namespace SevenKnightsAI.Classes
                         {
                             r_HeroCard_Base.Y += HeroesPM.CARD_Y_DELTA + HeroesPM.CARD_LAST_Y_DELTA;
                         }
-                        SevenKnightsCore.Sleep(500);
+                        SevenKnightsCore.Sleep(800);
                         ulong num6 = 0uL;
                         using (this.CaptureFrame())
                         {
@@ -3342,7 +3564,7 @@ namespace SevenKnightsAI.Classes
                         continue;
                     IL_7A8:
                         this.WeightedClick(array2[num5], 1.0, 1.0, 1, 0, "left");
-                        SevenKnightsCore.Sleep(500);
+                        SevenKnightsCore.Sleep(1000);
                         if (this.Worker.CancellationPending)
                         {
                             return;
@@ -3351,10 +3573,11 @@ namespace SevenKnightsAI.Classes
                         {
                             SceneType.HERO_JOIN,
                             SceneType.HERO_REMOVE
-                        }, 5, 500))
+                        }, 8, 800))
                         {
                             return;
                         }
+                        SevenKnightsCore.Sleep(1000);
                         this.CaptureFrame();
                         scene = this.SceneSearch();
                         if (scene.SceneType == SceneType.HERO_JOIN)
@@ -3363,7 +3586,7 @@ namespace SevenKnightsAI.Classes
                             {
                                 this.Log("No more heroes less than level 30", this.COLOR_HEROES_MANAGEMENT);
                                 this.Escape();
-                                SevenKnightsCore.Sleep(300);
+                                SevenKnightsCore.Sleep(1000);
                                 this.CaptureFrame();
                                 scene = this.SceneSearch();
                                 if (flag4)
@@ -3382,10 +3605,10 @@ namespace SevenKnightsAI.Classes
                                     break;
                                 }
                             }
-                            else
+                            else if(this.ExpectingScene(SceneType.HERO_JOIN, 8, 800))
                             {
                                 this.WeightedClick(HeroJoinPM.JoinButton, 1.0, 1.0, 1, 0, "left");
-                                SevenKnightsCore.Sleep(500);
+                                SevenKnightsCore.Sleep(1000);
                                 this.CaptureFrame();
                                 scene = this.SceneSearch();
                                 if (this.Worker.CancellationPending || scene == null || scene.SceneType != SceneType.HEROES)
@@ -3417,7 +3640,7 @@ namespace SevenKnightsAI.Classes
                                     {
                                         break;
                                     }
-                                    SevenKnightsCore.Sleep(100);
+                                    SevenKnightsCore.Sleep(300);
                                     num9++;
                                 }
                                 int num10;
@@ -3443,7 +3666,7 @@ namespace SevenKnightsAI.Classes
                                 }
                                 int num11 = list2[num10];
                                 this.WeightedClick(array5[num11], 1.0, 1.0, 1, 0, "left");
-                                SevenKnightsCore.Sleep(500);
+                                SevenKnightsCore.Sleep(800);
                                 if (!this.ExpectingScenes(new List<SceneType>
                                 {
                                     SceneType.HEROES_SAME_TEAM_POPUP,
@@ -3452,6 +3675,7 @@ namespace SevenKnightsAI.Classes
                                 {
                                     return;
                                 }
+                                SevenKnightsCore.Sleep(1000);
                                 this.CaptureFrame();
                                 scene = this.SceneSearch();
                                 if (scene.SceneType == SceneType.HEROES_SAME_TEAM_POPUP)
@@ -3565,6 +3789,7 @@ namespace SevenKnightsAI.Classes
         {
             bool aD_Enable = this.AISettings.AD_Enable;
             bool gC_Enable = this.AISettings.GC_Enable;
+            bool spD_Enable = this.AISettings.SPD_Enable;
             bool aR_Enable = this.AISettings.AR_Enable;
             bool rD_Enable = this.AISettings.RD_Enable;
             switch (this.CurrentObjective)
@@ -3586,6 +3811,11 @@ namespace SevenKnightsAI.Classes
                         this.ChangeObjective(Objective.GOLD_CHAMBER);
                         return;
                     }
+                    if (spD_Enable)
+                    {
+                        this.ChangeObjective(Objective.SPECIAL_DUNGEON);
+                        return;
+                    }
                     if (aR_Enable)
                     {
                         this.ChangeObjective(Objective.ARENA);
@@ -3604,6 +3834,11 @@ namespace SevenKnightsAI.Classes
                         this.ChangeObjective(Objective.GOLD_CHAMBER);
                         return;
                     }
+                    if (spD_Enable)
+                    {
+                        this.ChangeObjective(Objective.SPECIAL_DUNGEON);
+                        return;
+                    }
                     if (aR_Enable)
                     {
                         this.ChangeObjective(Objective.ARENA);
@@ -3618,6 +3853,11 @@ namespace SevenKnightsAI.Classes
                     return;
 
                 case Objective.GOLD_CHAMBER:
+                    if (spD_Enable)
+                    {
+                        this.ChangeObjective(Objective.SPECIAL_DUNGEON);
+                        return;
+                    }
                     if (aR_Enable)
                     {
                         this.ChangeObjective(Objective.ARENA);
@@ -3631,6 +3871,30 @@ namespace SevenKnightsAI.Classes
                     if (aD_Enable)
                     {
                         this.ChangeObjective(Objective.ADVENTURE);
+                        return;
+                    }
+                    this.ChangeObjective(Objective.IDLE);
+                    return;
+
+                case Objective.SPECIAL_DUNGEON:
+                    if (aR_Enable)
+                    {
+                        this.ChangeObjective(Objective.ARENA);
+                        return;
+                    }
+                    if (rD_Enable)
+                    {
+                        this.ChangeObjective(Objective.RAID);
+                        return;
+                    }
+                    if (aD_Enable)
+                    {
+                        this.ChangeObjective(Objective.ADVENTURE);
+                        return;
+                    }
+                    if (gC_Enable)
+                    {
+                        this.ChangeObjective(Objective.GOLD_CHAMBER);
                         return;
                     }
                     this.ChangeObjective(Objective.IDLE);
@@ -3652,6 +3916,11 @@ namespace SevenKnightsAI.Classes
                         this.ChangeObjective(Objective.GOLD_CHAMBER);
                         return;
                     }
+                    if (spD_Enable)
+                    {
+                        this.ChangeObjective(Objective.SPECIAL_DUNGEON);
+                        return;
+                    }
                     this.ChangeObjective(Objective.IDLE);
                     return;
 
@@ -3664,6 +3933,11 @@ namespace SevenKnightsAI.Classes
                     if (gC_Enable)
                     {
                         this.ChangeObjective(Objective.GOLD_CHAMBER);
+                        return;
+                    }
+                    if (spD_Enable)
+                    {
+                        this.ChangeObjective(Objective.SPECIAL_DUNGEON);
                         return;
                     }
                     if (aR_Enable)
@@ -3765,6 +4039,16 @@ namespace SevenKnightsAI.Classes
                 }
             }
             this.ReportAllKeys();
+            //IdleCounter += 1000;
+            //this.Log("HangCounter = " + HangCounter/ 1000);
+            //this.Log("IdleTime = " + IdleCounter / 1000);
+            /*
+            if (IdleCounter > 10000)
+            {
+                this.Log("IdleTime = "+ IdleCounter/1000);
+            }
+           */
+            
         }
 
         private int ParseAdventureKeys(int offsetX, int offsetY)
@@ -3881,6 +4165,7 @@ namespace SevenKnightsAI.Classes
                     }
                 }
             }
+            this.Log("EnterCount" + result,Color.Red);
             return result;
         }
 
@@ -3971,123 +4256,294 @@ namespace SevenKnightsAI.Classes
             return result;
         }
 
+        /*        private void PerformFightTatics(SceneType sceneType)
+                {
+                    if (this.MatchMapping(SharedPM.Fight_SpeedOff, 2))
+                    {
+                        this.WeightedClick(SharedPM.Fight_SpeedButton, 1.0, 1.0, 1, 0, "left");
+                    }
+                    if (sceneType <= SceneType.TOWER_FIGHT)
+                    {
+                        if (sceneType != SceneType.ADVENTURE_FIGHT)
+                        {
+                            if (sceneType == SceneType.TOWER_FIGHT)
+                            {
+                                bool flag = this.AISettings.GC_SkillType != SkillType.Manual;
+                                bool flag2 = this.AISettings.GC_SkillType == SkillType.Both;
+                                bool shouldAssign = !flag || flag2;
+                                this.ToggleAutoSkill(flag);
+                                if (this.AISettings.SPD_Enable) {
+                                    if (this.MatchMapping(SpecialDungeonFightPM.AtTurn1Of1, 3) || (this.MatchMapping(SpecialDungeonFightPM.AtTurn1Of2, 3) && this.MatchMapping(SpecialDungeonFightPM.Turn2Of2, 3)))
+                                    {
+                                        int num = 1;
+                                        this.LoopSkill = this.AISettings.GC_Wave1Loop;
+                                        if (this.CurrentWave < num)
+                                        {
+                                            this.ChangeCurrentWave(num);
+                                            this.CancelAllSkills(false);
+                                            this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave1Skills);
+                                        }
+                                    }
+                                    else if (this.MatchMapping(SpecialDungeonFightPM.AtTurn2Of2, 3) && this.MatchMapping(SpecialDungeonFightPM.Turn1Of2, 3))
+                                    {
+                                        int num2 = 2;
+                                        this.LoopSkill = this.AISettings.GC_Wave2Loop;
+                                        if (this.CurrentWave < num2)
+                                        {
+                                            this.ChangeCurrentWave(num2);
+                                            this.CancelAllSkills(false);
+                                            this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave2Skills);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (this.MatchMapping(TowerFightPM.AtTurn1Of1, 3) || (this.MatchMapping(TowerFightPM.AtTurn1Of2, 3) && this.MatchMapping(TowerFightPM.Turn2Of2, 3)))
+                                    {
+                                        int num = 1;
+                                        this.LoopSkill = this.AISettings.GC_Wave1Loop;
+                                        if (this.CurrentWave < num)
+                                        {
+                                            this.ChangeCurrentWave(num);
+                                            this.CancelAllSkills(false);
+                                            this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave1Skills);
+                                        }
+                                    }
+                                    else if (this.MatchMapping(TowerFightPM.AtTurn2Of2, 3) && this.MatchMapping(TowerFightPM.Turn1Of2, 3))
+                                    {
+                                        int num2 = 2;
+                                        this.LoopSkill = this.AISettings.GC_Wave2Loop;
+                                        if (this.CurrentWave < num2)
+                                        {
+                                            this.ChangeCurrentWave(num2);
+                                            this.CancelAllSkills(false);
+                                            this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave2Skills);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            bool flag = this.AISettings.AD_SkillType != SkillType.Manual;
+                            bool flag2 = this.AISettings.AD_SkillType == SkillType.Both;
+                            bool shouldAssign = !flag || flag2;
+                            this.ToggleAutoSkill(flag);
+                            if (this.MatchMapping(AdventureFightPM.AtTurn1Of1, 5) || (this.MatchMapping(AdventureFightPM.AtTurn1Of2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of2, 5)) || (this.MatchMapping(AdventureFightPM.AtTurn1Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn1Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of3, 5)))
+                            {
+                                int num3 = 1;
+                                this.LoopSkill = this.AISettings.AD_Wave1Loop;
+                                if (this.CurrentWave < num3)
+                                {
+                                    this.ChangeCurrentWave(num3);
+                                    this.CancelAllSkills(false);
+                                    this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave1Skills);
+                                }
+                            }
+                            else if ((this.MatchMapping(AdventureFightPM.AtTurn2Of2, 5) && this.MatchMapping(AdventureFightPM.Turn1Of2, 5)) || (this.MatchMapping(AdventureFightPM.AtTurn2Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn2Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn1Of3, 5)))
+                            {
+                                int num4 = 2;
+                                this.LoopSkill = this.AISettings.AD_Wave2Loop;
+                                if (this.CurrentWave < num4)
+                                {
+                                    this.ChangeCurrentWave(num4);
+                                    this.CancelAllSkills(false);
+                                    this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave2Skills);
+                                }
+                            }
+                            else if (this.MatchMapping(AdventureFightPM.AtTurn3Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn3Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of3, 5))
+                            {
+                                int num5 = 3;
+                                this.LoopSkill = this.AISettings.AD_Wave3Loop;
+                                if (this.CurrentWave < num5)
+                                {
+                                    this.ChangeCurrentWave(num5);
+                                    this.CancelAllSkills(false);
+                                    this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave3Skills);
+                                }
+                            }
+                        }
+                    }
+                    else if (sceneType != SceneType.ARENA_FIGHT)
+                    {
+                        if (sceneType == SceneType.RAID_FIGHT)
+                        {
+                            bool flag = this.AISettings.RD_SkillType != SkillType.Manual;
+                            bool flag2 = this.AISettings.RD_SkillType == SkillType.Both;
+                            bool shouldAssign = !flag || flag2;
+                            this.ToggleAutoSkill(flag);
+                            if (this.MatchMapping(RaidFightPM.SkipOff, 2))
+                            {
+                                this.WeightedClick(RaidFightPM.SkipButton, 1.0, 1.0, 1, 0, "left");
+                            }
+                            if (this.CurrentRaidTeam == 0)
+                            {
+                                this.LoopSkill = this.AISettings.RD_Team1Loop;
+                                this.ChangeCurrentRaidTeam(1);
+                                this.CancelAllSkills(false);
+                                this.AssignSkillSet(shouldAssign, this.AISettings.RD_Team1Skills);
+                            }
+                            else if (this.CurrentRaidTeam == 1)
+                            {
+                                this.LoopSkill = this.AISettings.RD_Team1Loop;
+                                if (this.MatchMapping(RaidFightPM.TeamTransition_1, 3) && this.MatchMapping(RaidFightPM.TeamTransition_2, 4) && this.MatchMapping(RaidFightPM.TeamTransition_3, 4))
+                                {
+                                    SevenKnightsCore.Sleep(500);
+                                    this.LoopSkill = this.AISettings.RD_Team2Loop;
+                                    this.ChangeCurrentRaidTeam(2);
+                                    this.LongSleep(2000, 1000);
+                                    this.CancelAllSkills(false);
+                                    this.AssignSkillSet(shouldAssign, this.AISettings.RD_Team2Skills);
+                                }
+                            }
+                            else if (this.CurrentRaidTeam == 2)
+                            {
+                                this.LoopSkill = this.AISettings.RD_Team2Loop;
+                            }
+                        }
+                    }
+                    bool towerFight = sceneType == SceneType.TOWER_FIGHT;
+                    this.UseSkills(towerFight);
+                }
+                */
+
         private void PerformFightTatics(SceneType sceneType)
         {
             if (this.MatchMapping(SharedPM.Fight_SpeedOff, 2))
             {
                 this.WeightedClick(SharedPM.Fight_SpeedButton, 1.0, 1.0, 1, 0, "left");
             }
-            if (sceneType <= SceneType.TOWER_FIGHT)
+            if (sceneType == SceneType.TOWER_FIGHT)
             {
-                if (sceneType != SceneType.ADVENTURE_FIGHT)
+                bool flag = this.AISettings.GC_SkillType != SkillType.Manual;
+                bool flag2 = this.AISettings.GC_SkillType == SkillType.Both;
+                bool shouldAssign = !flag || flag2;
+                this.ToggleAutoSkill(flag);
+                if (this.MatchMapping(TowerFightPM.AtTurn1Of1, 3) || (this.MatchMapping(TowerFightPM.AtTurn1Of2, 3) && this.MatchMapping(TowerFightPM.Turn2Of2, 3)))
                 {
-                    if (sceneType == SceneType.TOWER_FIGHT)
+                    int num = 1;
+                    this.LoopSkill = this.AISettings.GC_Wave1Loop;
+                    if (this.CurrentWave < num)
                     {
-                        bool flag = this.AISettings.GC_SkillType != SkillType.Manual;
-                        bool flag2 = this.AISettings.GC_SkillType == SkillType.Both;
-                        bool shouldAssign = !flag || flag2;
-                        this.ToggleAutoSkill(flag);
-                        if (this.MatchMapping(TowerFightPM.AtTurn1Of1, 3) || (this.MatchMapping(TowerFightPM.AtTurn1Of2, 3) && this.MatchMapping(TowerFightPM.Turn2Of2, 3)))
-                        {
-                            int num = 1;
-                            this.LoopSkill = this.AISettings.GC_Wave1Loop;
-                            if (this.CurrentWave < num)
-                            {
-                                this.ChangeCurrentWave(num);
-                                this.CancelAllSkills(false);
-                                this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave1Skills);
-                            }
-                        }
-                        else if (this.MatchMapping(TowerFightPM.AtTurn2Of2, 3) && this.MatchMapping(TowerFightPM.Turn1Of2, 3))
-                        {
-                            int num2 = 2;
-                            this.LoopSkill = this.AISettings.GC_Wave2Loop;
-                            if (this.CurrentWave < num2)
-                            {
-                                this.ChangeCurrentWave(num2);
-                                this.CancelAllSkills(false);
-                                this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave2Skills);
-                            }
-                        }
+                        this.ChangeCurrentWave(num);
+                        this.CancelAllSkills(false);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave1Skills);
                     }
                 }
-                else
+                else if (this.MatchMapping(TowerFightPM.AtTurn2Of2, 3) && this.MatchMapping(TowerFightPM.Turn1Of2, 3))
                 {
-                    bool flag = this.AISettings.AD_SkillType != SkillType.Manual;
-                    bool flag2 = this.AISettings.AD_SkillType == SkillType.Both;
-                    bool shouldAssign = !flag || flag2;
-                    this.ToggleAutoSkill(flag);
-                    if (this.MatchMapping(AdventureFightPM.AtTurn1Of1, 5) || (this.MatchMapping(AdventureFightPM.AtTurn1Of2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of2, 5)) || (this.MatchMapping(AdventureFightPM.AtTurn1Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn1Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of3, 5)))
+                    int num2 = 2;
+                    this.LoopSkill = this.AISettings.GC_Wave2Loop;
+                    if (this.CurrentWave < num2)
                     {
-                        int num3 = 1;
-                        this.LoopSkill = this.AISettings.AD_Wave1Loop;
-                        if (this.CurrentWave < num3)
-                        {
-                            this.ChangeCurrentWave(num3);
-                            this.CancelAllSkills(false);
-                            this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave1Skills);
-                        }
-                    }
-                    else if ((this.MatchMapping(AdventureFightPM.AtTurn2Of2, 5) && this.MatchMapping(AdventureFightPM.Turn1Of2, 5)) || (this.MatchMapping(AdventureFightPM.AtTurn2Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn2Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn1Of3, 5)))
-                    {
-                        int num4 = 2;
-                        this.LoopSkill = this.AISettings.AD_Wave2Loop;
-                        if (this.CurrentWave < num4)
-                        {
-                            this.ChangeCurrentWave(num4);
-                            this.CancelAllSkills(false);
-                            this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave2Skills);
-                        }
-                    }
-                    else if (this.MatchMapping(AdventureFightPM.AtTurn3Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn3Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of3, 5))
-                    {
-                        int num5 = 3;
-                        this.LoopSkill = this.AISettings.AD_Wave3Loop;
-                        if (this.CurrentWave < num5)
-                        {
-                            this.ChangeCurrentWave(num5);
-                            this.CancelAllSkills(false);
-                            this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave3Skills);
-                        }
+                        this.ChangeCurrentWave(num2);
+                        this.CancelAllSkills(false);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.GC_Wave2Skills);
                     }
                 }
             }
-            else if (sceneType != SceneType.ARENA_FIGHT)
+            else if (sceneType == SceneType.SPECIAL_DUNGEON_FIGHT)
             {
-                if (sceneType == SceneType.RAID_FIGHT)
+                bool flag = this.AISettings.SPD_SkillType != SkillType.Manual;
+                bool flag2 = this.AISettings.SPD_SkillType == SkillType.Both;
+                bool shouldAssign = !flag || flag2;
+                this.ToggleAutoSkill(flag);
+                if (this.MatchMapping(SpecialDungeonFightPM.AtTurn1Of1, 3) || (this.MatchMapping(SpecialDungeonFightPM.AtTurn1Of2, 3) && this.MatchMapping(SpecialDungeonFightPM.Turn2Of2, 3)))
                 {
-                    bool flag = this.AISettings.RD_SkillType != SkillType.Manual;
-                    bool flag2 = this.AISettings.RD_SkillType == SkillType.Both;
-                    bool shouldAssign = !flag || flag2;
-                    this.ToggleAutoSkill(flag);
-                    if (this.MatchMapping(RaidFightPM.SkipOff, 2))
+                    int num3 = 1;
+                    this.LoopSkill = this.AISettings.SPD_Wave1Loop;
+                    if (this.CurrentWave < num3)
                     {
-                        this.WeightedClick(RaidFightPM.SkipButton, 1.0, 1.0, 1, 0, "left");
-                    }
-                    if (this.CurrentRaidTeam == 0)
-                    {
-                        this.LoopSkill = this.AISettings.RD_Team1Loop;
-                        this.ChangeCurrentRaidTeam(1);
+                        this.ChangeCurrentWave(num3);
                         this.CancelAllSkills(false);
-                        this.AssignSkillSet(shouldAssign, this.AISettings.RD_Team1Skills);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.SPD_Wave1Skills);
                     }
-                    else if (this.CurrentRaidTeam == 1)
+                }
+                else if (this.MatchMapping(SpecialDungeonFightPM.AtTurn2Of2, 3) && this.MatchMapping(SpecialDungeonFightPM.Turn1Of2, 3))
+                {
+                    int num4 = 2;
+                    this.LoopSkill = this.AISettings.SPD_Wave2Loop;
+                    if (this.CurrentWave < num4)
                     {
-                        this.LoopSkill = this.AISettings.RD_Team1Loop;
-                        if (this.MatchMapping(RaidFightPM.TeamTransition_1, 3) && this.MatchMapping(RaidFightPM.TeamTransition_2, 4) && this.MatchMapping(RaidFightPM.TeamTransition_3, 4))
-                        {
-                            SevenKnightsCore.Sleep(500);
-                            this.LoopSkill = this.AISettings.RD_Team2Loop;
-                            this.ChangeCurrentRaidTeam(2);
-                            this.LongSleep(2000, 1000);
-                            this.CancelAllSkills(false);
-                            this.AssignSkillSet(shouldAssign, this.AISettings.RD_Team2Skills);
-                        }
+                        this.ChangeCurrentWave(num4);
+                        this.CancelAllSkills(false);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.SPD_Wave2Skills);
                     }
-                    else if (this.CurrentRaidTeam == 2)
+                }
+            }
+            else if (sceneType == SceneType.ADVENTURE_FIGHT)
+            {
+                bool flag = this.AISettings.AD_SkillType != SkillType.Manual;
+                bool flag2 = this.AISettings.AD_SkillType == SkillType.Both;
+                bool shouldAssign = !flag || flag2;
+                this.ToggleAutoSkill(flag);
+                if (this.MatchMapping(AdventureFightPM.AtTurn1Of1, 5) || (this.MatchMapping(AdventureFightPM.AtTurn1Of2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of2, 5)) || (this.MatchMapping(AdventureFightPM.AtTurn1Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn1Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of3, 5)))
+                {
+                    int num3 = 1;
+                    this.LoopSkill = this.AISettings.AD_Wave1Loop;
+                    if (this.CurrentWave < num3)
                     {
+                        this.ChangeCurrentWave(num3);
+                        this.CancelAllSkills(false);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave1Skills);
+                    }
+                }
+                else if ((this.MatchMapping(AdventureFightPM.AtTurn2Of2, 5) && this.MatchMapping(AdventureFightPM.Turn1Of2, 5)) || (this.MatchMapping(AdventureFightPM.AtTurn2Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn2Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn1Of3, 5)))
+                {
+                    int num4 = 2;
+                    this.LoopSkill = this.AISettings.AD_Wave2Loop;
+                    if (this.CurrentWave < num4)
+                    {
+                        this.ChangeCurrentWave(num4);
+                        this.CancelAllSkills(false);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave2Skills);
+                    }
+                }
+                else if (this.MatchMapping(AdventureFightPM.AtTurn3Of3_1, 5) && this.MatchMapping(AdventureFightPM.AtTurn3Of3_2, 5) && this.MatchMapping(AdventureFightPM.Turn2Of3, 5))
+                {
+                    int num5 = 3;
+                    this.LoopSkill = this.AISettings.AD_Wave3Loop;
+                    if (this.CurrentWave < num5)
+                    {
+                        this.ChangeCurrentWave(num5);
+                        this.CancelAllSkills(false);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.AD_Wave3Skills);
+                    }
+                }
+            }
+            else if (sceneType == SceneType.RAID_FIGHT)
+            {
+                bool flag = this.AISettings.RD_SkillType != SkillType.Manual;
+                bool flag2 = this.AISettings.RD_SkillType == SkillType.Both;
+                bool shouldAssign = !flag || flag2;
+                this.ToggleAutoSkill(flag);
+                if (this.MatchMapping(RaidFightPM.SkipOff, 2))
+                {
+                    this.WeightedClick(RaidFightPM.SkipButton, 1.0, 1.0, 1, 0, "left");
+                }
+                if (this.CurrentRaidTeam == 0)
+                {
+                    this.LoopSkill = this.AISettings.RD_Team1Loop;
+                    this.ChangeCurrentRaidTeam(1);
+                    this.CancelAllSkills(false);
+                    this.AssignSkillSet(shouldAssign, this.AISettings.RD_Team1Skills);
+                }
+                else if (this.CurrentRaidTeam == 1)
+                {
+                    this.LoopSkill = this.AISettings.RD_Team1Loop;
+                    if (this.MatchMapping(RaidFightPM.TeamTransition_1, 3) && this.MatchMapping(RaidFightPM.TeamTransition_2, 4) && this.MatchMapping(RaidFightPM.TeamTransition_3, 4))
+                    {
+                        SevenKnightsCore.Sleep(500);
                         this.LoopSkill = this.AISettings.RD_Team2Loop;
+                        this.ChangeCurrentRaidTeam(2);
+                        this.LongSleep(2000, 1000);
+                        this.CancelAllSkills(false);
+                        this.AssignSkillSet(shouldAssign, this.AISettings.RD_Team2Skills);
                     }
+                }
+                else if (this.CurrentRaidTeam == 2)
+                {
+                    this.LoopSkill = this.AISettings.RD_Team2Loop;
                 }
             }
             bool towerFight = sceneType == SceneType.TOWER_FIGHT;
@@ -4169,6 +4625,243 @@ namespace SevenKnightsAI.Classes
                     this.NextPossibleObjective();
                 }
             }
+        }
+
+        private void RaidDragonOwnerFind(bool Dragonfound)
+        {
+
+        }
+
+        private void RaidDragonLobbyFind(bool Dragonfound)
+        {
+            string PreviousName = "";
+            SevenKnightsCore.Sleep(2000);
+            this.WeightedClick(RaidLobbyPM.NewTab, 1.0, 1.0, 1, 0, "left");
+            Sleep(2000);
+            this.CaptureFrame();
+#if DEBUG
+            this.Log("Dragonfound Parameter " + DragonFound, Color.Red);
+#endif
+            //IN LOBBY
+            //FIND 1st ROW
+            if (this.ExpectingScene(SceneType.RAID_LOBBY, 5, 500) && !this.MatchMapping(RaidLobbyPM.CheckPos2, 5))
+            {
+                RD_AttName(RaidLobbyPM.Oname1, "Owner");
+                this.Log("Found own dragon in lobby", this.COLOR_ConditionT);
+                this.WeightedClick(RaidLobbyPM.EnterButton, 1.0, 1.0, 1, 0, "left");
+                this.EnableRaidRewards = true;
+            }
+            //FIND ALL ROW DRAGON
+            else
+            {
+                //RD_AttName(RaidLobbyPM.EntryCount,"");
+                if (DragonFound)
+                {
+                    this.Log("Not found own dragon in lobby", this.COLOR_ConditionF);
+                    this.Log("Try to find own dragon in lobby...", this.COLOR_ConditionF);
+                }
+                else
+                {
+                    this.Log("Find dragon in lobby", Color.Red);
+                }
+                this.WeightedClick(RaidLobbyPM.NewTab, 1.0, 1.0, 1, 0, "left");
+                int attemps = 0;
+                PixelMapping[] EntArray = new PixelMapping[]
+                {
+                    RaidLobbyPM.EnterButton,
+                    RaidLobbyPM.EnterButton2,
+                    RaidLobbyPM.EnterButton3,
+                    RaidLobbyPM.EnterButton4
+                };
+                PixelMapping[] PosArray = new PixelMapping[]
+                {
+                    RaidLobbyPM.CheckPos1,
+                    RaidLobbyPM.CheckPos2,
+                    RaidLobbyPM.CheckPos3,
+                    RaidLobbyPM.CheckPos4
+                };
+                Rectangle[] DGNamearray = new Rectangle[]
+                {
+                    RaidLobbyPM.Oname1,
+                    RaidLobbyPM.Oname2,
+                    RaidLobbyPM.Oname3,
+                    RaidLobbyPM.Oname4
+                };
+                PixelMapping[] DGBlood = new PixelMapping[]
+                {
+                    RaidReadyPM.Blood25,
+                    RaidReadyPM.Blood50,
+                    RaidReadyPM.Blood75
+                };
+                Sleep(1000);
+                //Ajust Position
+                //Refresh Btn
+                this.Log("Refresh btn", Color.Gray);
+                this.WeightedClick(RaidLobbyPM.RefreshButton, 1.0, 1.0, 1, 0, "left");
+                //Scroll With Dragon Level Parameter
+                Sleep(800);
+                if (this.AISettings.RD_DragonLV >= 90)
+                {
+                    //scroll down
+                    ScrollRaidDragonPage(false,true);
+                    ScrollRaidDragonPage(true,true,3);
+                }
+                else
+                {
+                    //scroll up
+                    ScrollRaidDragonPage(false,true,2);
+                }
+                //Find Loop
+                int num1 = 0;
+                while (num1 != 4)
+                {
+                    Log("attemp = " + attemps,Color.Gray);
+                    if (attemps > 3)
+                    {
+                        DoneRaid();
+                        break;
+                    }
+                    this.CaptureFrame();
+                    if (this.MatchMapping(PosArray[num1], 5))
+                    {
+                        this.Log("Position = " + (num1 + 1),Color.Gray);
+                        RD_AttName(DGNamearray[num1], "Lobby Owner");
+                        //Dragon LV Condition In Lobby
+                        if (!DragonFound && this.AISettings.RD_EnableDragonLV)
+                        {
+                            int lvl = RD_DragonLV(num1);
+                            this.Log("DragonLV = " + lvl, this.COLOR_Infomation);
+#if DEBUG
+                            if (lvl >= 100)
+#else
+                        if (lvl >= this.AISettings.RD_DragonLV)
+#endif
+                            {
+                                this.Log("Dragon Correct Condition", this.COLOR_ConditionT);
+                                this.WeightedClick(EntArray[num1], 1.0, 1.0, 1, 0, "left");
+                                this.EnableRaidRewards = true;
+                                break;
+                            }
+                            else
+                            {
+                                this.Log("Dragon Low Condition", this.COLOR_Infomation);
+                            }
+                        }
+                        else if (!DragonFound)
+                        {
+                            DragonFound = false;
+                            this.WeightedClick(RaidLobbyPM.EnterButton, 1.0, 1.0, 1, 0, "left");
+                            this.EnableRaidRewards = true;
+                        }
+                        Sleep(500);
+                        //ENTER RAID READY
+                        //FIND RAID ONNER NAME IN RAID READY
+                        if (DragonFound)
+                        {
+                            this.WeightedClick(EntArray[num1], 1.0, 1.0, 1, 0, "left");
+                            Sleep(2000);
+                            this.CaptureFrame();
+                            if (ExpectingScene(SceneType.RAID_READY, 5, 500))
+                            {
+                                string rd_owner = RD_AttName(RaidReadyPM.Ownner, "Owner");
+                                string rd_attacker = RD_AttName(RaidReadyPM.Attacker, "Attacker");
+                                if (rd_owner != "" && rd_attacker != "")
+                                {
+#if DEBUG
+                                    Console.WriteLine("Owner " + rd_owner);
+                                    Console.WriteLine("Attacker " + rd_attacker);
+                                    Console.WriteLine("break");
+#endif
+                                    //Previous Name Condition
+                                    if (attemps == 0)
+                                    {
+                                        if (num1 == 0)
+                                        {
+                                            PreviousName = rd_owner;
+                                        }
+                                    }
+                                    else if (num1 == 0)
+                                    {
+                                        if (PreviousName == rd_owner)
+                                        {
+#if DEBUG
+                                            this.Log("Same Previous Owner");
+#endif
+                                            this.DoneRaid();
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            PreviousName = rd_owner;
+                                        }
+                                    }//END Previous Name Condition
+                                    Sleep(500);
+                                    if (rd_owner == rd_attacker)
+                                    {
+#if DEBUG
+                                        Console.WriteLine("equal");
+#endif
+                                        this.WeightedClick(EntArray[num1], 1.0, 1.0, 1, 0, "left");
+                                        this.EnableRaidRewards = true;
+                                        break;
+                                    }
+                                    else if (rd_owner != rd_attacker)
+                                    {
+#if DEBUG
+                                        Console.WriteLine("not equal");
+#endif
+                                        Sleep(2000);
+                                        this.Escape();
+                                    }
+                                }
+                                else
+                                {
+                                    this.Escape();
+                                }
+                            }
+                            else
+                            {
+                                this.Escape();
+                            }
+                        }
+                    }//End Enter to find in raid ready
+                    //Not Found Position
+                    else
+                    {
+#if DEBUG
+                        Console.WriteLine("Not Found Match Position or no dragon in lobby");
+#endif
+                        this.DoneRaid();
+                        break;
+                    }
+                    Sleep(1500);
+                    num1++;
+                    if (num1 == 4)
+                    {
+#if DEBUG
+                        Console.WriteLine("Round Break");
+#endif
+                        num1 = 0;
+                        attemps++;
+                        if (this.AISettings.RD_DragonLV >= 90)
+                        {
+                            //scroll up
+                            ScrollRaidDragonPage(false,false,2);
+                        }
+                        else
+                        {
+                            //scroll down
+                            ScrollRaidDragonPage(true,false,2);
+                        }
+                        Sleep(500);
+                    }
+                    else if (num1 != 4)
+                    {
+                        this.Log("Find Next...", this.COLOR_Infomation);
+                    }
+                }//end while
+            }
+            DragonFound = false;
         }
 
         private string ReplaceNumericResource(string text)
@@ -4350,6 +5043,51 @@ namespace SevenKnightsAI.Classes
             return scene;
         }
 
+        private void ScrollRaidDragon(bool down = true)
+        {
+            int num = 48;
+            PixelMapping pixelMapping = down ? RaidLobbyPM.ScrollAreaDown : RaidLobbyPM.ScrollAreaUp;
+            int num2 = down ? (-num) : num;
+            /*
+            this.Log("num2 = " + num2);
+            this.Log(" endy " + (pixelMapping.Y + num2));
+            this.Log(" startx "+pixelMapping.X + " starty "+pixelMapping.Y +" endx " +pixelMapping.X+ " endy "+ (pixelMapping.Y + num2));
+            */
+            this.ClickDrag(pixelMapping.X, pixelMapping.Y, pixelMapping.X, pixelMapping.Y + num2);
+            //this.Log("scroll "+num);
+        }
+
+        private void ScrollRaidDragonPage(bool down = true, bool range = true, int retry = 1, int sleepInterval = 2000)
+        {
+            int num = range ? 198 : 48;
+            string tempname = "";
+            string lbbname = "";
+            for (int i = 0; i < retry; i++)
+            {
+                PixelMapping pixelMapping = down ? RaidLobbyPM.ScrollAreaDown : RaidLobbyPM.ScrollAreaUp;
+                int num2 = down ? (-num) : num;
+                this.ClickDrag(pixelMapping.X, pixelMapping.Y, pixelMapping.X, pixelMapping.Y + num2);
+#if DEBUG
+                string str1;
+                string str2;
+                
+#endif
+                SevenKnightsCore.Sleep(sleepInterval);
+                this.CaptureFrame();
+                lbbname = RD_AttName(RaidLobbyPM.Oname1,"");
+                if (lbbname != "")
+                {
+                    if (lbbname==tempname)
+                    {
+                        SevenKnightsCore.Sleep(sleepInterval);
+                        break;
+                    }
+                    tempname = lbbname;
+                }
+                SevenKnightsCore.Sleep(sleepInterval);
+            }
+        }
+
         private void ScrollHeroCards(bool down = true)
         {
             PixelMapping pixelMapping = down ? HeroesPM.ScrollAreaDown : HeroesPM.ScrollAreaUp;
@@ -4403,13 +5141,13 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.HEROES_SAME_TEAM_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(SharedPM.Hero_BlackBar, 2) && this.MatchMapping(SharedPM.Hero_BottomLeftBorder, 2) && this.MatchMapping(HeroJoinPM.JoinButtonIcon, 2))
+                if (this.MatchMapping(SharedPM.Hero_BlackBar, 2) && this.MatchMapping(SharedPM.Hero_BottomLeftBorder, 2) && this.MatchMapping(HeroJoinPM.JoinButtonIcon, 2) && this.MatchMapping(HeroJoinPM.SellButton, 2))
                 {
                     Scene result = new Scene(SceneType.HERO_JOIN);
                     return result;
                 }
-                if (this.MatchMapping(SharedPM.Hero_BlackBar, 2) &&
-                    this.MatchMapping(SharedPM.Hero_BottomLeftBorder, 2) &&
+                if (this.MatchMapping(HeroRemovePM.RemoveAllButton, 2) &&
+                    this.MatchMapping(HeroRemovePM.PositionButton, 2) &&
                     this.MatchMapping(HeroRemovePM.RemoveButtonIcon, 2))
                 {
                     Scene result = new Scene(SceneType.HERO_REMOVE);
@@ -4430,7 +5168,8 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.LEVEL_UP_DIALOG);
                     return result;
                 }
-                if (this.MatchMapping(LobbyPM.MenuButtonYellowLeft, 1) && this.MatchMapping(LobbyPM.MenuButtonYellowRight, 1))
+                //if (this.MatchMapping(LobbyPM.MenuButtonYellowLeft, 3) && this.MatchMapping(LobbyPM.MenuButtonYellowRight, 3) && this.MatchMapping(LobbyPM.TopChest, 3))
+                if (this.MatchMapping(LobbyPM.MenuButtonYellowLeft, 3) || this.MatchMapping(LobbyPM.MenuButtonYellowRight, 3) && this.MatchMapping(LobbyPM.TopChest, 3))
                 {
                     Scene result = new Scene(SceneType.LOBBY);
                     return result;
@@ -4455,6 +5194,38 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.QUEST);
                     return result;
                 }
+                if (this.MatchMapping(SpecialDungeonLobbyPM.ReadyButton, 2) && this.MatchMapping(SpecialDungeonLobbyPM.DungeonTicket, 2) && this.MatchMapping(SpecialDungeonLobbyPM.DifficultButton, 2))
+                {
+                    Scene result = new Scene(SceneType.SPECIAL_DUNGEON_LOBBY);
+                    return result;
+                }
+                if (this.MatchMapping(SpecialDungeonLobbyPM.StartButton, 2) && this.MatchMapping(SpecialDungeonLobbyPM.DungeonTicket, 2))
+                {
+                    Scene result = new Scene(SceneType.SPECIAL_DUNGEON_READY);
+                    return result;
+                }
+                if (this.MatchMapping(SpecialDungeonFightPM.ChatBT, 2) && this.MatchMapping(SpecialDungeonFightPM.SWaveCheck, 2))
+
+                {
+                    Scene result = new Scene(SceneType.SPECIAL_DUNGEON_FIGHT);
+                    return result;
+                }
+                if (this.MatchMapping(SpecialDungeonEndPM.RepaetButton, 2) && this.MatchMapping(SpecialDungeonEndPM.LobbyButton, 2))
+                {
+                    Scene result = new Scene(SceneType.SPECIAL_DUNGEON_END);
+                    return result;
+                }
+                if (this.MatchMapping(SpecialDungeonLobbyPM.Xbutton, 2) && this.MatchMapping(SpecialDungeonLobbyPM.Vbutton, 2) && this.MatchMapping(SpecialDungeonLobbyPM.DimBackground, 2))
+                {
+                    Scene result = new Scene(SceneType.OUT_OF_DUNGEON_KEYS_POPUP);
+                    return result;
+                }
+                if ((this.MatchMapping(SpecialDungeonLobbyPM.MaxKeyPlusBG, 2) && this.MatchMapping(SpecialDungeonLobbyPM.MaxCardPlusBG, 2) && this.MatchMapping(SpecialDungeonLobbyPM.MaxYellowTik, 2))
+                    || (this.MatchMapping(SpecialDungeonStartPM.CardEnterButton, 2) && this.MatchMapping(SpecialDungeonStartPM.KeyPlusBG, 2)))
+                {
+                    Scene result = new Scene(SceneType.SPECIAL_DUNGEON_MAX);
+                    return result;
+                }
                 if (this.ExpectedFightScene(SceneType.ARENA_FIGHT) && this.MatchMapping(ArenaFightPM.ChatButton, 2) && this.MatchMapping(ArenaFightPM.PauseButton, 2))
                 {
                     Scene result = new Scene(SceneType.ARENA_FIGHT);
@@ -4474,6 +5245,19 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.RAID_FIGHT);
                     return result;
                 }
+                //if ((this.ExpectedFightScene(SceneType.TOWER_FIGHT) &&
+                //    (this.MatchMapping(TowerFightPM.PauseButton, 2)) &&
+                //    this.MatchMapping(TowerFightPM.ChatButton, 2) &&
+                //    !(this.MatchMapping(AdventureFightPM.GoldIcon, 5)) &&
+                //    this.MatchMapping(TowerFightPM.CharL, 5) &&
+                //    this.MatchMapping(TowerFightPM.CharH, 5)) ||
+                //    ((this.MatchMapping(SpecialDungeonFightPM.PauseButton, 2)) &&
+                //    (this.MatchMapping(SpecialDungeonFightPM.ChatButton, 2)))
+                //    )
+                //{
+                //    Scene result = new Scene(SceneType.TOWER_FIGHT);
+                //    return result;
+                //}
                 if (this.ExpectedFightScene(SceneType.TOWER_FIGHT) &&
                     (this.MatchMapping(TowerFightPM.PauseButton, 2)) &&
                     this.MatchMapping(TowerFightPM.ChatButton, 2) &&
@@ -4483,7 +5267,14 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.TOWER_FIGHT);
                     return result;
                 }
-                if (this.MatchMapping(ShopPM.CharacterShirt, 3) && this.MatchMapping(ShopPM.ContentsShopIcon, 2))
+
+                if (this.MatchMapping(ShopPM.PackageTab, 3) && this.MatchMapping(ShopPM.CommonTab, 2) && this.MatchMapping(ShopPM.CostumeTab, 2))
+                {
+                    Scene result = new Scene(SceneType.SHOPSELECT);
+                    return result;
+                }
+
+                if (this.MatchMapping(ShopPM.BlackLine, 3) && this.MatchMapping(ShopPM.ContentsShopIcon, 2) && this.MatchMapping(ShopPM.ContentsShopIcon2, 2))
                 {
                     Scene result = new Scene(SceneType.SHOP);
                     return result;
@@ -4493,7 +5284,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.SHOP_BUY_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(SharedPM.ShopPopup_DimmedBG, 2) && this.MatchMapping(ShopPurchaseCompletePopupPM.PopupBorderLeft, 2) && this.MatchMapping(ShopPurchaseCompletePopupPM.YellowTick, 2))
+                if (this.MatchMapping(ShopPurchaseCompletePopupPM.ShopPopup_DimmedBG, 2) && this.MatchMapping(ShopPurchaseCompletePopupPM.PopupBorderLeft, 2) && this.MatchMapping(ShopPurchaseCompletePopupPM.YellowTick, 2))
                 {
                     Scene result = new Scene(SceneType.SHOP_PURCHASE_COMPLETE_POPUP);
                     return result;
@@ -4653,7 +5444,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.BATTLE_MODES);
                     return result;
                 }
-                if (this.MatchMapping(ArenaReadyPM.RecordBorder, 2) && this.MatchMapping(ArenaReadyPM.ReadyButtonBackground, 2))
+                if (this.MatchMapping(ArenaReadyPM.RecordBorder, 2) && this.MatchMapping(ArenaReadyPM.ReadyButtonBackground, 2) && this.MatchMapping(ArenaReadyPM.CollectButton, 2) && this.MatchMapping(ArenaReadyPM.RewardButton, 2))
                 {
                     Scene result = new Scene(SceneType.ARENA_READY);
                     return result;
@@ -4678,7 +5469,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.OUT_OF_SWORDS_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(AdventureReadyPM.ReadyButtonBackground, 2))
+                if (this.MatchMapping(AdventureReadyPM.ReadyButtonBackground, 2) && this.MatchMapping(AdventureReadyPM.CloseButton ,2))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_READY);
                     return result;
@@ -4788,7 +5579,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.SELL_ITEM_CONFIRM_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(SharedPM.Loot_LobbyButton, 2) && !this.MatchMapping(AdventureLootHeroPM.AdventureButton, 2))
+                if (this.MatchMapping(SharedPM.Loot_LobbyButton, 2) && !this.MatchMapping(AdventureLootHeroPM.AdventureButton, 2) && !this.MatchMapping(SpecialDungeonEndPM.RepaetButton, 2))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_LOOT_HERO_SPECIAL);
                     return result;
@@ -4833,7 +5624,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.ALICE_PACKADGE_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(AdsPM.HonorTop, 2) && this.MatchMapping(AdsPM.HonorButton, 2))
+                if (this.MatchMapping(AdsPM.HonorButton, 2))
                 {
                     Scene result = new Scene(SceneType.HONOR_FRIEND_POPUP);
                     return result;
@@ -4856,6 +5647,11 @@ namespace SevenKnightsAI.Classes
                 if (this.MatchMapping(AdsClosePM.CloseButton, 2) && this.MatchMapping(AdsClosePM.CancleButton, 2))
                 {
                     Scene result = new Scene(SceneType.ADS_CLOSE);
+                    return result;
+                }
+                if (this.MatchMapping(AdsPM.ExitNo, 2) && this.MatchMapping(AdsPM.ExitYes, 2))
+                {
+                    Scene result = new Scene(SceneType.EXITPM_POPUP);
                     return result;
                 }
                 if (this.MatchMapping(CheckInPM.CloseButton, 2))
@@ -4958,7 +5754,7 @@ namespace SevenKnightsAI.Classes
             if (num3 == pageDestIndex)
             {
                 this.SelectDifficulty();
-                SevenKnightsCore.Sleep(500);
+                SevenKnightsCore.Sleep(1000);
                 this.WeightedClick(stageMapping, 1.0, 1.0, 1, 0, "left");
             }
         }
@@ -5297,7 +6093,6 @@ namespace SevenKnightsAI.Classes
             {
                 return;
             }
-
             this.SelectStage(array, stageMapping, pageDestIndex);
         }
 
@@ -5389,14 +6184,14 @@ namespace SevenKnightsAI.Classes
             if (!this.MatchMapping(HeroesPM.SortByBoxExpanded, 2))
             {
                 this.WeightedClick(HeroesPM.SortByBox, 1.0, 1.0, 1, 0, "left");
-                SevenKnightsCore.Sleep(300);
+                SevenKnightsCore.Sleep(800);
             }
             this.WeightedClick(HeroesPM.SortByRank, 1.0, 1.0, 1, 0, "left");
             SevenKnightsCore.Sleep(300);
             if (!this.MatchMapping(HeroesPM.SortButtonAscending, 2))
             {
                 this.WeightedClick(HeroesPM.SortButton, 1.0, 1.0, 1, 0, "left");
-                SevenKnightsCore.Sleep(500);
+                SevenKnightsCore.Sleep(800);
             }
             this.ScrollHeroCards(false);
             SevenKnightsCore.Sleep(500);
@@ -5751,6 +6546,72 @@ namespace SevenKnightsAI.Classes
             }
         }
 
+        private string RD_AttName(Rectangle rectp,string str)
+        {
+            using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, rectp).ScaleByPercent(200))
+            {
+                using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
+                {
+                    string text = page.GetText().Replace("?", "").Replace("|", "l").Trim();
+#if DEBUG
+                    Console.WriteLine("text = " + text.Trim());
+                    bitmap.Save(string.Format("{1}_Name_{0}.png", text,str));
+#endif
+                    text = Utility.FilterAscii(text);
+                    //Console.WriteLine("test");
+                    Console.WriteLine("break");
+                    if (str != "")
+                    {
+                        if (text.Length >= 2)
+                        {
+                            this.Log(string.Format("{1}_Name_{0} ", text, str), this.COLOR_Infomation);
+                            return text;
+                        }else
+                        {
+                            this.Log("Cannot Scan Name",Color.Red);
+                        }
+                    }
+                    return "";
+                }
+            }
+        }
+
+        private int RD_DragonLV(int lvl)
+        {
+            int dlv = 0;
+            Rectangle[] array = new Rectangle[]
+            {
+                RaidLobbyPM.DLV1,
+                RaidLobbyPM.DLV2,
+                RaidLobbyPM.DLV3,
+                RaidLobbyPM.DLV4
+
+            };
+            Rectangle rect = array[lvl];
+            using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, rect))
+            {
+                using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
+                {
+                    string text = page.GetText().ToLower().Replace("o", "0").Replace(" ", "").Replace("i", "1").Replace("l", "1").Replace("z", "2").Replace("s", "5").Trim();
+#if DEBUG
+                    Console.WriteLine("LV text = " + text.Trim());
+                    bitmap.Save("dragonlv.png");
+#endif
+                    Utility.FilterAscii(text);
+                    Console.WriteLine("break1");
+                    if (text.Length >= 2)
+                    {
+                        int.TryParse(text, out dlv);
+#if DEBUG
+                        Console.WriteLine("num = "+dlv);
+#endif
+                        return dlv;
+                    }
+                    return 0;
+                }
+            }
+        }
+
         private void UpdateHeroCount()
         {
             int curHero = HeroCount;
@@ -5838,7 +6699,9 @@ namespace SevenKnightsAI.Classes
                             int.TryParse(array[0], out curCount);
                             if (curCount <= 100)
                             {
-                                this.Log(string.Format("Max Heroes  level up per day : {0}/100", curCount));
+                                this.Log(string.Format("Max Heroes  level up per day : {0}/100", curCount),Color.Purple);
+                                string HeroLvUPCountTelegram = string.Format("Max Heroes  level up per day : {0}/100", curCount);
+                                SendMessage(HeroLvUPCountTelegram);
                             }
                             if (curCount == 100 && array[1].Equals("100"))
                             {
@@ -6272,7 +7135,17 @@ namespace SevenKnightsAI.Classes
         {
             this.BlueStacks.MainWindowAS.Click(mapping.X, mapping.Y, numClicks, delay, button);
         }
+        private void SendMessage(string message)
+        {
+            string URI = "https://api.telegram.org/bot" + this.AIProfiles.ST_TelegramToken + "/SendMessage";
+            string myParameters = "text=" + message + "&chat_id=" + this.AIProfiles.ST_TelegramChatID;
 
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                string HtmlResult = wc.UploadString(URI, myParameters);
+            }
+        }
         #endregion Private Methods
     }
 }

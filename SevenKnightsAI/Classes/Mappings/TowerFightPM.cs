@@ -6,6 +6,22 @@ namespace SevenKnightsAI.Classes.Mappings
     {
         #region Public Fields
 
+        public static readonly PixelMapping CharL = new PixelMapping
+        {
+            X = 52,
+            Y = 20,
+            Color = 6108434,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping CharH = new PixelMapping
+        {
+            X = 108,
+            Y = 20,
+            Color = 6239762,
+            Type = MappingType.ANCHOR
+        };
+
         public static readonly PixelMapping AtTurn1Of1 = new PixelMapping
         {
             X = 557,

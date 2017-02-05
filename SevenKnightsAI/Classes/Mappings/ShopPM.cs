@@ -4,6 +4,38 @@ namespace SevenKnightsAI.Classes.Mappings
 {
     internal static class ShopPM
     {
+        public static readonly PixelMapping PackageTab = new PixelMapping
+        {
+            X = 188,
+            Y = 283,
+            Color = 15387089,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping CommonTab = new PixelMapping
+        {
+            X = 468,
+            Y = 256,
+            Color = 14854279,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping CostumeTab = new PixelMapping
+        {
+            X = 825,
+            Y = 311,
+            Color = 15513511,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping BlackLine = new PixelMapping
+        {
+            X = 189,
+            Y = 452,
+            Color = 0,
+            Type = MappingType.ANCHOR
+        };
+
         public static readonly PixelMapping CharacterShirt = new PixelMapping
         {
             X = 64,
@@ -22,9 +54,17 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping ContentsShopIcon = new PixelMapping
         {
-            X = 60,
-            Y = 457,
-            Color = 8411929,
+            X = 47,
+            Y = 345,
+            Color = 14132793,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping ContentsShopIcon2 = new PixelMapping
+        {
+            X = 47,
+            Y = 391,
+            Color = 15455343,
             Type = MappingType.ANCHOR
         };
 
@@ -46,24 +86,24 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping RubyTab = new PixelMapping
         {
-            X = 113,
-            Y = 192,
+            X = 155,
+            Y = 116,
             Color = 0,
             Type = MappingType.BUTTON
         };
 
         public static readonly PixelMapping KeyTab = new PixelMapping
         {
-            X = 113,
-            Y = 242,
+            X = 155,
+            Y = 76,
             Color = 0,
             Type = MappingType.BUTTON
         };
 
         public static readonly PixelMapping GoldTab = new PixelMapping
         {
-            X = 113,
-            Y = 296,
+            X = 155,
+            Y = 160,
             Color = 0,
             Type = MappingType.BUTTON
         };
@@ -159,9 +199,9 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping KeyTabSelected = new PixelMapping
         {
-            X = 113,
-            Y = 242,
-            Color = 14591807,
+            X = 155,
+            Y = 76,
+            Color = 12219396,
             Type = MappingType.ANCHOR
         };
 

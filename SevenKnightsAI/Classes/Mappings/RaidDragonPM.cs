@@ -36,6 +36,14 @@ namespace SevenKnightsAI.Classes.Mappings
             Type = MappingType.BUTTON
         };
 
+        public static readonly PixelMapping TapArea2 = new PixelMapping
+        {
+            X = 427,
+            Y = 368,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
         public static readonly PixelMapping TopRight = new PixelMapping
         {
             X = 945,

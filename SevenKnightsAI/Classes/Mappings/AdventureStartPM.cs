@@ -29,6 +29,37 @@ namespace SevenKnightsAI.Classes.Mappings
             Height = 33
         };
 
+        public static readonly PixelMapping AutoRepeat = new PixelMapping
+        {
+            X = 448,
+            Y = 436,
+            Color = 16775797,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping BoostMode = new PixelMapping
+        {
+            X = 655,
+            Y = 436,
+            Color = 16775797,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping FriendHelp = new PixelMapping
+        {
+            X = 530,
+            Y = 180,
+            Color = 8475157,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping FriendHelpBtn = new PixelMapping
+        {
+            X = 800,
+            Y = 180,
+            Color = 8475157,
+            Type = MappingType.BUTTON
+        };
         #endregion Public Fields
     }
 }

@@ -26,6 +26,8 @@ namespace SevenKnightsAI.Classes
 
         COLLECT_QUESTS,
 
-        SEND_HONORS
+        SEND_HONORS,
+
+        SPECIAL_DUNGEON
     }
 }

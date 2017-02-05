@@ -18,6 +18,22 @@ namespace SevenKnightsAI.Classes.Mappings
             Type = MappingType.BUTTON
         };
 
+        public static readonly PixelMapping RewardButton = new PixelMapping
+        {
+            X = 568,
+            Y = 393,
+            Color = 10257751,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping CollectButton = new PixelMapping
+        {
+            X = 792,
+            Y = 394,
+            Color = 13204227,
+            Type = MappingType.ANCHOR
+        };
+
         public static readonly PixelMapping ReadyButtonBackground = new PixelMapping
         {
             X = 906,

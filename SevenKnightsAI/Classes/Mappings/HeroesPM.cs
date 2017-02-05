@@ -764,7 +764,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping IconMiddle = new PixelMapping
         {
             X = 344,
-            Y = 83,
+            Y = 82,
             Color = 15718767,
             Type = MappingType.ANCHOR
         };

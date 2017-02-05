@@ -4,6 +4,46 @@ namespace SevenKnightsAI.Classes.Mappings
 {
     internal static class QuestPM
     {
+        public static readonly PixelMapping AragonTop = new PixelMapping
+        {
+            X = 120,
+            Y = 100,
+            Color = 15907986,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping AragonMiddle = new PixelMapping
+        {
+            X = 126,
+            Y = 320,
+            Color = 8553097,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping AragonBot = new PixelMapping
+        {
+            X = 153,
+            Y = 198,
+            Color = 2951949,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping AragonQuestBtn = new PixelMapping
+        {
+            X = 655,
+            Y = 480,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping AragonOkBtn = new PixelMapping
+        {
+            X = 836,
+            Y = 480,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
         public static readonly PixelMapping BattleAvailable = new PixelMapping
         {
             X = 329,
