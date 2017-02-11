@@ -417,9 +417,9 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Full_DimmedBG = new PixelMapping
         {
-            X = 473,
-            Y = 23,
-            Color = 4473658,
+            X = 476,
+            Y = 497,
+            Color = 1050885,
             Type = MappingType.ANCHOR
         };
 
