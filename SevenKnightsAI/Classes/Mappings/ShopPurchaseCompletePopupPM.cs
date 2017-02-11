@@ -40,7 +40,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 116,
             Y = 335,
-            Color = 787714,
+            Color = 1313543,
             Type = MappingType.ANCHOR
         };
     }
