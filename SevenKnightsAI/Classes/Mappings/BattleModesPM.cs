@@ -16,9 +16,9 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping BorderBottomRight = new PixelMapping
         {
-            X = 884,
-            Y = 274,
-            Color = 5449238,
+            X = 599,
+            Y = 134,
+            Color = 2228482,
             Type = MappingType.ANCHOR
         };
 
