@@ -303,6 +303,9 @@
             this.ST_toggleBlueStacksButton = new System.Windows.Forms.Button();
             this.ST_profileGroupBox = new System.Windows.Forms.GroupBox();
             this.ST_manageProfileButton = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.ST_hotTimeProfileComboBox = new System.Windows.Forms.ComboBox();
             this.ST_AutoProfileCheckBox = new System.Windows.Forms.CheckBox();
             this.ST_hotTimeProfileCheckBox = new System.Windows.Forms.CheckBox();
@@ -386,6 +389,7 @@
             this.SPD_w1Skill02Button = new System.Windows.Forms.Button();
             this.SPDw1Label = new System.Windows.Forms.Label();
             this.SPD_w1Skill01Button = new System.Windows.Forms.Button();
+            this.SPD_dunDifficultyComboBox = new System.Windows.Forms.ComboBox();
             this.SPD_dunSlotComboBox = new System.Windows.Forms.ComboBox();
             this.SPDdifficultyLabel = new System.Windows.Forms.Label();
             this.SPD_dunTabComboBox = new System.Windows.Forms.ComboBox();
@@ -435,7 +439,6 @@
             this.goldLabel = new System.Windows.Forms.Label();
             this.resourcesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.aiPause = new System.Windows.Forms.Button();
-            this.SPD_dunDifficultyComboBox = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.adventureTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AD_limitNumericBox)).BeginInit();
@@ -2411,7 +2414,7 @@
             this.GC_enableCheckBox.Name = "GC_enableCheckBox";
             this.GC_enableCheckBox.Size = new System.Drawing.Size(129, 17);
             this.GC_enableCheckBox.TabIndex = 1;
-            this.GC_enableCheckBox.Tag = "4";
+            this.GC_enableCheckBox.Tag = "1";
             this.GC_enableCheckBox.Text = "Enable Gold Chamber";
             this.GC_enableCheckBox.UseVisualStyleBackColor = true;
             this.GC_enableCheckBox.CheckedChanged += new System.EventHandler(this.enableCheckBox_CheckedChanged);
@@ -3909,7 +3912,7 @@
             // 
             this.ST_blueStacksGroupBox.Controls.Add(this.ST_forceActiveCheckBox);
             this.ST_blueStacksGroupBox.Controls.Add(this.ST_toggleBlueStacksButton);
-            this.ST_blueStacksGroupBox.Location = new System.Drawing.Point(313, 92);
+            this.ST_blueStacksGroupBox.Location = new System.Drawing.Point(313, 8);
             this.ST_blueStacksGroupBox.Name = "ST_blueStacksGroupBox";
             this.ST_blueStacksGroupBox.Size = new System.Drawing.Size(165, 68);
             this.ST_blueStacksGroupBox.TabIndex = 7;
@@ -3941,6 +3944,9 @@
             // ST_profileGroupBox
             // 
             this.ST_profileGroupBox.Controls.Add(this.ST_manageProfileButton);
+            this.ST_profileGroupBox.Controls.Add(this.comboBox2);
+            this.ST_profileGroupBox.Controls.Add(this.comboBox1);
+            this.ST_profileGroupBox.Controls.Add(this.checkBox1);
             this.ST_profileGroupBox.Controls.Add(this.ST_hotTimeProfileComboBox);
             this.ST_profileGroupBox.Controls.Add(this.ST_AutoProfileCheckBox);
             this.ST_profileGroupBox.Controls.Add(this.ST_hotTimeProfileCheckBox);
@@ -3948,7 +3954,7 @@
             this.ST_profileGroupBox.Controls.Add(this.ST_currentProfileLabel);
             this.ST_profileGroupBox.Location = new System.Drawing.Point(8, 79);
             this.ST_profileGroupBox.Name = "ST_profileGroupBox";
-            this.ST_profileGroupBox.Size = new System.Drawing.Size(299, 81);
+            this.ST_profileGroupBox.Size = new System.Drawing.Size(470, 132);
             this.ST_profileGroupBox.TabIndex = 6;
             this.ST_profileGroupBox.TabStop = false;
             this.ST_profileGroupBox.Text = "Profile";
@@ -3956,13 +3962,46 @@
             // ST_manageProfileButton
             // 
             this.ST_manageProfileButton.Enabled = false;
-            this.ST_manageProfileButton.Location = new System.Drawing.Point(214, 9);
+            this.ST_manageProfileButton.Location = new System.Drawing.Point(214, 8);
             this.ST_manageProfileButton.Name = "ST_manageProfileButton";
             this.ST_manageProfileButton.Size = new System.Drawing.Size(80, 23);
             this.ST_manageProfileButton.TabIndex = 2;
             this.ST_manageProfileButton.Text = "Manage";
             this.ST_manageProfileButton.UseVisualStyleBackColor = true;
             this.ST_manageProfileButton.Click += new System.EventHandler(this.ST_manageProfileButton_Click);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(182, 88);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(112, 21);
+            this.comboBox2.TabIndex = 4;
+            this.comboBox2.Visible = false;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ST_hotTimeProfileComboBox_SelectedIndexChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(182, 61);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(112, 21);
+            this.comboBox1.TabIndex = 4;
+            this.comboBox1.Visible = false;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ST_hotTimeProfileComboBox_SelectedIndexChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(9, 90);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(173, 17);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Use auto change profile normal";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.ST_autoProfileCheckBox_CheckedChanged);
             // 
             // ST_hotTimeProfileComboBox
             // 
@@ -3977,11 +4016,11 @@
             // ST_AutoProfileCheckBox
             // 
             this.ST_AutoProfileCheckBox.AutoSize = true;
-            this.ST_AutoProfileCheckBox.Location = new System.Drawing.Point(9, 52);
+            this.ST_AutoProfileCheckBox.Location = new System.Drawing.Point(9, 63);
             this.ST_AutoProfileCheckBox.Name = "ST_AutoProfileCheckBox";
-            this.ST_AutoProfileCheckBox.Size = new System.Drawing.Size(142, 17);
+            this.ST_AutoProfileCheckBox.Size = new System.Drawing.Size(164, 17);
             this.ST_AutoProfileCheckBox.TabIndex = 3;
-            this.ST_AutoProfileCheckBox.Text = "Use auto change profile ";
+            this.ST_AutoProfileCheckBox.Text = "auto change profile 100 lv up";
             this.ST_AutoProfileCheckBox.UseVisualStyleBackColor = true;
             this.ST_AutoProfileCheckBox.CheckedChanged += new System.EventHandler(this.ST_autoProfileCheckBox_CheckedChanged);
             // 
@@ -4018,7 +4057,7 @@
             // ST_foregroundMode
             // 
             this.ST_foregroundMode.AutoSize = true;
-            this.ST_foregroundMode.Location = new System.Drawing.Point(8, 285);
+            this.ST_foregroundMode.Location = new System.Drawing.Point(8, 337);
             this.ST_foregroundMode.Name = "ST_foregroundMode";
             this.ST_foregroundMode.Size = new System.Drawing.Size(110, 17);
             this.ST_foregroundMode.TabIndex = 9;
@@ -4028,7 +4067,7 @@
             // 
             // ST_reconnectNumericUpDown
             // 
-            this.ST_reconnectNumericUpDown.Location = new System.Drawing.Point(224, 56);
+            this.ST_reconnectNumericUpDown.Location = new System.Drawing.Point(233, 42);
             this.ST_reconnectNumericUpDown.Name = "ST_reconnectNumericUpDown";
             this.ST_reconnectNumericUpDown.Size = new System.Drawing.Size(38, 20);
             this.ST_reconnectNumericUpDown.TabIndex = 4;
@@ -4037,7 +4076,7 @@
             // ST_reconnectInterruptCheckBox
             // 
             this.ST_reconnectInterruptCheckBox.AutoSize = true;
-            this.ST_reconnectInterruptCheckBox.Location = new System.Drawing.Point(8, 56);
+            this.ST_reconnectInterruptCheckBox.Location = new System.Drawing.Point(17, 42);
             this.ST_reconnectInterruptCheckBox.Name = "ST_reconnectInterruptCheckBox";
             this.ST_reconnectInterruptCheckBox.Size = new System.Drawing.Size(210, 17);
             this.ST_reconnectInterruptCheckBox.TabIndex = 3;
@@ -4048,7 +4087,7 @@
             // ST_opacityLabel
             // 
             this.ST_opacityLabel.AutoSize = true;
-            this.ST_opacityLabel.Location = new System.Drawing.Point(310, 285);
+            this.ST_opacityLabel.Location = new System.Drawing.Point(310, 337);
             this.ST_opacityLabel.Name = "ST_opacityLabel";
             this.ST_opacityLabel.Size = new System.Drawing.Size(72, 13);
             this.ST_opacityLabel.TabIndex = 10;
@@ -4058,7 +4097,7 @@
             // 
             this.ST_opacityTrackBar.AutoSize = false;
             this.ST_opacityTrackBar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ST_opacityTrackBar.Location = new System.Drawing.Point(381, 283);
+            this.ST_opacityTrackBar.Location = new System.Drawing.Point(381, 335);
             this.ST_opacityTrackBar.Maximum = 100;
             this.ST_opacityTrackBar.Minimum = 20;
             this.ST_opacityTrackBar.Name = "ST_opacityTrackBar";
@@ -4077,7 +4116,7 @@
             this.ST_pushbulletGroupBox.Controls.Add(this.ST_pushbulletEmailTextBox);
             this.ST_pushbulletGroupBox.Controls.Add(this.ST_pushbulletCheckBox);
             this.ST_pushbulletGroupBox.Controls.Add(this.ST_pushbulletPictureBox);
-            this.ST_pushbulletGroupBox.Location = new System.Drawing.Point(8, 165);
+            this.ST_pushbulletGroupBox.Location = new System.Drawing.Point(8, 217);
             this.ST_pushbulletGroupBox.Name = "ST_pushbulletGroupBox";
             this.ST_pushbulletGroupBox.Size = new System.Drawing.Size(470, 112);
             this.ST_pushbulletGroupBox.TabIndex = 8;
@@ -4135,7 +4174,7 @@
             // ST_delayValueLabel
             // 
             this.ST_delayValueLabel.AutoSize = true;
-            this.ST_delayValueLabel.Location = new System.Drawing.Point(219, 22);
+            this.ST_delayValueLabel.Location = new System.Drawing.Point(228, 8);
             this.ST_delayValueLabel.Name = "ST_delayValueLabel";
             this.ST_delayValueLabel.Size = new System.Drawing.Size(47, 13);
             this.ST_delayValueLabel.TabIndex = 2;
@@ -4143,7 +4182,7 @@
             // 
             // ST_delayLabel
             // 
-            this.ST_delayLabel.Location = new System.Drawing.Point(5, 22);
+            this.ST_delayLabel.Location = new System.Drawing.Point(14, 8);
             this.ST_delayLabel.Name = "ST_delayLabel";
             this.ST_delayLabel.Size = new System.Drawing.Size(49, 13);
             this.ST_delayLabel.TabIndex = 1;
@@ -4154,7 +4193,7 @@
             this.ST_delayTrackBar.AutoSize = false;
             this.ST_delayTrackBar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ST_delayTrackBar.LargeChange = 100;
-            this.ST_delayTrackBar.Location = new System.Drawing.Point(56, 19);
+            this.ST_delayTrackBar.Location = new System.Drawing.Point(65, 5);
             this.ST_delayTrackBar.Maximum = 2000;
             this.ST_delayTrackBar.Minimum = 500;
             this.ST_delayTrackBar.Name = "ST_delayTrackBar";
@@ -4870,6 +4909,21 @@
             this.SPD_w1Skill01Button.Tag = "0";
             this.SPD_w1Skill01Button.UseVisualStyleBackColor = true;
             // 
+            // SPD_dunDifficultyComboBox
+            // 
+            this.SPD_dunDifficultyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SPD_dunDifficultyComboBox.FormattingEnabled = true;
+            this.SPD_dunDifficultyComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.SPD_dunDifficultyComboBox.Location = new System.Drawing.Point(74, 56);
+            this.SPD_dunDifficultyComboBox.Name = "SPD_dunDifficultyComboBox";
+            this.SPD_dunDifficultyComboBox.Size = new System.Drawing.Size(52, 21);
+            this.SPD_dunDifficultyComboBox.TabIndex = 3;
+            this.SPD_dunDifficultyComboBox.Tag = "2";
+            this.SPD_dunDifficultyComboBox.SelectedIndexChanged += new System.EventHandler(this.spdSelectedIndexChanged);
+            // 
             // SPD_dunSlotComboBox
             // 
             this.SPD_dunSlotComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -5377,21 +5431,6 @@
             this.aiPause.Text = "&Pause";
             this.aiPause.UseVisualStyleBackColor = true;
             this.aiPause.Click += new System.EventHandler(this.aiPause_Click);
-            // 
-            // SPD_dunDifficultyComboBox
-            // 
-            this.SPD_dunDifficultyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SPD_dunDifficultyComboBox.FormattingEnabled = true;
-            this.SPD_dunDifficultyComboBox.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.SPD_dunDifficultyComboBox.Location = new System.Drawing.Point(74, 56);
-            this.SPD_dunDifficultyComboBox.Name = "SPD_dunDifficultyComboBox";
-            this.SPD_dunDifficultyComboBox.Size = new System.Drawing.Size(52, 21);
-            this.SPD_dunDifficultyComboBox.TabIndex = 3;
-            this.SPD_dunDifficultyComboBox.Tag = "2";
-            this.SPD_dunDifficultyComboBox.SelectedIndexChanged += new System.EventHandler(this.spdSelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -6511,5 +6550,8 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox SPD_dunDifficultyComboBox;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

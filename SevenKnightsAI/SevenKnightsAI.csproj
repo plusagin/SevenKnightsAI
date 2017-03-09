@@ -273,15 +273,15 @@
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
-    <None Include="tessdata\eng.cube.bigrams" />
-    <None Include="tessdata\eng.cube.fold" />
-    <None Include="tessdata\eng.cube.lm" />
-    <None Include="tessdata\eng.cube.nn" />
-    <None Include="tessdata\eng.cube.params" />
-    <None Include="tessdata\eng.cube.size" />
-    <None Include="tessdata\eng.cube.word-freq" />
-    <None Include="tessdata\eng.tesseract_cube.nn" />
-    <None Include="tessdata\eng.traineddata" />
+    <EmbeddedResource Include="tessdata\eng.cube.bigrams" />
+    <EmbeddedResource Include="tessdata\eng.cube.fold" />
+    <EmbeddedResource Include="tessdata\eng.cube.lm" />
+    <EmbeddedResource Include="tessdata\eng.cube.nn" />
+    <EmbeddedResource Include="tessdata\eng.cube.params" />
+    <EmbeddedResource Include="tessdata\eng.cube.size" />
+    <EmbeddedResource Include="tessdata\eng.cube.word-freq" />
+    <EmbeddedResource Include="tessdata\eng.tesseract_cube.nn" />
+    <EmbeddedResource Include="tessdata\eng.traineddata" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

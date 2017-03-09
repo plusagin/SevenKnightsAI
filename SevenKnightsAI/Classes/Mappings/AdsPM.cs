@@ -44,20 +44,20 @@ namespace SevenKnightsAI.Classes.Mappings
             Type = MappingType.BOTH
         };
 
-        public static readonly PixelMapping HonorTop = new PixelMapping
+        public static readonly PixelMapping HonnerMiddleOk = new PixelMapping
         {
-            X = 724,
-            Y = 146,
-            Color = 1049861,
+            X = 527,
+            Y = 420,
+            Color = 4661519,
             Type = MappingType.BOTH
         };
 
-        public static readonly PixelMapping HonorButton = new PixelMapping
+        public static readonly PixelMapping HonnerCheck = new PixelMapping
         {
-            X = 419,
-            Y = 421,
-            Color = 16759581,
-            Type = MappingType.BOTH
+            X = 420,
+            Y = 420,
+            Color = 16760866,
+            Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Aniversary1 = new PixelMapping
@@ -86,9 +86,9 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Rachel2 = new PixelMapping
         {
-            X = 400,
-            Y = 450,
-            Color = 3808785,
+            X = 552,
+            Y = 459,
+            Color = 16758039,
             Type = MappingType.BOTH
         };
 
@@ -113,6 +113,54 @@ namespace SevenKnightsAI.Classes.Mappings
             X = 568,
             Y = 392,
             Color = 4595982,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping ExitX1_1 = new PixelMapping
+        {
+            X = 871,
+            Y = 37,
+            Color = 14240525,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping ExitX1_2 = new PixelMapping
+        {
+            X = 887,
+            Y = 52,
+            Color = 11874570,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping ExitX2_1 = new PixelMapping
+        {
+            X = 831,
+            Y = 51,
+            Color = 13584140,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping ExitX2_2 = new PixelMapping
+        {
+            X = 849,
+            Y = 72,
+            Color = 11348489,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping ExitX3_1 = new PixelMapping
+        {
+            X = 845,
+            Y = 95,
+            Color = 14109196,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping ExitX3_2 = new PixelMapping
+        {
+            X = 861,
+            Y = 108,
+            Color = 10824457,
             Type = MappingType.BOTH
         };
     }

@@ -9,55 +9,55 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Key_0 = new PixelMapping
         {
-            X = 694,
-            Y = 19,
-            Color = 8349781,
+            X = 675,
+            Y = 20,
+            Color = 4078177,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_1 = new PixelMapping
         {
-            X = 720,
+            X = 700,
             Y = 20,
-            Color = 8679002,
+            Color = 7893926,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_2 = new PixelMapping
         {
-            X = 744,
+            X = 724,
             Y = 20,
-            Color = 7823438,
+            Color = 4538986,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_3 = new PixelMapping
         {
-            X = 767,
-            Y = 19,
-            Color = 8415830,
+            X = 747,
+            Y = 20,
+            Color = 2103857,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_4 = new PixelMapping
         {
-            X = 792,
-            Y = 19,
-            Color = 8415574,
+            X = 772,
+            Y = 20,
+            Color = 3880797,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping KeyBoxBorder = new PixelMapping
         {
-            X = 861,
-            Y = 37,
-            Color = 5717541,
+            X = 827,
+            Y = 13,
+            Color = 7357981,
             Type = MappingType.ANCHOR
         };
 
         public static readonly Rectangle R_Time = new Rectangle
         {
-            X = 811,
+            X = 790,
             Y = 19,
             Width = 51,
             Height = 20

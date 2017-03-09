@@ -113,6 +113,10 @@ namespace SevenKnightsAI.Classes
         SPECIAL_DUNGEON_END,
         SPECIAL_DUNGEON_LOST,
         SPECIAL_DUNGEON_LOOT,
-        OUT_OF_DUNGEON_KEYS_POPUP
+        OUT_OF_DUNGEON_KEYS_POPUP,
+        EXIT_POPUP1,
+        EXIT_POPUP2,
+        EXIT_POPUP3,
+        ARAGON_QUEST_POPUP
     }
 }

@@ -31,8 +31,8 @@ namespace SevenKnightsAI.Classes
                     Tesseractor.CreateVersionFile(text, productVersion);
                 }
             }
-            //this.Engine = new TesseractEngine(@"./tessdata", language, EngineMode.Default);
-            this.Engine = new TesseractEngine(text, language, EngineMode.Default);
+            this.Engine = new TesseractEngine(@"./tessdata", language, EngineMode.Default);
+            //this.Engine = new TesseractEngine(text, language, EngineMode.Default);
         }
 
         private static void CreateVersionFile(string dataPath, string assemblyVersion)

@@ -100,6 +100,7 @@ namespace SevenKnightsAI.Classes
         private int HeroManageAttemps;
         private int HonorCount;
         private int IdleCounter;
+        private int SceneVisitCount;
         private int KeysBoughtHonors;
         private int KeysBoughtRubies;
         private bool LoopSkill;
@@ -486,10 +487,12 @@ namespace SevenKnightsAI.Classes
             int num2 = stage + 1;
             using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, AdventureStartPM.R_MapNumber))
             {
+                //bitmap.Save("map.png");
                 using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
                 {
                     string text = page.GetText().ToLower().Replace("o", "0");
                     Utility.FilterAscii(text);
+                    //this.Log("text = " + text);
                     if (text.Length >= 2)
                     {
                         int num3 = -1;
@@ -1578,6 +1581,7 @@ namespace SevenKnightsAI.Classes
             this.CollectQuestsTotal = -1;
             this.HangCounter = 0;
             this.IdleCounter = 0;
+            this.SceneVisitCount = 0;
             this.MapSelectCounter = 0;
             this.CooldownInbox = 0;
             this.CooldownQuests = 0;
@@ -1941,6 +1945,7 @@ namespace SevenKnightsAI.Classes
                                         if (scene != null)
                                         {
                                             text2 = scene.SceneType.ToString();
+                                            SceneVisitCount += 1;
                                             break;
                                         }
                                         sleep += 1000;
@@ -1956,6 +1961,7 @@ namespace SevenKnightsAI.Classes
                                 }
                                 else
                                 {
+                                    SceneVisitCount += 1;
                                     text2 = scene.SceneType.ToString();
                                 }
                                 if (!text2.Equals(value))
@@ -1964,8 +1970,10 @@ namespace SevenKnightsAI.Classes
                                     {
                                         this.Log("IdleTime = " + IdleCounter / 1000, Color.Orange);
                                     }
+                                    //this.Log("Last Scene Visit = " + SceneVisitCount);
                                     this.LogScene(text2);
                                     value = text2;
+                                    SceneVisitCount = 0;
                                     IdleCounter = 0;
                                 }
                                 if (flag4)
@@ -2084,6 +2092,18 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.POPUP_2:
+                                            this.Escape();
+                                            break;
+
+                                        case SceneType.EXIT_POPUP1:
+                                            this.Escape();
+                                            break;
+
+                                        case SceneType.EXIT_POPUP2:
+                                            this.Escape();
+                                            break;
+
+                                        case SceneType.EXIT_POPUP3:
                                             this.Escape();
                                             break;
 
@@ -3217,6 +3237,10 @@ namespace SevenKnightsAI.Classes
                                             this.Escape();
                                             break;
 
+                                        case SceneType.ARAGON_QUEST_POPUP:
+                                            this.Escape();
+                                            break;
+
                                         case SceneType.SOCIAL_SELECT:
                                             if (this.CurrentObjective == Objective.SEND_HONORS && this.IsSendHonorsEnabled())
                                             {
@@ -3896,6 +3920,28 @@ namespace SevenKnightsAI.Classes
 
         private void OnOneSecEvent(object source, ElapsedEventArgs e)
         {
+            /*
+            //TimeSpan timeOfDay = new TimeSpan(0, minutes, seconds);
+            string timeOfDay = DateTime.Now.ToString("HH:mm:ss");
+            string t = string.Format("{0:HH:mm:ss}", DateTime.Now);
+            /*
+            if (text.Length >= 5)
+            {
+                string s = text.Substring(0, 2);
+                string s2 = text.Substring(3, 2);
+                int minutes;
+                int.TryParse(s, out minutes);
+                int seconds;
+                int.TryParse(s2, out seconds);
+                TimeSpan arenaKeyTime = new TimeSpan(0, minutes, seconds);
+                this.ArenaKeyTime = arenaKeyTime;
+            }
+            
+            int dayOfWeek = (int)DateTime.Now.DayOfWeek;
+            this.Log("Day = "+dayOfWeek);
+            this.Log("Now Time = "+timeOfDay);
+            this.Log("Now Time = " + t);
+            */
             if (this.AIProfiles.ST_EnableHotTimeProfile && ((HotTimeHelper.IsNowHotTime() && !this.AIProfiles.TMP_UsingHotTimeProfile) || (!HotTimeHelper.IsNowHotTime() && this.AIProfiles.TMP_UsingHotTimeProfile)))
             {
                 this.AIProfiles.ToggleHotTimeProfile();
@@ -4905,7 +4951,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.BLUESTACK_HOME);
                     return result;
                 }
-                if (this.MatchMapping(HeroesPM.IconLeft, 2) && this.MatchMapping(HeroesPM.IconMiddle, 2) && this.MatchMapping(HeroesPM.IconRight, 2) && this.MatchMapping(HeroesPM.OptimizeBorder, 4))
+                if (this.MatchMapping(HeroesPM.IconLeft, 3) && this.MatchMapping(HeroesPM.IconMiddle, 3) && this.MatchMapping(HeroesPM.IconRight, 3) && this.MatchMapping(HeroesPM.OptimizeBorder, 4))
                 {
                     Scene result = new Scene(SceneType.HEROES);
                     return result;
@@ -5072,6 +5118,11 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.QUEST_COLLECT_FAILED_POPUP);
                     return result;
                 }
+                if (this.MatchMapping(QuestPM.AragonPopup, 2) && this.MatchMapping(QuestPM.QuestBTN, 2) && this.MatchMapping(QuestPM.OKBTN, 2))
+                {
+                    Scene result = new Scene(SceneType.ARAGON_QUEST_POPUP);
+                    return result;
+                }
                 if (this.MatchMapping(GiftRewardsPopupPM.DimmedBG, 2) && this.MatchMapping(SharedPM.Rewards_PopupBorder, 2) && this.MatchMapping(SharedPM.Rewards_YellowTick, 2))
                 {
                     Scene result = new Scene(SceneType.GIFT_REWARDS_POPUP);
@@ -5158,8 +5209,7 @@ namespace SevenKnightsAI.Classes
                     return result;
                 }
                 if (this.MatchMapping(AdventureModesPM.BorderTopLeft, 7) &&
-                    this.MatchMapping(AdventureModesPM.BorderBottomRight, 4) &&
-                    this.MatchMapping(AdventureModesPM.KeyIcon, 4))
+                    this.MatchMapping(AdventureModesPM.BorderBottomRight, 4))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_MODES);
                     return result;
@@ -5190,9 +5240,7 @@ namespace SevenKnightsAI.Classes
                     return result;
                 }
                 if ((this.MatchMapping(BattleModesPM.BorderTopLeft, 2)) &&
-                    (this.MatchMapping(BattleModesPM.BorderBottomRight, 3)) &&
-                    this.MatchMapping(BattleModesPM.GoldPlusButton, 2)
-                    )
+                    (this.MatchMapping(BattleModesPM.BorderBottomRight, 3)))
                 {
                     Scene result = new Scene(SceneType.BATTLE_MODES);
                     return result;
@@ -5227,7 +5275,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.ADVENTURE_READY);
                     return result;
                 }
-                if (this.MatchMapping(AdventureStartPM.KeyPlusButton, 2))
+                if (this.MatchMapping(AdventureStartPM.KeyPlusButton, 2) && this.MatchMapping(AdventureStartPM.LevelSortBorder, 2) && this.MatchMapping(AdventureStartPM.RankSortBorder, 2))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_START);
                     return result;
@@ -5377,7 +5425,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.ALICE_PACKADGE_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(AdsPM.HonorButton, 2))
+                if (this.MatchMapping(AdsPM.HonnerMiddleOk, 2) && this.MatchMapping(AdsPM.HonnerCheck, 2))
                 {
                     Scene result = new Scene(SceneType.HONOR_FRIEND_POPUP);
                     return result;
@@ -5420,6 +5468,21 @@ namespace SevenKnightsAI.Classes
                 if (this.MatchMapping(Popup2PM.NoButton, 2) && this.MatchMapping(Popup2PM.BuyButton, 2))
                 {
                     Scene result = new Scene(SceneType.POPUP_2);
+                    return result;
+                }
+                if (this.MatchMapping(AdsPM.ExitX1_1, 2) && this.MatchMapping(AdsPM.ExitX1_2, 2))
+                {
+                    Scene result = new Scene(SceneType.EXIT_POPUP1);
+                    return result;
+                }
+                if (this.MatchMapping(AdsPM.ExitX2_1, 2) && this.MatchMapping(AdsPM.ExitX2_2, 2))
+                {
+                    Scene result = new Scene(SceneType.EXIT_POPUP2);
+                    return result;
+                }
+                if (this.MatchMapping(AdsPM.ExitX3_1, 2) && this.MatchMapping(AdsPM.ExitX3_2, 2))
+                {
+                    Scene result = new Scene(SceneType.EXIT_POPUP3);
                     return result;
                 }
                 if (this.MatchMapping(WifiWarningPopupPM.LeftBorder, 2) && this.MatchMapping(WifiWarningPopupPM.RightBorder, 2) && this.MatchMapping(WifiWarningPopupPM.YellowTick, 2))
@@ -6785,17 +6848,19 @@ namespace SevenKnightsAI.Classes
                 TowerStartPM.Key_3,
                 TowerStartPM.Key_4
             };
-            int num = 5;
+            int num = 0;
             for (int i = 0; i < array.Length; i++)
             {
                 if (this.MatchMapping(array[i], 4))
                 {
-                    num = i;
+                    num = i+1;
+                    this.Log("num = " + num);
+                    if(num>5)
                     break;
                 }
             }
 
-            if (num < 5)
+            if (num <= 5)
             {
                 using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, TowerStartPM.R_Time))
                 {

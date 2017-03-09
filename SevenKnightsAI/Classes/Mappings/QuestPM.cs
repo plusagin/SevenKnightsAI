@@ -155,5 +155,29 @@ namespace SevenKnightsAI.Classes.Mappings
             Color = 0,
             Type = MappingType.BUTTON
         };
+
+        public static readonly PixelMapping AragonPopup = new PixelMapping
+        {
+            X = 135,
+            Y = 320,
+            Color = 9079442,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping QuestBTN = new PixelMapping
+        {
+            X = 624,
+            Y = 488,
+            Color = 11307574,
+            Type = MappingType.BOTH
+        };
+
+        public static readonly PixelMapping OKBTN = new PixelMapping
+        {
+            X = 794,
+            Y = 488,
+            Color = 16758553,
+            Type = MappingType.BOTH
+        };
     }
 }

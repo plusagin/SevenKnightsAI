@@ -77,41 +77,41 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping Key_0 = new PixelMapping
         {
-            X = 400,
-            Y = 22,
-            Color = 6423553,
+            X = 384,
+            Y = 18,
+            Color = 15035404,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_1 = new PixelMapping
         {
-            X = 423,
-            Y = 21,
-            Color = 11338496,
+            X = 408,
+            Y = 18,
+            Color = 13862671,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_2 = new PixelMapping
         {
-            X = 448,
-            Y = 22,
-            Color = 7864832,
+            X = 434,
+            Y = 18,
+            Color = 14883077,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_3 = new PixelMapping
         {
-            X = 473,
-            Y = 22,
-            Color = 6686979,
+            X = 457,
+            Y = 18,
+            Color = 15475208,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping Key_4 = new PixelMapping
         {
-            X = 496,
-            Y = 21,
-            Color = 10355456,
+            X = 481,
+            Y = 18,
+            Color = 14971148,
             Type = MappingType.ANCHOR
         };
 

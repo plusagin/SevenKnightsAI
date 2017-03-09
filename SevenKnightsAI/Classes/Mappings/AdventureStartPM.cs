@@ -15,15 +15,31 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping KeyPlusButton = new PixelMapping
         {
-            X = 662,
+            X = 492,
             Y = 28,
-            Color = 12690781,
+            Color = 12690529,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping LevelSortBorder = new PixelMapping
+        {
+            X = 734,
+            Y = 76,
+            Color = 4006419,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping RankSortBorder = new PixelMapping
+        {
+            X = 822,
+            Y = 76,
+            Color = 4006419,
             Type = MappingType.ANCHOR
         };
 
         public static readonly Rectangle R_MapNumber = new Rectangle
         {
-            X = 390,
+            X = 275,
             Y = 12,
             Width = 100,
             Height = 33
