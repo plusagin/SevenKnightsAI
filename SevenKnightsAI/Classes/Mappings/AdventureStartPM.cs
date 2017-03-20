@@ -10,7 +10,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly int GOLD_OFFSET_X = 514;
         public static readonly int GOLD_OFFSET_Y = 0;
 
-        public static readonly int KEY_OFFSET_X = 509;
+        public static readonly int KEY_OFFSET_X = 357;
         public static readonly int KEY_OFFSET_Y = 0;
 
         public static readonly PixelMapping KeyPlusButton = new PixelMapping

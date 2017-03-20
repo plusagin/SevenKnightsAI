@@ -2121,7 +2121,7 @@ namespace SevenKnightsAI.Classes
                                             this.UpdateGold(scene.SceneType);
                                             this.UpdateRuby(scene.SceneType);
                                             this.UpdateHonor(scene.SceneType);
-                                            this.UpdateTopaz(scene.SceneType);
+                                            //this.UpdateTopaz(scene.SceneType);
                                             if (this.AISettings.RS_CollectLuckyChest && this.MatchMapping(LobbyPM.MaysLuckyChestAvailable_1, 4) && this.MatchMapping(LobbyPM.MaysLuckyChestAvailable_2, 4))
                                             {
                                                 if(!this.AISettings.SPD_Enable && this.CurrentObjective != Objective.GOLD_CHAMBER)
@@ -2270,7 +2270,6 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.ADVENTURE_MODES:
-                                            this.UpdateAdventureKeys(scene.SceneType);
                                             this.UpdateGold(scene.SceneType);
                                             this.UpdateRuby(scene.SceneType);
                                             if (this.CurrentObjective == Objective.ADVENTURE)
@@ -2306,7 +2305,6 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.MAP_SELECT:
-                                            this.UpdateAdventureKeys(scene.SceneType);
                                             this.UpdateGold(scene.SceneType);
                                             this.UpdateRuby(scene.SceneType);
                                             if (this.MapSelectCounter >= 10000)
@@ -2426,8 +2424,13 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.ADVENTURE_START:
-                                            this.UpdateAdventureKeys(scene.SceneType);
-                                            this.UpdateGold(scene.SceneType);
+
+                                            if (false)
+                                            {
+                                                this.UpdateAdventureKeys(scene.SceneType);
+                                                this.UpdateGold(scene.SceneType);
+                                            }
+
                                             if (this.CurrentObjective == Objective.ADVENTURE)
                                             {
                                                 World world2 = this.AISettings.AD_World;
@@ -2565,7 +2568,11 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.TOWER_SELECT:
-                                            this.UpdateTowerKeys();
+                                            if (true)
+                                            {
+                                                this.UpdateTowerKeys();
+                                            }
+                                            
                                             if (this.CurrentObjective == Objective.GOLD_CHAMBER)
                                             {
                                                 if (this.TowerKeys > 0)
@@ -2584,7 +2591,10 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.TOWER_START:
-                                            this.UpdateTowerKeys();
+                                            if (true)
+                                            {
+                                                this.UpdateTowerKeys();
+                                            }
                                             if (this.CurrentObjective == Objective.GOLD_CHAMBER)
                                             {
                                                 if (this.TowerKeys > 0)
@@ -2652,11 +2662,15 @@ namespace SevenKnightsAI.Classes
 
                                         case SceneType.ARENA_READY:
                                             this.UpdateArenaKeys();
-                                            this.UpdateRuby(scene.SceneType);
-                                            this.UpdateHonor(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateRuby(scene.SceneType);
+                                                this.UpdateHonor(scene.SceneType);
+                                            }
+
                                             if (this.CurrentObjective == Objective.ARENA)
                                             {
-                                                if (this.ArenaKeys > 0 || this.ArenaUseRuby())
+                                                if (this.ArenaKeys >= 0 || this.ArenaUseRuby())
                                                 {
                                                     this.WeightedClick(ArenaReadyPM.ReadyButton, 1.0, 1.0, 1, 0, "left");
                                                 }
@@ -2673,8 +2687,13 @@ namespace SevenKnightsAI.Classes
 
                                         case SceneType.ARENA_START:
                                             this.UpdateArenaKeys();
-                                            this.UpdateRuby(scene.SceneType);
-                                            this.UpdateHonor(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateArenaKeys();
+                                                this.UpdateRuby(scene.SceneType);
+                                                this.UpdateHonor(scene.SceneType);
+                                            }
+
                                             if (this.CurrentObjective == Objective.ARENA)
                                             {
                                                 bool flag5 = this.ArenaUseRuby();
@@ -2774,10 +2793,13 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.HEROES:
-                                            this.UpdateAdventureKeys(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateGold(scene.SceneType);
+                                                this.UpdateRuby(scene.SceneType);
+                                                this.UpdateAdventureKeys(scene.SceneType);
+                                            }
                                             this.UpdateHeroCount();
-                                            this.UpdateGold(scene.SceneType);
-                                            this.UpdateRuby(scene.SceneType);
                                             if (this.CurrentObjective != Objective.HERO_MANAGEMENT && this.PreviousObjective != Objective.HERO_MANAGEMENT && this.CurrentObjective != Objective.SELL_HEROES && this.PreviousObjective != Objective.SELL_HEROES && this.AISettings.AD_Formation != Formation.None && this.AISettings.AD_HeroManagePositions != null && this.AISettings.AD_HeroManagePositions.Length > 0)
                                             {
                                                 this.ChangeObjective(Objective.HERO_MANAGEMENT);
@@ -3085,10 +3107,14 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.SHOP:
-                                            this.UpdateAdventureKeys(scene.SceneType);
-                                            this.UpdateGold(scene.SceneType);
-                                            this.UpdateRuby(scene.SceneType);
-                                            this.UpdateHonor(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateAdventureKeys(scene.SceneType);
+                                                this.UpdateGold(scene.SceneType);
+                                                this.UpdateRuby(scene.SceneType);
+                                                this.UpdateHonor(scene.SceneType);
+                                            }
+
                                             if (this.CurrentObjective == Objective.BUY_KEYS)
                                             {
                                                 this.BuyKeys();
@@ -3112,10 +3138,14 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.INBOX:
-                                            this.UpdateAdventureKeys(scene.SceneType);
-                                            this.UpdateGold(scene.SceneType);
-                                            this.UpdateRuby(scene.SceneType);
-                                            this.UpdateHonor(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateAdventureKeys(scene.SceneType);
+                                                this.UpdateGold(scene.SceneType);
+                                                this.UpdateRuby(scene.SceneType);
+                                                this.UpdateHonor(scene.SceneType);
+                                            }
+
                                             if (this.IsInboxEnabled())
                                             {
                                                 if (this.CurrentObjective != Objective.COLLECT_INBOX && this.PreviousObjective != Objective.COLLECT_INBOX)
@@ -3200,10 +3230,14 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.SPECIAL_QUEST:
-                                            this.UpdateAdventureKeys(scene.SceneType);
-                                            this.UpdateGold(scene.SceneType);
-                                            this.UpdateRuby(scene.SceneType);
-                                            this.UpdateHonor(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateAdventureKeys(scene.SceneType);
+                                                this.UpdateGold(scene.SceneType);
+                                                this.UpdateRuby(scene.SceneType);
+                                                this.UpdateHonor(scene.SceneType);
+                                            }
+
                                             if (this.CurrentObjective == Objective.COLLECT_QUESTS && this.IsSpecialQuestsEnabled())
                                             {
                                                 this.CollectSpecialQuests();
@@ -3215,10 +3249,14 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.QUEST:
-                                            this.UpdateAdventureKeys(scene.SceneType);
-                                            this.UpdateGold(scene.SceneType);
-                                            this.UpdateRuby(scene.SceneType);
-                                            this.UpdateHonor(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateAdventureKeys(scene.SceneType);
+                                                this.UpdateGold(scene.SceneType);
+                                                this.UpdateRuby(scene.SceneType);
+                                                this.UpdateHonor(scene.SceneType);
+                                            }
+
                                             if (this.CurrentObjective == Objective.COLLECT_QUESTS && this.IsQuestsEnabled())
                                             {
                                                 this.CollectQuests();
@@ -3254,9 +3292,13 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.FRIENDS:
-                                            this.UpdateAdventureKeys(scene.SceneType);
-                                            this.UpdateGold(scene.SceneType);
-                                            this.UpdateHonor(scene.SceneType);
+                                            if (false)
+                                            {
+                                                this.UpdateAdventureKeys(scene.SceneType);
+                                                this.UpdateGold(scene.SceneType);
+                                                this.UpdateHonor(scene.SceneType);
+                                            }
+
                                             if (this.CurrentObjective == Objective.SEND_HONORS && this.IsSendHonorsEnabled())
                                             {
                                                 this.SendHonors();
@@ -4079,7 +4121,7 @@ namespace SevenKnightsAI.Classes
             rect = SharedPM.R_KeyNormalBase;
             rect.X += offsetX;
             rect.Y += offsetY;
-            using (Bitmap bitmap3 = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, rect))
+            using (Bitmap bitmap3 = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, rect).ScaleByPercent(128))
             {
 #if DEBUG
                 bitmap3.Save("r_normalbase.png");
@@ -4087,6 +4129,9 @@ namespace SevenKnightsAI.Classes
                 using (Page page3 = this.Tesseractor.Engine.Process(bitmap3, null))
                 {
                     string text3 = page3.GetText();
+#if DEBUG
+                    this.Log("text3 =" + text3);
+#endif
                     if (text3.ToLower().Contains("x"))
                     {
                         int.TryParse(text3.Substring(1), out num);
@@ -4141,6 +4186,9 @@ namespace SevenKnightsAI.Classes
             r_GoldBase.Y += offsetY;
             using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, r_GoldBase))
             {
+#if DEBUG
+                bitmap.Save("gold.png");
+#endif
                 using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
                 {
                     string text = this.ReplaceNumericResource(page.GetText());
@@ -4161,6 +4209,9 @@ namespace SevenKnightsAI.Classes
             r_HonorBase.Y += offsetY;
             using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, r_HonorBase))
             {
+#if DEBUG
+                bitmap.Save("honnor.png");
+#endif
                 using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
                 {
                     string text = this.ReplaceNumericResource(page.GetText());
@@ -4188,6 +4239,9 @@ namespace SevenKnightsAI.Classes
             r_RubyBase.Y += offsetY;
             using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, r_RubyBase))
             {
+#if DEBUG
+                bitmap.Save("ruby.png");
+#endif
                 using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
                 {
                     string text = this.ReplaceNumericResource(page.GetText());
@@ -6435,6 +6489,9 @@ namespace SevenKnightsAI.Classes
             Rectangle rect = HeroesPM.R_HeroCount;
             using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, rect).ScaleByPercent(128))
             {
+#if DEBUG
+                bitmap.Save("herocount.png");
+#endif
                 using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
                 {
                     string text = page.GetText();
@@ -6854,7 +6911,10 @@ namespace SevenKnightsAI.Classes
                 if (this.MatchMapping(array[i], 4))
                 {
                     num = i+1;
+#if debug
                     this.Log("num = " + num);
+#endif
+                    
                     if(num>5)
                     break;
                 }

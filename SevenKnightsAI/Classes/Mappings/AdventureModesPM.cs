@@ -46,7 +46,7 @@ namespace SevenKnightsAI.Classes.Mappings
             Type = MappingType.BUTTON
         };
 
-        public static readonly int GOLD_OFFSET_X = 355;
+        public static readonly int GOLD_OFFSET_X = 365;
         public static readonly int GOLD_OFFSET_Y = 0;
         public static readonly int KEY_OFFSET_X = 350;
         public static readonly int KEY_OFFSET_Y = 0;
@@ -67,7 +67,7 @@ namespace SevenKnightsAI.Classes.Mappings
             Type = MappingType.BUTTON
         };
 
-        public static readonly int RUBY_OFFSET_X = 364;
+        public static readonly int RUBY_OFFSET_X = 375;
         public static readonly int RUBY_OFFSET_Y = 0;
 
         #endregion Public Fields

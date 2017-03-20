@@ -665,7 +665,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly Rectangle R_GoldBase = new Rectangle
         {
-            X = 215,
+            X = 202,
             Y = 19,
             Width = 98,
             Height = 22
@@ -673,7 +673,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly Rectangle R_HonorBase = new Rectangle
         {
-            X = 552,
+            X = 525,
             Y = 19,
             Width = 80,
             Height = 22
@@ -681,7 +681,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly Rectangle R_KeyNormalBase = new Rectangle
         {
-            X = 70,
+            X = 58,
             Y = 19,
             Width = 60,
             Height = 21
@@ -689,15 +689,15 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly Rectangle R_KeyOnTopTimeBase = new Rectangle
         {
-            X = 70,
-            Y = 10,
+            X = 60,
+            Y = 9,
             Width = 60,
             Height = 21
         };
 
         public static readonly Rectangle R_RubyBase = new Rectangle
         {
-            X = 395,
+            X = 370,
             Y = 19,
             Width = 72,
             Height = 22
@@ -705,8 +705,8 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly Rectangle R_TimeBase = new Rectangle
         {
-            X = 72,
-            Y = 30,
+            X = 67,
+            Y = 28,
             Width = 54,
             Height = 19
         };
