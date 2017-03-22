@@ -2697,7 +2697,7 @@ namespace SevenKnightsAI.Classes
                                             if (this.CurrentObjective == Objective.ARENA)
                                             {
                                                 bool flag5 = this.ArenaUseRuby();
-                                                if (this.ArenaKeys > 0 || flag5)
+                                                if (this.ArenaKeys >= 0 || flag5)
                                                 {
                                                     if (!this.CheckMastery(scene.SceneType))
                                                     {
@@ -6689,6 +6689,7 @@ namespace SevenKnightsAI.Classes
                     }
                 }
             }
+            //this.Log("Arena key num = "+num);
             this.ArenaKeys = num;
             this.ReportKeys(Objective.ARENA);
         }
