@@ -17,7 +17,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 492,
             Y = 28,
-            Color = 12690529,
+            Color = 12690781,
             Type = MappingType.ANCHOR
         };
 
@@ -39,7 +39,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly Rectangle R_MapNumber = new Rectangle
         {
-            X = 275,
+            X = 250,
             Y = 12,
             Width = 100,
             Height = 33
