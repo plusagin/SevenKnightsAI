@@ -17,7 +17,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping CombatTeamBorderRight = new PixelMapping
         {
-            X = 326,
+            X = 310,
             Y = 70,
             Color = 13863428,
             Type = MappingType.ANCHOR

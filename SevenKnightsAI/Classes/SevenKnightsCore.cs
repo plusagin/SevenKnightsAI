@@ -1196,7 +1196,12 @@ namespace SevenKnightsAI.Classes
         private void DoneRaid()
         {
             this.EnableRaidRewards = false;
-            if (this.CurrentObjective == Objective.RAID)
+            
+            if (this.CurrentObjective == Objective.RAID && this.PreviousObjective == Objective.ADVENTURE)
+            {
+                this.ChangeObjective(Objective.HERO_MANAGEMENT);
+            }
+            else
             {
                 this.NextPossibleObjective();
             }
