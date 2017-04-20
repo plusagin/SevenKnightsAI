@@ -117,6 +117,7 @@ namespace SevenKnightsAI.Classes
         EXIT_POPUP1,
         EXIT_POPUP2,
         EXIT_POPUP3,
-        ARAGON_QUEST_POPUP
+        ARAGON_QUEST_POPUP,
+        ARENA_SS_END_POPUP
     }
 }

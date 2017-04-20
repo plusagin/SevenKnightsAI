@@ -156,6 +156,22 @@ namespace SevenKnightsAI.Classes.Mappings
             Type = MappingType.BUTTON
         };
 
+        public static readonly PixelMapping ArenaAragonPopup = new PixelMapping
+        {
+            X = 135,
+            Y = 320,
+            Color = 8158082,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping ArenaAragonOKBTN = new PixelMapping
+        {
+            X = 819,
+            Y = 488,
+            Color = 16758553,
+            Type = MappingType.BOTH
+        };
+
         public static readonly PixelMapping AragonPopup = new PixelMapping
         {
             X = 135,

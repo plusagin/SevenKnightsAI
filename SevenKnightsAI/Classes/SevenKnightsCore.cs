@@ -100,6 +100,7 @@ namespace SevenKnightsAI.Classes
         private int HeroManageAttemps;
         private int HonorCount;
         private int IdleCounter;
+        private int IdleTime;
         private int SceneVisitCount;
         private int KeysBoughtHonors;
         private int KeysBoughtRubies;
@@ -1585,6 +1586,7 @@ namespace SevenKnightsAI.Classes
             this.CollectQuestsCount = -1;
             this.CollectQuestsTotal = -1;
             this.HangCounter = 0;
+            this.IdleTime = 0;
             this.IdleCounter = 0;
             this.SceneVisitCount = 0;
             this.MapSelectCounter = 0;
@@ -1902,6 +1904,32 @@ namespace SevenKnightsAI.Classes
                             SevenKnightsCore.Sleep(sT_Delay);
                             //this.IdleCounter += sT_Delay;
                             this.IdleCounter += 1000;
+                            if (IdleCounter > 10000)
+                            {
+                                IdleTime = 0;
+                                IdleTime = (IdleCounter / 1000);
+                                if (IdleTime==60)
+                                {
+                                    this.Log("IdleTime = " + IdleTime, Color.Orange);
+                                }
+                                else if (IdleTime == 300)
+                                {
+                                    this.Log("IdleTime = " + IdleTime, Color.Orange);
+                                }
+                                else if (IdleTime == 600)
+                                {
+                                    this.Log("IdleTime = " + IdleTime, Color.Orange);
+                                }
+                                else if (IdleTime == 1200)
+                                {
+                                    this.Log("IdleTime = " + IdleTime, Color.Orange);
+                                }
+                                else if (IdleTime >= 1800)
+                                {
+                                    this.Log("IdleTime More than limit");
+                                    this.Escape();
+                                }
+                            }
                             this.HangCounter += sT_Delay;
                             this.MapSelectCounter += sT_Delay;
                             this.CooldownInbox -= sT_Delay;
@@ -1971,14 +1999,14 @@ namespace SevenKnightsAI.Classes
                                 }
                                 if (!text2.Equals(value))
                                 {
-                                    if (IdleCounter > 10000)
-                                    {
-                                        this.Log("IdleTime = " + IdleCounter / 1000, Color.Orange);
-                                    }
                                     //this.Log("Last Scene Visit = " + SceneVisitCount);
                                     this.LogScene(text2);
                                     value = text2;
                                     SceneVisitCount = 0;
+                                    if (IdleCounter / 1000 > 10)
+                                    {
+                                        this.Log("SceneTime = " + IdleCounter / 1000, Color.Orange);
+                                    }
                                     IdleCounter = 0;
                                 }
                                 if (flag4)
@@ -3281,6 +3309,10 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.ARAGON_QUEST_POPUP:
+                                            this.Escape();
+                                            break;
+
+                                        case SceneType.ARENA_SS_END_POPUP:
                                             this.Escape();
                                             break;
 
@@ -5182,6 +5214,13 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.ARAGON_QUEST_POPUP);
                     return result;
                 }
+
+                if (this.MatchMapping(QuestPM.ArenaAragonPopup, 2) && this.MatchMapping(QuestPM.ArenaAragonOKBTN, 2))
+                {
+                    Scene result = new Scene(SceneType.ARENA_SS_END_POPUP);
+                    return result;
+                }
+
                 if (this.MatchMapping(GiftRewardsPopupPM.DimmedBG, 2) && this.MatchMapping(SharedPM.Rewards_PopupBorder, 2) && this.MatchMapping(SharedPM.Rewards_YellowTick, 2))
                 {
                     Scene result = new Scene(SceneType.GIFT_REWARDS_POPUP);
