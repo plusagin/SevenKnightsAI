@@ -16,6 +16,7 @@ namespace SevenKnightsAI.Classes
         MoonlitIsle,
         WesternEmpire,
         EasternEmpire,
-        DarkSanctuary
+        DarkSanctuary,
+        ShadowsEye
     }
 }

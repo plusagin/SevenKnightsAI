@@ -776,7 +776,8 @@
             "8 - Moonlit Isle",
             "9 - Western Empire",
             "10 - Eastern Empire",
-            "11 - Dark Sanctuary"});
+            "11 - Dark Sanctuary",
+            "12 - Shadow\'s EYE"});
             this.AD_worldComboBox.Location = new System.Drawing.Point(74, 4);
             this.AD_worldComboBox.Name = "AD_worldComboBox";
             this.AD_worldComboBox.Size = new System.Drawing.Size(127, 21);

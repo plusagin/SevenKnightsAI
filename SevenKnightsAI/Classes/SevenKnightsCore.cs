@@ -375,7 +375,7 @@ namespace SevenKnightsAI.Classes
             }
             this.Log("Keys bought", this.COLOR_BUY_KEYS);
             this.WeightedClick(ShopPurchaseCompletePopupPM.OkButton, 1.0, 1.0, 1, 0, "left");
-            Console.WriteLine("flag = "+flag);
+            Console.WriteLine("flag = " + flag);
             if (flag)
             {
                 this.KeysBoughtHonors++;
@@ -1195,7 +1195,7 @@ namespace SevenKnightsAI.Classes
                 if (this.AISettings.AD_Enable)
                 {
                     this.ChangeObjective(Objective.ADVENTURE);
-                }else if (this.AISettings.GC_Enable)
+                } else if (this.AISettings.GC_Enable)
                 {
                     this.ChangeObjective(Objective.GOLD_CHAMBER);
                 }
@@ -1216,7 +1216,7 @@ namespace SevenKnightsAI.Classes
         private void DoneRaid()
         {
             this.EnableRaidRewards = false;
-            
+
             if (this.CurrentObjective == Objective.RAID && this.PreviousObjective == Objective.ADVENTURE)
             {
                 this.ChangeObjective(Objective.HERO_MANAGEMENT);
@@ -1927,7 +1927,7 @@ namespace SevenKnightsAI.Classes
                             {
                                 IdleTime = 0;
                                 IdleTime = (IdleCounter / 1000);
-                                if (IdleTime==60)
+                                if (IdleTime == 60)
                                 {
                                     this.Log("IdleTime = " + IdleTime, Color.Orange);
                                 }
@@ -2176,8 +2176,8 @@ namespace SevenKnightsAI.Classes
                                             //this.UpdateTopaz(scene.SceneType);
                                             if (this.AISettings.RS_CollectLuckyChest && this.MatchMapping(LobbyPM.MaysLuckyChestAvailable_1, 4) && this.MatchMapping(LobbyPM.MaysLuckyChestAvailable_2, 4))
                                             {
-                                                if(!this.AISettings.SPD_Enable && this.CurrentObjective != Objective.GOLD_CHAMBER)
-                                                this.WeightedClick(LobbyPM.MaysLuckyChestButton, 1.0, 1.0, 1, 0, "left");
+                                                if (!this.AISettings.SPD_Enable && this.CurrentObjective != Objective.GOLD_CHAMBER)
+                                                    this.WeightedClick(LobbyPM.MaysLuckyChestButton, 1.0, 1.0, 1, 0, "left");
                                             }
                                             else if (this.AISettings.RS_CollectLuckyBox && this.EnableLuckyBox && this.MatchMapping(LobbyPM.LuckyBoxAvailable_1, 4) && this.MatchMapping(LobbyPM.LuckyBoxAvailable_2, 4))
                                             {
@@ -2339,7 +2339,7 @@ namespace SevenKnightsAI.Classes
                                                 {
                                                     this.WeightedClick(AdventureModesPM.CelestialTowerButton, 1.0, 1.0, 1, 0, "left");
                                                 }
-                                                
+
                                             }
                                             else if (this.CurrentObjective == Objective.RAID)
                                             {
@@ -2380,11 +2380,31 @@ namespace SevenKnightsAI.Classes
                                                     world = worldStageFromSequencer.Item1;
                                                     stage = worldStageFromSequencer.Item2;
                                                 }
-                                                if (world == World.MoonlitIsle || world == World.WesternEmpire || world == World.EasternEmpire || world == World.DarkSanctuary)
+                                                if (world == World.ShadowsEye)
                                                 {
-                                                    if (this.MatchMapping(MapSelectPM.DifficultyBoxBorderLeft, 2) && this.MatchMapping(MapSelectPM.DifficultyBoxBorderRight, 2))
+                                                    //on ASGAR
+                                                    if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2))
                                                     {
-                                                        this.WeightedClick(MapSelectPM.ContinentButton, 1.0, 1.0, 1, 0, "left");
+                                                        this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
+                                                        SevenKnightsCore.Sleep(1000);
+                                                        //then
+                                                    }
+                                                    //on Aisha
+                                                    if (this.MatchMapping(MapSelectPM.AishaBoatLeft, 2) && this.MatchMapping(MapSelectPM.AishaBoatRight, 2))
+                                                    {
+                                                        this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
+                                                        SevenKnightsCore.Sleep(1000);
+                                                    }
+
+                                                    this.MapZone = "ShadowsEye";
+                                                    this.SelectStageShadowsEye(world, stage);
+                                                }
+                                                else if (world == World.MoonlitIsle || world == World.WesternEmpire || world == World.EasternEmpire || world == World.DarkSanctuary)
+                                                {
+                                                    //on ASGAR
+                                                    if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2))
+                                                    {
+                                                        this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
                                                         SevenKnightsCore.Sleep(1000);
                                                     }
                                                     this.MapZone = "Aisha";
@@ -2392,11 +2412,20 @@ namespace SevenKnightsAI.Classes
                                                 }
                                                 else
                                                 {
-                                                    if (!this.MatchMapping(MapSelectPM.DifficultyBoxBorderLeft, 2) && !this.MatchMapping(MapSelectPM.DifficultyBoxBorderRight, 2))
+                                                    //on shadow eye
+                                                    if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2))
                                                     {
-                                                        this.WeightedClick(MapSelectPM.ContinentButton, 1.0, 1.0, 1, 0, "left");
+                                                        this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
+                                                        SevenKnightsCore.Sleep(1000);
+                                                        //then
+                                                    }
+                                                    //on aisha
+                                                    if (this.MatchMapping(MapSelectPM.AishaBoatLeft, 2) && this.MatchMapping(MapSelectPM.AishaBoatRight, 2))
+                                                    {
+                                                        this.WeightedClick(MapSelectPM.QuickStartMidButton , 1.0, 1.0, 1, 0, "left");
                                                         SevenKnightsCore.Sleep(1000);
                                                     }
+
                                                     this.MapZone = "Asgar";
                                                     this.SelectStageAsgar(world, stage);
                                                 }
@@ -2463,7 +2492,7 @@ namespace SevenKnightsAI.Classes
                                             SevenKnightsCore.Sleep(500);
                                             break;
 
-                                        case SceneType.ADVENTURE_READY: 
+                                        case SceneType.ADVENTURE_READY:
                                             if (this.CurrentObjective == Objective.ADVENTURE && ExpectingScene(SceneType.ADVENTURE_READY, 3, 500))
                                             {
                                                 this.WeightedClick(AdventureReadyPM.ReadyButton, 1.0, 1.0, 1, 0, "left");
@@ -2624,7 +2653,7 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 this.UpdateTowerKeys();
                                             }
-                                            
+
                                             if (this.CurrentObjective == Objective.GOLD_CHAMBER)
                                             {
                                                 if (this.TowerKeys > 0)
@@ -2907,7 +2936,7 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.RAID_DRAGON:
-                                            this.Log("The dragon Appears!",this.COLOR_ARENA);
+                                            this.Log("The dragon Appears!", this.COLOR_ARENA);
                                             DragonFound = true;
                                             this.PushNote("The dragon appears!", "AI will fight the dragon or ignore it depending on your settings.");
                                             SevenKnightsCore.Sleep(sT_Delay);
@@ -2934,7 +2963,7 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 if (this.EnableRaidRewards)
                                                 {
-                                                    this.Log("Go Collect Raid Reward",Color.DarkOrchid);
+                                                    this.Log("Go Collect Raid Reward", Color.DarkOrchid);
                                                     this.WeightedClick(RaidLobbyPM.DefeatedTab, 1.0, 1.0, 1, 0, "left");
                                                     SevenKnightsCore.Sleep(500);
                                                     this.CaptureFrame();
@@ -2952,7 +2981,7 @@ namespace SevenKnightsAI.Classes
                                                 else
                                                 {
                                                     RaidDragonLobbyFind(DragonFound);
-                                                }  
+                                                }
                                                 this.MasteryChecked = !this.MasteryChecked;
                                             }
                                             else
@@ -3112,7 +3141,7 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.SPECIAL_DUNGEON_END:
-                                            Sleep(500);                                      
+                                            Sleep(500);
                                             this.WeightedClick(SpecialDungeonEndPM.RepaetButton, 1.0, 1.0, 1, 0, "left");
                                             break;
 
@@ -3695,7 +3724,7 @@ namespace SevenKnightsAI.Classes
                                     break;
                                 }
                             }
-                            else if(this.ExpectingScene(SceneType.HERO_JOIN, 8, 800))
+                            else if (this.ExpectingScene(SceneType.HERO_JOIN, 8, 800))
                             {
                                 this.WeightedClick(HeroJoinPM.JoinButton, 1.0, 1.0, 1, 0, "left");
                                 SevenKnightsCore.Sleep(1000);
@@ -4110,7 +4139,7 @@ namespace SevenKnightsAI.Classes
                 this.Log("IdleTime = "+ IdleCounter/1000);
             }
            */
-            
+
         }
 
         private int ParseAdventureKeys(int offsetX, int offsetY)
@@ -4230,7 +4259,7 @@ namespace SevenKnightsAI.Classes
                     }
                 }
             }
-            this.Log("EnterCount" + result,Color.Red);
+            this.Log("EnterCount" + result, Color.Red);
             return result;
         }
 
@@ -4633,19 +4662,19 @@ namespace SevenKnightsAI.Classes
                 if (this.AISettings.RD_DragonLV >= 90)
                 {
                     //scroll down
-                    ScrollRaidDragonPage(false,true);
-                    ScrollRaidDragonPage(true,true,3);
+                    ScrollRaidDragonPage(false, true);
+                    ScrollRaidDragonPage(true, true, 3);
                 }
                 else
                 {
                     //scroll up
-                    ScrollRaidDragonPage(false,true,2);
+                    ScrollRaidDragonPage(false, true, 2);
                 }
                 //Find Loop
                 int num1 = 0;
                 while (num1 != 4)
                 {
-                    Log("attemp = " + attemps,Color.Gray);
+                    Log("attemp = " + attemps, Color.Gray);
                     if (attemps > 3)
                     {
                         DoneRaid();
@@ -4654,7 +4683,7 @@ namespace SevenKnightsAI.Classes
                     this.CaptureFrame();
                     if (this.MatchMapping(PosArray[num1], 5))
                     {
-                        this.Log("Position = " + (num1 + 1),Color.Gray);
+                        this.Log("Position = " + (num1 + 1), Color.Gray);
                         RD_AttName(DGNamearray[num1], "Lobby Owner");
                         //Dragon LV Condition In Lobby
                         if (!DragonFound && this.AISettings.RD_EnableDragonLV)
@@ -4664,7 +4693,7 @@ namespace SevenKnightsAI.Classes
 #if DEBUG
                             if (lvl >= 100)
 #else
-                        if (lvl >= this.AISettings.RD_DragonLV)
+                            if (lvl >= this.AISettings.RD_DragonLV)
 #endif
                             {
                                 this.Log("Dragon Correct Condition", this.COLOR_ConditionT);
@@ -4776,12 +4805,12 @@ namespace SevenKnightsAI.Classes
                         if (this.AISettings.RD_DragonLV >= 90)
                         {
                             //scroll up
-                            ScrollRaidDragonPage(false,false,2);
+                            ScrollRaidDragonPage(false, false, 2);
                         }
                         else
                         {
                             //scroll down
-                            ScrollRaidDragonPage(true,false,2);
+                            ScrollRaidDragonPage(true, false, 2);
                         }
                         Sleep(500);
                     }
@@ -5004,10 +5033,10 @@ namespace SevenKnightsAI.Classes
 #endif
                 SevenKnightsCore.Sleep(sleepInterval);
                 this.CaptureFrame();
-                lbbname = RD_AttName(RaidLobbyPM.Oname1,"");
+                lbbname = RD_AttName(RaidLobbyPM.Oname1, "");
                 if (lbbname != "")
                 {
-                    if (lbbname==tempname)
+                    if (lbbname == tempname)
                     {
                         SevenKnightsCore.Sleep(sleepInterval);
                         break;
@@ -5336,7 +5365,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.MASTERY_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(MapSelectPM.QuickStartIcon, 2) && this.MatchMapping(MapSelectPM.BottomRightPanel, 3))
+                if ((this.MatchMapping(MapSelectPM.QuickStartMidIcon, 2) || (this.MatchMapping(MapSelectPM.QuickStartLeftButton, 2))) && this.MatchMapping(MapSelectPM.BottomRightPanel, 3))
                 {
                     Scene result = new Scene(SceneType.MAP_SELECT);
                     return result;
@@ -5387,12 +5416,12 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.OUT_OF_SWORDS_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(AdventureReadyPM.ReadyButtonBackground, 2) && this.MatchMapping(AdventureReadyPM.CloseButton ,2))
+                if (this.MatchMapping(AdventureReadyPM.ReadyButtonBackground, 2) && this.MatchMapping(AdventureReadyPM.CloseButton, 2))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_READY);
                     return result;
                 }
-                if (this.MatchMapping(AdventureStartPM.KeyPlusButton, 3) && this.MatchMapping(AdventureStartPM.AutoSettingsBTN,3))
+                if (this.MatchMapping(AdventureStartPM.KeyPlusButton, 3) && this.MatchMapping(AdventureStartPM.AutoSettingsBTN, 3))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_START);
                     return result;
@@ -5647,7 +5676,7 @@ namespace SevenKnightsAI.Classes
             {
                 aD_Difficulty = this.AISettings.AD_Difficulty;
             }
-            else if (MapZone.Equals("Aisha"))
+            else if (MapZone.Equals("Aisha") || MapZone.Equals("ShadowsEye"))
             {
                 aD_Difficulty = this.AISettings.AD_Difficulty2nd;
             }
@@ -5828,7 +5857,7 @@ namespace SevenKnightsAI.Classes
             };
             if (world == World.None)
             {
-                this.WeightedClick(MapSelectPM.QuickStartButton, 1.0, 1.0, 1, 0, "left");
+                this.WeightedClick(MapSelectPM.QuickStartMidButton, 1.0, 1.0, 1, 0, "left");
                 return;
             }
             int num = world - World.MysticWoods;
@@ -5889,6 +5918,11 @@ namespace SevenKnightsAI.Classes
                 {
                     MapSelectPM.World11_1Anchor_1,
                     MapSelectPM.World11_1Anchor_2
+                },
+                new PixelMapping[]
+                {
+                    MapSelectPM.World11_2Anchor_1,
+                    MapSelectPM.World11_2Anchor_2
                 }
             };
             PixelMapping[][] stages = new PixelMapping[][]
@@ -5955,13 +5989,21 @@ namespace SevenKnightsAI.Classes
                     MapSelectPM.World11_1Stage3,
                     MapSelectPM.World11_1Stage4,
                     MapSelectPM.World11_1Stage5
+                },
+                new PixelMapping[]
+                {
+                    MapSelectPM.World11_2Stage1,
+                    MapSelectPM.World11_2Stage2,
+                    MapSelectPM.World11_2Stage3,
+                    MapSelectPM.World11_2Stage4,
+                    MapSelectPM.World11_2Stage5
                 }
             };
             int pageDestIndex = array.Length + 1;
 
             if (world == World.None)
             {
-                this.WeightedClick(MapSelectPM.QuickStartButton, 1.0, 1.0, 1, 0, "left");
+                this.WeightedClick(MapSelectPM.QuickStartLeftButton, 1.0, 1.0, 1, 0, "left");
                 return;
             }
 
@@ -6020,6 +6062,9 @@ namespace SevenKnightsAI.Classes
                 if (stage < 5)
                 {
                     pageDestIndex = 9;
+                }else if (stage < 10)
+                {
+                    pageDestIndex = 10;
                 }
             }
             else
@@ -6027,6 +6072,42 @@ namespace SevenKnightsAI.Classes
                 return;
             }
             this.SelectStage(array, stageMapping, pageDestIndex);
+        }
+
+        private void SelectStageShadowsEye(World world, int stage)
+        {
+            PixelMapping[][] anchorMappings = new PixelMapping[][]
+            {
+                new PixelMapping[]
+                {
+                    MapSelectPM.World12_1Anchor_1,
+                    MapSelectPM.World12_1Anchor_2
+                }
+            };
+            PixelMapping[][] array = new PixelMapping[][]
+            {
+                new PixelMapping[]
+                {
+                    MapSelectPM.World12_1Stage1,
+                    MapSelectPM.World12_1Stage2,
+                    MapSelectPM.World12_1Stage3,
+                    MapSelectPM.World12_1Stage4,
+                    MapSelectPM.World12_1Stage5,
+                    MapSelectPM.World12_1Stage6,
+                    MapSelectPM.World12_1Stage7,
+                    MapSelectPM.World12_1Stage8,
+                    MapSelectPM.World12_1Stage9,
+                    MapSelectPM.World12_1Stage10
+                }
+            };
+            if (world == World.None)
+            {
+                this.WeightedClick(MapSelectPM.QuickStartMidButton, 1.0, 1.0, 1, 0, "left");
+                return;
+            }
+            int num = world - World.ShadowsEye;
+            PixelMapping stageMapping = array[num][stage];
+            this.SelectStage(anchorMappings, stageMapping, num);
         }
 
         private void SelectTeam(SceneType sceneType)
