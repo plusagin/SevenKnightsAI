@@ -169,7 +169,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping StartButton = new PixelMapping
         {
-            X = 636,
+            X = 800,
             Y = 500,
             Color = 0,
             Type = MappingType.BUTTON

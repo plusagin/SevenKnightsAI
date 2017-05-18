@@ -76,6 +76,14 @@ namespace SevenKnightsAI.Classes.Mappings
             Color = 8475157,
             Type = MappingType.BUTTON
         };
+
+        public static readonly PixelMapping AutoSettingsBTN = new PixelMapping
+        {
+            X = 366,
+            Y = 393,
+            Color = 15124843,
+            Type = MappingType.BUTTON
+        };
         #endregion Public Fields
     }
 }

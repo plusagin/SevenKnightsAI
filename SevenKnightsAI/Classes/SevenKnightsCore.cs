@@ -1189,7 +1189,26 @@ namespace SevenKnightsAI.Classes
             this.Log("Done managing heroes", this.COLOR_HEROES_MANAGEMENT);
             this.PushNote("Done managing heroes", "AI has finished managing your team.");
             this.HeroManageAttemps = 0;
-            this.NextPossibleObjective();
+            if (this.CurrentObjective == Objective.HERO_MANAGEMENT && this.PreviousObjective == Objective.RAID)
+            {
+                this.Log("Test End Raid Management");
+                if (this.AISettings.AD_Enable)
+                {
+                    this.ChangeObjective(Objective.ADVENTURE);
+                }else if (this.AISettings.GC_Enable)
+                {
+                    this.ChangeObjective(Objective.GOLD_CHAMBER);
+                }
+                else if (this.AISettings.AR_Enable)
+                {
+                    this.ChangeObjective(Objective.ARENA);
+                }
+            }
+            else
+            {
+                this.Log("Test Normal Management");
+                this.NextPossibleObjective();
+            }
             this.Escape();
             SevenKnightsCore.Sleep(500);
         }
@@ -5373,7 +5392,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.ADVENTURE_READY);
                     return result;
                 }
-                if (this.MatchMapping(AdventureStartPM.KeyPlusButton, 2) && this.MatchMapping(AdventureStartPM.LevelSortBorder, 2) && this.MatchMapping(AdventureStartPM.RankSortBorder, 2))
+                if (this.MatchMapping(AdventureStartPM.KeyPlusButton, 3) && this.MatchMapping(AdventureStartPM.AutoSettingsBTN,3))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_START);
                     return result;
