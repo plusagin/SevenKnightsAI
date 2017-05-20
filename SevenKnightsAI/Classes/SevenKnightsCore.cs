@@ -2413,7 +2413,7 @@ namespace SevenKnightsAI.Classes
                                                 else
                                                 {
                                                     //on shadow eye
-                                                    if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2))
+                                                    if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2) && (world != World.ShadowsEye))
                                                     {
                                                         this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
                                                         SevenKnightsCore.Sleep(1000);
