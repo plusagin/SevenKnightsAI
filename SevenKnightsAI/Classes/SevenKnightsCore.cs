@@ -2357,6 +2357,7 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.MAP_SELECT:
+                                            this.Log("Map Select In");
                                             this.UpdateGold(scene.SceneType);
                                             this.UpdateRuby(scene.SceneType);
                                             if (this.MapSelectCounter >= 10000)
@@ -2380,20 +2381,26 @@ namespace SevenKnightsAI.Classes
                                                     world = worldStageFromSequencer.Item1;
                                                     stage = worldStageFromSequencer.Item2;
                                                 }
+                                                this.Log("Wrold =" + world);
                                                 if (world == World.ShadowsEye)
                                                 {
+                                                    this.Log("ShadowsEYE");
                                                     //on ASGAR
                                                     if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2))
                                                     {
+                                                        this.Log("1,1");
                                                         this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
-                                                        SevenKnightsCore.Sleep(1000);
+                                                        SevenKnightsCore.Sleep(AIProfiles.ST_Delay);
+                                                        this.CaptureFrame();
                                                         //then
                                                     }
                                                     //on Aisha
                                                     if (this.MatchMapping(MapSelectPM.AishaBoatLeft, 2) && this.MatchMapping(MapSelectPM.AishaBoatRight, 2))
                                                     {
+                                                        this.Log("1,2");
                                                         this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
-                                                        SevenKnightsCore.Sleep(1000);
+                                                        SevenKnightsCore.Sleep(AIProfiles.ST_Delay);
+                                                        this.CaptureFrame();
                                                     }
 
                                                     this.MapZone = "ShadowsEye";
@@ -2401,29 +2408,38 @@ namespace SevenKnightsAI.Classes
                                                 }
                                                 else if (world == World.MoonlitIsle || world == World.WesternEmpire || world == World.EasternEmpire || world == World.DarkSanctuary)
                                                 {
+                                                    this.Log("Aisha");
                                                     //on ASGAR
                                                     if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2))
                                                     {
+                                                        this.Log("2,1");
                                                         this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
-                                                        SevenKnightsCore.Sleep(1000);
+                                                        SevenKnightsCore.Sleep(AIProfiles.ST_Delay);
+                                                        this.CaptureFrame();
                                                     }
                                                     this.MapZone = "Aisha";
                                                     this.SelectStageAisha(world, stage);
                                                 }
-                                                else
+                                                else  
                                                 {
+                                                    this.Log("Asgar");
                                                     //on shadow eye
-                                                    if (this.MatchMapping(MapSelectPM.MoonBoatLitLeft, 2) && this.MatchMapping(MapSelectPM.MoonLitBoatRight, 2) && (world != World.ShadowsEye))
+                                                    if (this.MatchMapping(MapSelectPM.World12_1Anchor_1, 2) && this.MatchMapping(MapSelectPM.World12_1Anchor_2, 2))
                                                     {
+                                                        this.Log("3,1");
                                                         this.WeightedClick(MapSelectPM.RightBottomBTN, 1.0, 1.0, 1, 0, "left");
-                                                        SevenKnightsCore.Sleep(1000);
+                                                        SevenKnightsCore.Sleep(AIProfiles.ST_Delay);
                                                         //then
+                                                        this.CaptureFrame();
                                                     }
                                                     //on aisha
-                                                    if (this.MatchMapping(MapSelectPM.AishaBoatLeft, 2) && this.MatchMapping(MapSelectPM.AishaBoatRight, 2))
+                                                    //if (this.MatchMapping(MapSelectPM.AishaBoatLeft, 2) && this.MatchMapping(MapSelectPM.AishaBoatRight, 2))
+                                                    if (this.MatchMapping(MapSelectPM.AishaBoatLeft, 2) || this.MatchMapping(MapSelectPM.AishaBoatRight, 2))
                                                     {
+                                                        this.Log("3,2");
                                                         this.WeightedClick(MapSelectPM.QuickStartMidButton , 1.0, 1.0, 1, 0, "left");
-                                                        SevenKnightsCore.Sleep(1000);
+                                                        SevenKnightsCore.Sleep(AIProfiles.ST_Delay);
+                                                        this.CaptureFrame();
                                                     }
 
                                                     this.MapZone = "Asgar";
