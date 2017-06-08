@@ -2665,16 +2665,12 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.TOWER_SELECT:
-                                            if (true)
-                                            {
-                                                this.UpdateTowerKeys();
-                                            }
-
                                             if (this.CurrentObjective == Objective.GOLD_CHAMBER)
                                             {
-                                                if (this.TowerKeys > 0)
+                                                if (this.MatchMapping(TowerSelectPM.GoldCount, 2))
                                                 {
-                                                    this.WeightedClick(TowerSelectPM.GoldChamberButton, 1.0, 1.0, 1, 0, "left");
+                                                    this.WeightedClick(TowerSelectPM.CollectGoldBTN, 1.0, 1.0, 1, 0, "left");
+                                                    SevenKnightsCore.Sleep(this.AIProfiles.ST_Delay);
                                                 }
                                                 else
                                                 {
@@ -2685,6 +2681,7 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 this.Escape();
                                             }
+
                                             break;
 
                                         case SceneType.TOWER_START:

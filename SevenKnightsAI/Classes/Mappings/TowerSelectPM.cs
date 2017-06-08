@@ -15,16 +15,16 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping PreviewBorderLeft = new PixelMapping
         {
             X = 322,
-            Y = 294,
-            Color = 16772008,
+            Y = 230,
+            Color = 8154174,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping PreviewBorderRight = new PixelMapping
         {
             X = 922,
-            Y = 294,
-            Color = 16772008,
+            Y = 230,
+            Color = 8219710,
             Type = MappingType.ANCHOR
         };
 
@@ -42,6 +42,22 @@ namespace SevenKnightsAI.Classes.Mappings
             Y = 468,
             Color = 1970442,
             Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping GoldCount = new PixelMapping
+        {
+            X = 580,
+            Y = 435,
+            Color = 15899904,
+            Type = MappingType.ANCHOR
+        };
+
+        public static readonly PixelMapping CollectGoldBTN = new PixelMapping
+        {
+            X = 823,
+            Y = 513,
+            Color = 0,
+            Type = MappingType.BUTTON
         };
     }
 }
