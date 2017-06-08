@@ -2667,8 +2667,9 @@ namespace SevenKnightsAI.Classes
                                         case SceneType.TOWER_SELECT:
                                             if (this.CurrentObjective == Objective.GOLD_CHAMBER)
                                             {
-                                                if (this.MatchMapping(TowerSelectPM.GoldCount, 2))
+                                                if (!this.MatchMapping(TowerSelectPM.GoldCount, 2))
                                                 {
+                                                    this.Log("Match");
                                                     this.WeightedClick(TowerSelectPM.CollectGoldBTN, 1.0, 1.0, 1, 0, "left");
                                                     SevenKnightsCore.Sleep(this.AIProfiles.ST_Delay);
                                                 }

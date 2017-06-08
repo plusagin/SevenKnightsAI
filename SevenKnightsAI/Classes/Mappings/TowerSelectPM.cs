@@ -46,9 +46,9 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping GoldCount = new PixelMapping
         {
-            X = 580,
-            Y = 435,
-            Color = 15899904,
+            X = 800,
+            Y = 440,
+            Color = 2824462,
             Type = MappingType.ANCHOR
         };
 
