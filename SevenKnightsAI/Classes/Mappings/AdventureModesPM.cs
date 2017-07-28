@@ -8,10 +8,10 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping AdventureButton = new PixelMapping
         {
-            X = 72,
-            Y = 100,
-            Color = 0,
-            Type = MappingType.BUTTON
+            X = 771,
+            Y = 487,
+            Color = 5131594,
+            Type = MappingType.BOTH
         };
 
         public static readonly PixelMapping BorderBottomRight = new PixelMapping
@@ -32,8 +32,8 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping CelestialTowerButton = new PixelMapping
         {
-            X = 704,
-            Y = 200,
+            X = 899,
+            Y = 113,
             Color = 0,
             Type = MappingType.BUTTON
         };
@@ -61,8 +61,16 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping RaidButton = new PixelMapping
         {
-            X = 704,
-            Y = 460,
+            X = 632,
+            Y = 139,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping ArenaButton = new PixelMapping
+        {
+            X = 661,
+            Y = 334,
             Color = 0,
             Type = MappingType.BUTTON
         };

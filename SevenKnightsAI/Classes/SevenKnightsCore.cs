@@ -2216,7 +2216,7 @@ namespace SevenKnightsAI.Classes
                                                         this.ChangeObjective(Objective.COLLECT_INBOX);
                                                     }
                                                 }
-                                                if (this.CurrentObjective == Objective.ADVENTURE || this.CurrentObjective == Objective.GOLD_CHAMBER || this.CurrentObjective == Objective.RAID)
+                                                if (this.CurrentObjective == Objective.ADVENTURE || this.CurrentObjective == Objective.GOLD_CHAMBER || this.CurrentObjective == Objective.RAID || this.CurrentObjective == Objective.ARENA)
                                                 {
                                                     if (this.CurrentObjective == Objective.RAID)
                                                     {
@@ -2224,10 +2224,11 @@ namespace SevenKnightsAI.Classes
                                                     }
                                                     this.WeightedClick(LobbyPM.AdventureButton, 1.0, 1.0, 1, 0, "left");
                                                 }
+                                                /*
                                                 else if (this.CurrentObjective == Objective.ARENA)
                                                 {
                                                     this.WeightedClick(LobbyPM.BattleButton, 1.0, 1.0, 1, 0, "left");
-                                                }
+                                                }*/
                                                 else if (this.CurrentObjective == Objective.HERO_MANAGEMENT || this.CurrentObjective == Objective.SELL_HEROES)
                                                 {
                                                     this.WeightedClick(LobbyPM.HeroButton, 1.0, 1.0, 1, 0, "left");
@@ -2322,8 +2323,6 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.ADVENTURE_MODES:
-                                            this.UpdateGold(scene.SceneType);
-                                            this.UpdateRuby(scene.SceneType);
                                             if (this.CurrentObjective == Objective.ADVENTURE)
                                             {
                                                 this.WeightedClick(AdventureModesPM.AdventureButton, 1.0, 1.0, 1, 0, "left");
@@ -2348,6 +2347,10 @@ namespace SevenKnightsAI.Classes
                                                     this.Escape();
                                                 }
                                                 this.WeightedClick(AdventureModesPM.RaidButton, 1.0, 1.0, 1, 0, "left");
+                                            }
+                                            else if (this.CurrentObjective == Objective.ARENA)
+                                            {
+                                                this.WeightedClick(AdventureModesPM.ArenaButton, 1.0, 1.0, 1, 0, "left");
                                             }
                                             else
                                             {
@@ -5368,8 +5371,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.DISCONNECTED_POPUP);
                     return result;
                 }
-                if (this.MatchMapping(AdventureModesPM.BorderTopLeft, 7) &&
-                    this.MatchMapping(AdventureModesPM.BorderBottomRight, 4))
+                if (this.MatchMapping(AdventureModesPM.AdventureButton, 2))
                 {
                     Scene result = new Scene(SceneType.ADVENTURE_MODES);
                     return result;
@@ -5384,7 +5386,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.MAP_SELECT);
                     return result;
                 }
-                if (this.MatchMapping(MapSelectPopupPM.PopupBorderLeft, 2) && this.MatchMapping(MapSelectPopupPM.PopupBorderRight, 2) && this.MatchMapping(MapSelectPopupPM.DimmedBG, 2))
+                if (this.MatchMapping(MapSelectPopupPM.PopupBorderLeft, 2) && this.MatchMapping(MapSelectPopupPM.PopupBorderRight, 2) && this.MatchMapping(MapSelectPopupPM.DimmedBG, 2) && !this.MatchMapping(OutOfSwordsPopupPM.RubyIcon, 2))
                 {
                     Scene result = new Scene(SceneType.MAP_SELECT_POPUP);
                     return result;

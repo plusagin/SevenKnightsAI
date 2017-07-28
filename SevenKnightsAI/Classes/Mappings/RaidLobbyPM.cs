@@ -110,9 +110,9 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping ManageParty2Border = new PixelMapping
         {
-            X = 370,
-            Y = 498,
-            Color = 6773548,
+            X = 266,
+            Y = 494,
+            Color = 8877126,
             Type = MappingType.ANCHOR
         };
 
