@@ -98,7 +98,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill11 = new PixelMapping
         {
             X = 576,
-            Y = 351,
+            Y = 381,
             Color = 0,
             Type = MappingType.BUTTON
         };
@@ -154,7 +154,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill12 = new PixelMapping
         {
             X = 662,
-            Y = 351,
+            Y = 381,
             Color = 0,
             Type = MappingType.BUTTON
         };
@@ -186,7 +186,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill13 = new PixelMapping
         {
             X = 747,
-            Y = 351,
+            Y = 381,
             Color = 0,
             Type = MappingType.BUTTON
         };
@@ -218,7 +218,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill14 = new PixelMapping
         {
             X = 832,
-            Y = 351,
+            Y = 381,
             Color = 0,
             Type = MappingType.BUTTON
         };
@@ -250,7 +250,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping Fight_Skill15 = new PixelMapping
         {
             X = 918,
-            Y = 351,
+            Y = 381,
             Color = 0,
             Type = MappingType.BUTTON
         };
