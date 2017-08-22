@@ -2360,15 +2360,21 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.MAP_SELECT:
+                                            this.CaptureFrame();
                                             this.Log("Map Select In");
                                             this.UpdateGold(scene.SceneType);
                                             this.UpdateRuby(scene.SceneType);
-                                            if (this.MapSelectCounter >= 10000)
+                                            this.Log("Map counter : "+MapSelectCounter);
+                                            // int sumdelay = AIProfiles.ST_Delay * 3;
+                                            //this.Log("sum delay : " + sumdelay);
+                                            if (MapSelectCounter > (AIProfiles.ST_Delay * 3))
                                             {
-                                                this.WeightedClick(SharedPM.BackButton, 1.0, 1.0, 1, 0, "left");
+                                                this.Log("Enter");
+                                                SevenKnightsCore.Sleep(500);
+                                                this.Escape();
                                                 SevenKnightsCore.Sleep(500);
                                             }
-                                            else if (this.CurrentObjective == Objective.ADVENTURE)
+                                            if (this.CurrentObjective == Objective.ADVENTURE)
                                             {
                                                 World world = this.AISettings.AD_World;
                                                 int stage = this.AISettings.AD_Stage;
@@ -3508,7 +3514,9 @@ namespace SevenKnightsAI.Classes
                 HeroesPM.HeroCard5,
                 HeroesPM.HeroCard6,
                 HeroesPM.HeroCard7,
-                HeroesPM.HeroCard8
+                HeroesPM.HeroCard8,
+                HeroesPM.HeroCard9,
+                HeroesPM.HeroCard10
             };
             PixelMapping[][] array3 = new PixelMapping[][]
             {
@@ -3667,8 +3675,8 @@ namespace SevenKnightsAI.Classes
                         flag = true;
                     }
                     int num5 = 0;
-                    while (num5 < (flag ? 8 : 4) && !this.Worker.CancellationPending)
-                    {
+                    while (num5 < (flag ? 10 : 5) && !this.Worker.CancellationPending)
+                    {   
                         if (list2.Count == 0)
                         {
                             this.DoneManageHeroes();
@@ -3682,15 +3690,18 @@ namespace SevenKnightsAI.Classes
                         }
                         SevenKnightsCore.Sleep(800);
                         ulong num6 = 0uL;
-                        using (this.CaptureFrame())
+                        if (num5 != 5 && num5 != 10)
                         {
-                            using (Bitmap bitmap2 = this.CropFrame(this.CaptureFrame(), r_HeroCard_Base))
+                            using (this.CaptureFrame())
                             {
-                                num6 = ImageHashing.AverageHash(bitmap2);
-                                double num7 = ImageHashing.Similarity(num2, num6);
-                                if (num2 != 0uL && num7 >= num3)
+                                using (Bitmap bitmap2 = this.CropFrame(this.CaptureFrame(), r_HeroCard_Base))
                                 {
-                                    goto IL_B14;
+                                    num6 = ImageHashing.AverageHash(bitmap2);
+                                    double num7 = ImageHashing.Similarity(num2, num6);
+                                    if (num2 != 0uL && num7 >= num3)
+                                    {
+                                        goto IL_B14;
+                                    }
                                 }
                             }
                         }
@@ -5386,7 +5397,7 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.MAP_SELECT);
                     return result;
                 }
-                if (this.MatchMapping(MapSelectPopupPM.PopupBorderLeft, 2) && this.MatchMapping(MapSelectPopupPM.PopupBorderRight, 2) && this.MatchMapping(MapSelectPopupPM.DimmedBG, 2) && !this.MatchMapping(OutOfSwordsPopupPM.RubyIcon, 2))
+                if (this.MatchMapping(MapSelectPopupPM.PopupBorderLeft, 2) && this.MatchMapping(MapSelectPopupPM.PopupBorderRight, 2) && this.MatchMapping(MapSelectPopupPM.DimmedBG, 2) && this.MatchMapping(MapSelectPopupPM.ExpIcon, 2))
                 {
                     Scene result = new Scene(SceneType.MAP_SELECT_POPUP);
                     return result;

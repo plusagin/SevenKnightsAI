@@ -27,5 +27,13 @@ namespace SevenKnightsAI.Classes.Mappings
             Color = 16244898,
             Type = MappingType.ANCHOR
         };
+
+        public static readonly PixelMapping ExpIcon = new PixelMapping
+        {
+            X = 464,
+            Y = 441,
+            Color = 8551507,
+            Type = MappingType.ANCHOR
+        };
     }
 }

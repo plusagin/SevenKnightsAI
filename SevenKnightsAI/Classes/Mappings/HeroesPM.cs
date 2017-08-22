@@ -17,7 +17,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly int CARD_LAST_Y_DELTA = 10;
 
-        public static readonly int CARD_X_DELTA = 150;
+        public static readonly int CARD_X_DELTA = 119;
 
         public static readonly int CARD_Y_DELTA = 207;
 
@@ -691,7 +691,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping HeroCard1 = new PixelMapping
         {
-            X = 395,
+            X = 380,
             Y = 212,
             Color = 0,
             Type = MappingType.BUTTON
@@ -699,7 +699,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping HeroCard2 = new PixelMapping
         {
-            X = 544,
+            X = 500,
             Y = 212,
             Color = 0,
             Type = MappingType.BUTTON
@@ -707,7 +707,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping HeroCard3 = new PixelMapping
         {
-            X = 695,
+            X = 620,
             Y = 212,
             Color = 0,
             Type = MappingType.BUTTON
@@ -715,7 +715,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping HeroCard4 = new PixelMapping
         {
-            X = 845,
+            X = 735,
             Y = 212,
             Color = 0,
             Type = MappingType.BUTTON
@@ -723,15 +723,15 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping HeroCard5 = new PixelMapping
         {
-            X = 395,
-            Y = 418,
+            X = 845,
+            Y = 212,
             Color = 0,
             Type = MappingType.BUTTON
         };
 
         public static readonly PixelMapping HeroCard6 = new PixelMapping
         {
-            X = 544,
+            X = 380,
             Y = 418,
             Color = 0,
             Type = MappingType.BUTTON
@@ -739,7 +739,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping HeroCard7 = new PixelMapping
         {
-            X = 695,
+            X = 500,
             Y = 418,
             Color = 0,
             Type = MappingType.BUTTON
@@ -747,11 +747,28 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping HeroCard8 = new PixelMapping
         {
+            X = 620,
+            Y = 418,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping HeroCard9 = new PixelMapping
+        {
+            X = 735,
+            Y = 418,
+            Color = 0,
+            Type = MappingType.BUTTON
+        };
+
+        public static readonly PixelMapping HeroCard10 = new PixelMapping
+        {
             X = 845,
             Y = 418,
             Color = 0,
             Type = MappingType.BUTTON
         };
+
 
         public static readonly PixelMapping IconLeft = new PixelMapping
         {
@@ -785,15 +802,15 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 327,
             Y = 115,
-            Color = 1709328,
+            Color = 920334,
             Type = MappingType.ANCHOR
         };
 
         public static readonly PixelMapping LastRow_2 = new PixelMapping
         {
-            X = 461,
+            X = 447,
             Y = 115,
-            Color = 1315084,
+            Color = 1117450,
             Type = MappingType.ANCHOR
         };
 
@@ -816,7 +833,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly int RUBY_OFFSET_X = 376;
 
         public static readonly int RUBY_OFFSET_Y = 0;
-        public static readonly int SCROLL_DELTA = 138;
+        public static readonly int SCROLL_DELTA = 228;
 
         public static readonly int SCROLL_DOUBLE_DELTA = 275;
 
