@@ -9,9 +9,9 @@ namespace SevenKnightsAI.Classes.Mappings
         // Just a point on the TapToPlay screen to detect it.
         public static readonly PixelMapping Point1 = new PixelMapping
         {
-            X = 149,
-            Y = 314,
-            Color = 16717074,
+            X = 146,
+            Y = 54,
+            Color = 16454930,
             Type = MappingType.ANCHOR
         };
 

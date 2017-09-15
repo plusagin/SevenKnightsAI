@@ -10,7 +10,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 771,
             Y = 487,
-            Color = 5065799,
+            Color = 4725777,
             Type = MappingType.BOTH
         };
 
@@ -33,7 +33,7 @@ namespace SevenKnightsAI.Classes.Mappings
         public static readonly PixelMapping CelestialTowerButton = new PixelMapping
         {
             X = 899,
-            Y = 113,
+            Y = 80,
             Color = 0,
             Type = MappingType.BUTTON
         };
@@ -69,8 +69,8 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping ArenaButton = new PixelMapping
         {
-            X = 661,
-            Y = 334,
+            X = 652,
+            Y = 408,
             Color = 0,
             Type = MappingType.BUTTON
         };

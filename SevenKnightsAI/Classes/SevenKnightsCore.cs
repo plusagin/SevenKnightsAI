@@ -3676,7 +3676,7 @@ namespace SevenKnightsAI.Classes
                     }
                     int num5 = 0;
                     while (num5 < (flag ? 10 : 5) && !this.Worker.CancellationPending)
-                    {   
+                    {
                         if (list2.Count == 0)
                         {
                             this.DoneManageHeroes();
@@ -3690,7 +3690,7 @@ namespace SevenKnightsAI.Classes
                         }
                         SevenKnightsCore.Sleep(800);
                         ulong num6 = 0uL;
-                        if (num5 != 5 && num5 != 10)
+                        if (num5 != 5 || num5 != 10)
                         {
                             using (this.CaptureFrame())
                             {
