@@ -61,8 +61,8 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping RaidButton = new PixelMapping
         {
-            X = 632,
-            Y = 139,
+            X = 659,
+            Y = 106,
             Color = 0,
             Type = MappingType.BUTTON
         };

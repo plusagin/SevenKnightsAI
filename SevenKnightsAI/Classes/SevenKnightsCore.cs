@@ -1116,9 +1116,21 @@ namespace SevenKnightsAI.Classes
 
         private Bitmap CropFrame(Bitmap frame, Rectangle rect)
         {
+            /* this.Log("OLD x : " + rect.X + ",y: " + rect.Y);
+           rect.X += BlueStacks.OFFSET_X;
+           rect.Y += BlueStacks.OFFSET_Y;
+           this.Log("NEW x : " + rect.X + ",y: " + rect.Y);
+           //return frame.Clone(rect, frame.PixelFormat);
+           return frame.Clone(rect, System.Drawing.Imaging.PixelFormat.DontCare);*/
+
             rect.X += BlueStacks.OFFSET_X;
             rect.Y += BlueStacks.OFFSET_Y;
-            return frame.Clone(rect, frame.PixelFormat);
+            Bitmap bmp = new Bitmap(rect.Width, rect.Height);
+            using (Graphics gph = Graphics.FromImage(bmp))
+            {
+                gph.DrawImage(frame, new Rectangle(0, 0, bmp.Width, bmp.Height), rect, GraphicsUnit.Pixel);
+            }
+            return bmp;
         }
 
         private void DoneBuyKeys()
@@ -1309,7 +1321,7 @@ namespace SevenKnightsAI.Classes
             return false;
         }
 
-        private bool ExpectingScene(SceneType sceneType, int retry = 5, int sleepInterval = 500)
+        private bool ExpectingScene(SceneType sceneType, int retry = 3, int sleepInterval = 500)
         {
             for (int i = 0; i < retry; i++)
             {
@@ -1328,7 +1340,7 @@ namespace SevenKnightsAI.Classes
             return false;
         }
 
-        private bool ExpectingScenes(List<SceneType> sceneTypes, int retry = 5, int sleepInterval = 500)
+        private bool ExpectingScenes(List<SceneType> sceneTypes, int retry = 3, int sleepInterval = 500)
         {
             for (int i = 0; i < retry; i++)
             {
@@ -1378,6 +1390,8 @@ namespace SevenKnightsAI.Classes
         {
             return this.BlueStacks.GetPixel(x, y);
         }
+
+
 
         private Tuple<World, int> GetWorldStageFromSequencer()
         {
@@ -1672,46 +1686,53 @@ namespace SevenKnightsAI.Classes
 
         private bool IsHeroLevel30(bool retrying = false)
         {
-            using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, SharedPM.Hero_R_Level_30))
+            try
             {
-                using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
+                using (Bitmap bitmap = this.CropFrame(this.BlueStacks.MainWindowAS.CurrentFrame, SharedPM.Hero_R_Level_30))
                 {
-                    string text = page.GetText().ToLower().Replace("o", "0").Trim().Replace(" ", "");
-                    Utility.FilterAscii(text);
-                    if (text.Length >= 2)
+                    using (Page page = this.Tesseractor.Engine.Process(bitmap, null))
                     {
-                        int lvl = -1;
-                        int maxLvl = 30;
-                        string[] array = text.Split(new char[]
-                            {
+                        string text = page.GetText().ToLower().Replace("o", "0").Trim().Replace(" ", "");
+                        Utility.FilterAscii(text);
+                        if (text.Length >= 2)
+                        {
+                            int lvl = -1;
+                            int maxLvl = 30;
+                            string[] array = text.Split(new char[]
+                                {
                                 '/'
-                            });
+                                });
 
-                        if (array.Length >= 1)
-                            int.TryParse(array[0], out lvl);
-                        if (array.Length >= 2)
-                        {
-                            int.TryParse(array[1].Substring(0, 2), out maxLvl);
-                            if (maxLvl < 30)
-                                maxLvl = 30;
+                            if (array.Length >= 1)
+                                int.TryParse(array[0], out lvl);
+                            if (array.Length >= 2)
+                            {
+                                int.TryParse(array[1].Substring(0, 2), out maxLvl);
+                                if (maxLvl < 30)
+                                    maxLvl = 30;
+                            }
+                            this.Log(string.Format("Level: {0}/{1} String: {2}", lvl, maxLvl, text));
+                            bitmap.Save(string.Format("{0} of {1}.png", lvl, maxLvl));
+                            if (lvl != maxLvl)
+                            {
+                                return false;
+                            }
                         }
-#if DEBUG
-						this.Log(string.Format("Level: {0}/{1} String: {2}", lvl, maxLvl, text));
-						bitmap.Save(string.Format("{0} of {1}.png", lvl, maxLvl));
-#endif
-                        if (lvl != maxLvl)
+                        else if (!retrying)
                         {
-                            return false;
+                            Sleep(1000);
+                            IsHeroLevel30(true);
                         }
-                    }
-                    else if (!retrying)
-                    {
-                        Sleep(1000);
-                        IsHeroLevel30(true);
                     }
                 }
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                this.Log(string.Format("Error: {0}", ex.Message));
+                return true;
+            }
+
         }
 
         private bool IsInboxEnabled()
@@ -2908,10 +2929,10 @@ namespace SevenKnightsAI.Classes
                                             {
                                                 this.ChangeObjective(Objective.HERO_MANAGEMENT);
                                             }
-                                            if (this.MatchMapping(HeroesPM.BlockingChatCloseButton, 2))
+                                            /*if (this.MatchMapping(HeroesPM.BlockingChatCloseButton, 2))
                                             {
                                                 this.WeightedClick(HeroesPM.BlockingChatCloseButton, 1.0, 1.0, 1, 0, "left");
-                                            }
+                                            }*/
                                             else if (this.CurrentObjective == Objective.HERO_MANAGEMENT)
                                             {
                                                 if (this.AISettings.AD_ElementHeroesOnly)
@@ -2998,14 +3019,14 @@ namespace SevenKnightsAI.Classes
                                                     else
                                                     {
                                                         this.Log("No Raid Reward", Color.DarkMagenta);
-                                                        this.DoneRaid();
+                                                        this.EnableRaidRewards = false;
                                                     }
                                                 }
                                                 else
                                                 {
                                                     RaidDragonLobbyFind(DragonFound);
                                                 }
-                                                this.MasteryChecked = !this.MasteryChecked;
+                                               // this.MasteryChecked = !this.MasteryChecked;
                                             }
                                             else
                                             {
@@ -3071,11 +3092,15 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.RAID_REWARD_POPUP:
-                                            this.DoneRaid();
+                                            this.Escape();
+                                            Sleep(this.AIProfiles.ST_Delay);
+                                            this.Escape();
                                             break;
 
                                         case SceneType.RAID_REWARD_FAILED_POPUP:
-                                            this.DoneRaid();
+                                            this.Escape();
+                                            Sleep(this.AIProfiles.ST_Delay);
+                                            this.Escape();
                                             break;
 
                                         case SceneType.RAID_OUT_OF_KEYS_POPUP:
@@ -3089,7 +3114,9 @@ namespace SevenKnightsAI.Classes
                                             break;
 
                                         case SceneType.RAID_ALREADY_ENDED_POPUP:
-                                            this.DoneRaid();
+                                            this.Escape();
+                                            Sleep(this.AIProfiles.ST_Delay);
+                                            this.Escape();
                                             break;
 
                                         case SceneType.SPECIAL_DUNGEON_LOBBY:
@@ -3494,7 +3521,7 @@ namespace SevenKnightsAI.Classes
         private void ManageHeroes()
         {
             this.HeroManageAttemps++;
-            if (this.HeroManageAttemps > 3)
+            if (this.HeroManageAttemps > 4)
             {
                 this.DoneManageHeroes();
                 return;
@@ -3649,7 +3676,7 @@ namespace SevenKnightsAI.Classes
             }
             else
             {
-                if (!this.ExpectingScene(SceneType.HEROES, 8, 800))
+                if (!this.ExpectingScene(SceneType.HEROES, 3, 800))
                 {
                     return;
                 }
@@ -3666,7 +3693,7 @@ namespace SevenKnightsAI.Classes
                     SevenKnightsCore.Sleep(1000);
                     this.CaptureFrame();
                     Scene scene = this.SceneSearch();
-                    if (!this.ExpectingScene(SceneType.HEROES, 8, 800))
+                    if (!this.ExpectingScene(SceneType.HEROES, 3, 800))
                     {
                         return;
                     }
@@ -3720,7 +3747,7 @@ namespace SevenKnightsAI.Classes
                         {
                             SceneType.HERO_JOIN,
                             SceneType.HERO_REMOVE
-                        }, 8, 800))
+                        },3, 1000))
                         {
                             return;
                         }
@@ -3748,7 +3775,7 @@ namespace SevenKnightsAI.Classes
                                     num2 = 0uL;
                                     this.HeroSortReset(true, true);
                                     flag2 = true;
-                                    flag4 = true;
+                                    //flag4 = true;
                                     break;
                                 }
                             }
@@ -3799,11 +3826,11 @@ namespace SevenKnightsAI.Classes
                                     }
                                     else
                                     {
-                                        if (num6 != 0uL)
+                                        /*if (num6 != 0uL)
                                         {
                                             num2 = num6;
                                             goto IL_B14;
-                                        }
+                                        }*/
                                         goto IL_B14;
                                     }
                                 }
@@ -4621,25 +4648,14 @@ namespace SevenKnightsAI.Classes
 
         private void RaidDragonLobbyFind(bool Dragonfound)
         {
-            string PreviousName = "";
-            SevenKnightsCore.Sleep(2000);
+            //string PreviousName = "";
+            SevenKnightsCore.Sleep(1000);
             this.WeightedClick(RaidLobbyPM.NewTab, 1.0, 1.0, 1, 0, "left");
-            Sleep(2000);
-            this.CaptureFrame();
-#if DEBUG
-            this.Log("Dragonfound Parameter " + DragonFound, Color.Red);
-#endif
+            //SevenKnightsCore.Sleep(1000);
+            //this.CaptureFrame();
             //IN LOBBY
             //FIND 1st ROW
-            if (this.ExpectingScene(SceneType.RAID_LOBBY, 5, 500) && !this.MatchMapping(RaidLobbyPM.CheckPos2, 5))
-            {
-                RD_AttName(RaidLobbyPM.Oname1, "Owner");
-                this.Log("Found own dragon in lobby", this.COLOR_ConditionT);
-                this.WeightedClick(RaidLobbyPM.EnterButton, 1.0, 1.0, 1, 0, "left");
-                this.EnableRaidRewards = true;
-            }
-            //FIND ALL ROW DRAGON
-            else
+            if (this.ExpectingScene(SceneType.RAID_LOBBY, 5, 500))
             {
                 //RD_AttName(RaidLobbyPM.EntryCount,"");
                 if (DragonFound)
@@ -4686,8 +4702,8 @@ namespace SevenKnightsAI.Classes
                 this.Log("Refresh btn", Color.Gray);
                 this.WeightedClick(RaidLobbyPM.RefreshButton, 1.0, 1.0, 1, 0, "left");
                 //Scroll With Dragon Level Parameter
-                Sleep(800);
-                if (this.AISettings.RD_DragonLV >= 90)
+                Sleep(1500);
+                /*if (this.AISettings.RD_DragonLV >= 90)
                 {
                     //scroll down
                     ScrollRaidDragonPage(false, true);
@@ -4697,32 +4713,29 @@ namespace SevenKnightsAI.Classes
                 {
                     //scroll up
                     ScrollRaidDragonPage(false, true, 2);
-                }
+                }*/
                 //Find Loop
                 int num1 = 0;
                 while (num1 != 4)
                 {
                     Log("attemp = " + attemps, Color.Gray);
-                    if (attemps > 3)
+                    if (attemps>3)
                     {
                         DoneRaid();
                         break;
                     }
-                    this.CaptureFrame();
+                    //this.CaptureFrame();
                     if (this.MatchMapping(PosArray[num1], 5))
                     {
                         this.Log("Position = " + (num1 + 1), Color.Gray);
                         RD_AttName(DGNamearray[num1], "Lobby Owner");
                         //Dragon LV Condition In Lobby
-                        if (!DragonFound && this.AISettings.RD_EnableDragonLV)
+                        /*if (this.AISettings.RD_EnableDragonLV)
                         {
                             int lvl = RD_DragonLV(num1);
                             this.Log("DragonLV = " + lvl, this.COLOR_Infomation);
-#if DEBUG
-                            if (lvl >= 100)
-#else
+
                             if (lvl >= this.AISettings.RD_DragonLV)
-#endif
                             {
                                 this.Log("Dragon Correct Condition", this.COLOR_ConditionT);
                                 this.WeightedClick(EntArray[num1], 1.0, 1.0, 1, 0, "left");
@@ -4733,17 +4746,21 @@ namespace SevenKnightsAI.Classes
                             {
                                 this.Log("Dragon Low Condition", this.COLOR_Infomation);
                             }
+                            this.Log("Dragon Correct Condition", this.COLOR_ConditionT);
+                            this.WeightedClick(EntArray[num1], 1.0, 1.0, 1, 0, "left");
+                            this.EnableRaidRewards = true;
+                            break;
                         }
                         else if (!DragonFound)
                         {
                             DragonFound = false;
                             this.WeightedClick(RaidLobbyPM.EnterButton, 1.0, 1.0, 1, 0, "left");
                             this.EnableRaidRewards = true;
-                        }
+                        }*/
                         Sleep(500);
                         //ENTER RAID READY
                         //FIND RAID ONNER NAME IN RAID READY
-                        if (DragonFound)
+                        /*if (DragonFound)
                         {
                             this.WeightedClick(EntArray[num1], 1.0, 1.0, 1, 0, "left");
                             Sleep(2000);
@@ -4754,11 +4771,9 @@ namespace SevenKnightsAI.Classes
                                 string rd_attacker = RD_AttName(RaidReadyPM.Attacker, "Attacker");
                                 if (rd_owner != "" && rd_attacker != "")
                                 {
-#if DEBUG
                                     Console.WriteLine("Owner " + rd_owner);
                                     Console.WriteLine("Attacker " + rd_attacker);
                                     Console.WriteLine("break");
-#endif
                                     //Previous Name Condition
                                     if (attemps == 0)
                                     {
@@ -4771,9 +4786,7 @@ namespace SevenKnightsAI.Classes
                                     {
                                         if (PreviousName == rd_owner)
                                         {
-#if DEBUG
                                             this.Log("Same Previous Owner");
-#endif
                                             this.DoneRaid();
                                             break;
                                         }
@@ -4785,18 +4798,14 @@ namespace SevenKnightsAI.Classes
                                     Sleep(500);
                                     if (rd_owner == rd_attacker)
                                     {
-#if DEBUG
                                         Console.WriteLine("equal");
-#endif
                                         this.WeightedClick(EntArray[num1], 1.0, 1.0, 1, 0, "left");
                                         this.EnableRaidRewards = true;
                                         break;
                                     }
                                     else if (rd_owner != rd_attacker)
                                     {
-#if DEBUG
                                         Console.WriteLine("not equal");
-#endif
                                         Sleep(2000);
                                         this.Escape();
                                     }
@@ -4810,24 +4819,26 @@ namespace SevenKnightsAI.Classes
                             {
                                 this.Escape();
                             }
-                        }
+                        }*/
+                        this.WeightedClick(RaidLobbyPM.EnterButton, 1.0, 1.0, 1, 0, "left");
+                        Console.WriteLine("Found Match Position " + num1);
+                        this.Log("Found Match Position " + num1);
+                        this.EnableRaidRewards = true;
+                        break;
                     }//End Enter to find in raid ready
                     //Not Found Position
                     else
                     {
-#if DEBUG
                         Console.WriteLine("Not Found Match Position or no dragon in lobby");
-#endif
+                        this.Log("Not Found Match Position or no dragon in lobby");
                         this.DoneRaid();
                         break;
                     }
-                    Sleep(1500);
+                   /* Sleep(1500);
                     num1++;
                     if (num1 == 4)
                     {
-#if DEBUG
                         Console.WriteLine("Round Break");
-#endif
                         num1 = 0;
                         attemps++;
                         if (this.AISettings.RD_DragonLV >= 90)
@@ -4845,7 +4856,7 @@ namespace SevenKnightsAI.Classes
                     else if (num1 != 4)
                     {
                         this.Log("Find Next...", this.COLOR_Infomation);
-                    }
+                    }*/
                 }//end while
             }
             DragonFound = false;
@@ -5145,12 +5156,12 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.LEVEL_30_DIALOG);
                     return result;
                 }
-                if (this.MatchMapping(Level30MaxDialogPM.CharacterEye, 3) && this.MatchMapping(Level30MaxDialogPM.DialogBorder, 4) && this.MatchMapping(Level30MaxDialogPM.YellowTick, 3))
+                if (this.MatchMapping(Level30MaxDialogPM.CharacterLeftEye, 3) && this.MatchMapping(Level30MaxDialogPM.DialogBorder, 4) && this.MatchMapping(Level30MaxDialogPM.CharacterRightEye, 3))
                 {
                     Scene result = new Scene(SceneType.LEVEL_30_MAX_DIALOG);
                     return result;
                 }
-                if (this.MatchMapping(LevelUpDialogPM.CharacterEye, 3) && this.MatchMapping(LevelUpDialogPM.DialogBorder, 4) && this.MatchMapping(LevelUpDialogPM.YellowTick, 3))
+                if (this.MatchMapping(LevelUpDialogPM.CharacterEye, 3) && this.MatchMapping(LevelUpDialogPM.DialogBorder, 4))
                 {
                     Scene result = new Scene(SceneType.LEVEL_UP_DIALOG);
                     return result;
@@ -5276,6 +5287,7 @@ namespace SevenKnightsAI.Classes
                     return result;
                 }
                 if (this.MatchMapping(QuestRewardsPopupPM.DimmedBG, 2) && this.MatchMapping(SharedPM.Rewards_PopupBorder, 2) && this.MatchMapping(SharedPM.Rewards_YellowTick, 2))
+                //if (this.MatchMapping(QuestRewardsPopupPM.AragonArmDailyQuestComplete, 2) && this.MatchMapping(QuestRewardsPopupPM.AragonEyeDailyQuestComplete, 2) && this.MatchMapping(SharedPM.Rewards_YellowTick, 2))
                 {
                     Scene result = new Scene(SceneType.QUEST_REWARDS_POPUP);
                     return result;
@@ -5327,7 +5339,8 @@ namespace SevenKnightsAI.Classes
                     Scene result = new Scene(SceneType.RAID_DRAGON);
                     return result;
                 }
-                if (this.MatchMapping(RaidLobbyPM.ManageParty1Border, 2) && this.MatchMapping(RaidLobbyPM.ManageParty2Border, 2))
+                //if (this.MatchMapping(RaidLobbyPM.ManageParty1Border, 2) && this.MatchMapping(RaidLobbyPM.ManageParty2Border, 2))
+                if (this.MatchMapping(RaidLobbyPM.AttackTeamSetting, 2))
                 {
                     Scene result = new Scene(SceneType.RAID_LOBBY);
                     return result;
@@ -6596,7 +6609,7 @@ namespace SevenKnightsAI.Classes
                     string text = page.GetText().Replace("?", "").Replace("|", "l").Trim();
 #if DEBUG
                     Console.WriteLine("text = " + text.Trim());
-                    bitmap.Save(string.Format("{1}_Name_{0}.png", text,str));
+                    //bitmap.Save(string.Format("{1}_Name_{0}.png", text,str));
 #endif
                     text = Utility.FilterAscii(text);
                     //Console.WriteLine("test");

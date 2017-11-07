@@ -23,9 +23,9 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping ElementButton = new PixelMapping
         {
-            X = 682,
-            Y = 90,
-            Color = 7353345,
+            X = 578,
+            Y = 521,
+            Color = 9002759,
             Type = MappingType.BOTH
         };
 
@@ -802,7 +802,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 327,
             Y = 115,
-            Color = 920334,
+            Color = 920333,
             Type = MappingType.ANCHOR
         };
 

@@ -20,6 +20,8 @@ namespace SevenKnightsAI
 {
     public partial class MainForm : Form
     {
+
+        BlueStacks BlueStacks = new BlueStacks();
         #region Private Fields
 
         private readonly CheckBox[][] _formationCheckBoxes = new CheckBox[2][];
@@ -69,6 +71,8 @@ namespace SevenKnightsAI
         private readonly Color COLOR_SKILL_LOOP = Color.FromArgb(94, 170, 255);
 
         private SevenKnightsCore AI;
+
+
 
         private AIProfiles AIProfiles;
 
@@ -760,7 +764,7 @@ namespace SevenKnightsAI
             this.AD_masteryComboBox.SelectedIndex = 0;
             this.AD_StopOnFullHeroes_Checkbox.Checked = this.AISettings.AD_StopOnFullHeroes;
             this.AD_StopOnFullItems_Checkbox.Checked = this.AISettings.AD_StopOnFullItems;
-            this.RD_StopOnDragonFound_Checkbox.Checked = this.AISettings.RD_StopOnDragonFound;
+            //this.RD_StopOnDragonFound_Checkbox.Checked = this.AISettings.RD_StopOnDragonFound;
             this.AD_StopOnLV30_Checkbox.Checked = this.AISettings.AD_StopOnLV30;
             this.AD_CheckingHeroes_Checkbox.Checked = this.AISettings.AD_CheckingHeroes;
             this.AD_wave1LoopCheckBox.Checked = this.AISettings.AD_Wave1Loop;
@@ -893,15 +897,15 @@ namespace SevenKnightsAI
             this.RD_enableCheckBox.Checked = this.AISettings.RD_Enable;
             this.RD_limitCheckBox.Checked = this.AISettings.RD_EnableLimit;
             this.RD_limitNumericBox.Value = this.AISettings.RD_Limit;
-            this.RD_DragonLVCheckBox.Checked = this.AISettings.RD_EnableDragonLV;
-            this.RD_DragonLVNum.Value = this.AISettings.RD_DragonLV;
-            this.RD_DragonLimitCheckBox.Checked = this.AISettings.RD_EnableDragonLimit;
-            this.RD_DragonLimitNumericBox.Value = this.AISettings.RD_DragonLimit;
+            //this.RD_DragonLVCheckBox.Checked = this.AISettings.RD_EnableDragonLV;
+            //this.RD_DragonLVNum.Value = this.AISettings.RD_DragonLV;
+            //this.RD_DragonLimitCheckBox.Checked = this.AISettings.RD_EnableDragonLimit;
+            //this.RD_DragonLimitNumericBox.Value = this.AISettings.RD_DragonLimit;
             //this.RD_masteryComboBox.SelectedIndex = (int)this.AISettings.RD_Mastery;
             //this.RD_masteryComboBox.SelectedIndex = 0;
             this.RD_team1LoopCheckBox.Checked = this.AISettings.RD_Team1Loop;
-            this.RD_team2LoopCheckBox.Checked = this.AISettings.RD_Team2Loop;
-            this.RD_TryOwnDragonCheckBox.Checked = this.AISettings.RD_TryOwnDragon;
+            //this.RD_team2LoopCheckBox.Checked = this.AISettings.RD_Team2Loop;
+            //this.RD_TryOwnDragonCheckBox.Checked = this.AISettings.RD_TryOwnDragon;
             switch (this.AISettings.RD_SkillType)
             {
                 case SkillType.Auto:
@@ -918,13 +922,13 @@ namespace SevenKnightsAI
             }
             Panel[] wavePanels = new Panel[]
             {
-                this.RD_team1Panel,
-                this.RD_team2Panel
+                this.RD_team1Panel
+                //,this.RD_team2Panel
             };
             int[][] waveSkill = new int[][]
             {
-                this.AISettings.RD_Team1Skills,
-                this.AISettings.RD_Team2Skills
+                this.AISettings.RD_Team1Skills
+                //,this.AISettings.RD_Team2Skills
             };
             this.LoadWaveSkills(wavePanels, waveSkill, 5);
         }
@@ -1927,6 +1931,22 @@ namespace SevenKnightsAI
                 default:
                     return;
             }
+        }
+
+        private void btnGetColor_Click(object sender, EventArgs e)
+        {
+            if (!this.BlueStacks.Hook())
+            {
+                this.SynchronizationContext.Send(delegate (object callback)
+                {
+                    
+                }, null);
+            
+            }
+
+            tbColor.Text = "" + this.BlueStacks.GetPixelNoOffset(int.Parse(tbX.Text), int.Parse(tbY.Text));
+            tbNewX.Text = "" + (int.Parse(tbX.Text) - BlueStacks.OFFSET_X);
+            tbNewY.Text = "" + (int.Parse(tbY.Text) - BlueStacks.OFFSET_Y);
         }
     }
 }

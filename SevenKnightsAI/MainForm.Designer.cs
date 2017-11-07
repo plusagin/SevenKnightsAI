@@ -192,36 +192,10 @@
             this.RD_limitNumericBox = new System.Windows.Forms.NumericUpDown();
             this.RD_limitCheckBox = new System.Windows.Forms.CheckBox();
             this.RD_mainPanel = new System.Windows.Forms.Panel();
-            this.RD_DragonLVCheckBox = new System.Windows.Forms.CheckBox();
-            this.RD_TryOwnDragonCheckBox = new System.Windows.Forms.CheckBox();
-            this.RD_StopOnDragonFound_Checkbox = new System.Windows.Forms.CheckBox();
-            this.RD_DragonLimit_lbl = new System.Windows.Forms.Label();
-            this.RD_DragonLVNum = new System.Windows.Forms.NumericUpDown();
-            this.RD_DragonLimitNumericBox = new System.Windows.Forms.NumericUpDown();
-            this.RD_DragonLimitCheckBox = new System.Windows.Forms.CheckBox();
             this.RD_skillGroupBox = new System.Windows.Forms.GroupBox();
             this.RD_masteryComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.RD_bothSkillRadio = new System.Windows.Forms.RadioButton();
-            this.RD_team2Panel = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
-            this.RD_team2LoopCheckBox = new System.Windows.Forms.CheckBox();
-            this.RD_t2Skill15Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill10Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill09Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill08Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill14Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill07Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill06Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill05Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill13Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill04Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill03Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill02Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill12Button = new System.Windows.Forms.Button();
-            this.RD_team2Label = new System.Windows.Forms.Label();
-            this.RD_t2Skill11Button = new System.Windows.Forms.Button();
-            this.RD_t2Skill01Button = new System.Windows.Forms.Button();
             this.RD_manualSkillRadio = new System.Windows.Forms.RadioButton();
             this.RD_autoSkillRadio = new System.Windows.Forms.RadioButton();
             this.RD_team1Panel = new System.Windows.Forms.Panel();
@@ -439,6 +413,13 @@
             this.goldLabel = new System.Windows.Forms.Label();
             this.resourcesTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.aiPause = new System.Windows.Forms.Button();
+            this.devTab = new System.Windows.Forms.TabPage();
+            this.tbX = new System.Windows.Forms.TextBox();
+            this.tbY = new System.Windows.Forms.TextBox();
+            this.tbColor = new System.Windows.Forms.TextBox();
+            this.btnGetColor = new System.Windows.Forms.Button();
+            this.tbNewX = new System.Windows.Forms.TextBox();
+            this.tbNewY = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.adventureTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AD_limitNumericBox)).BeginInit();
@@ -463,10 +444,7 @@
             this.raidTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RD_limitNumericBox)).BeginInit();
             this.RD_mainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RD_DragonLVNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RD_DragonLimitNumericBox)).BeginInit();
             this.RD_skillGroupBox.SuspendLayout();
-            this.RD_team2Panel.SuspendLayout();
             this.RD_team1Panel.SuspendLayout();
             this.resourcesTab.SuspendLayout();
             this.RS_collectQuestsGroupBox.SuspendLayout();
@@ -514,6 +492,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.rubyPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.goldPictureBox)).BeginInit();
             this.resourcesTableLayoutPanel.SuspendLayout();
+            this.devTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -522,6 +501,7 @@
             this.tabControl.Controls.Add(this.goldChamberTab);
             this.tabControl.Controls.Add(this.arenaTab);
             this.tabControl.Controls.Add(this.raidTab);
+            this.tabControl.Controls.Add(this.devTab);
             this.tabControl.Controls.Add(this.resourcesTab);
             this.tabControl.Controls.Add(this.logTab);
             this.tabControl.Controls.Add(this.settingsTab);
@@ -941,6 +921,7 @@
             this.AD_masteryComboBox.TabIndex = 14;
             this.AD_masteryComboBox.Tag = "0";
             this.AD_masteryComboBox.ValueMember = "0";
+            this.AD_masteryComboBox.Visible = false;
             this.AD_masteryComboBox.SelectedIndexChanged += new System.EventHandler(this.masteryComboBox_SelectedIndexChanged);
             // 
             // AD_masteryLabel
@@ -951,6 +932,7 @@
             this.AD_masteryLabel.Size = new System.Drawing.Size(44, 13);
             this.AD_masteryLabel.TabIndex = 13;
             this.AD_masteryLabel.Text = "Mastery";
+            this.AD_masteryLabel.Visible = false;
             // 
             // AD_bothSkillRadio
             // 
@@ -1774,6 +1756,7 @@
             this.GC_masteryComboBox.Size = new System.Drawing.Size(46, 21);
             this.GC_masteryComboBox.TabIndex = 16;
             this.GC_masteryComboBox.Tag = "1";
+            this.GC_masteryComboBox.Visible = false;
             this.GC_masteryComboBox.SelectedIndexChanged += new System.EventHandler(this.masteryComboBox_SelectedIndexChanged);
             // 
             // GC_masteryLabel
@@ -1784,6 +1767,7 @@
             this.GC_masteryLabel.Size = new System.Drawing.Size(44, 13);
             this.GC_masteryLabel.TabIndex = 15;
             this.GC_masteryLabel.Text = "Mastery";
+            this.GC_masteryLabel.Visible = false;
             // 
             // GC_bothSkillRadio
             // 
@@ -2502,6 +2486,7 @@
             this.AR_masteryComboBox.Size = new System.Drawing.Size(46, 21);
             this.AR_masteryComboBox.TabIndex = 18;
             this.AR_masteryComboBox.Tag = "2";
+            this.AR_masteryComboBox.Visible = false;
             this.AR_masteryComboBox.SelectedIndexChanged += new System.EventHandler(this.masteryComboBox_SelectedIndexChanged);
             // 
             // AR_masteryLabel
@@ -2512,6 +2497,7 @@
             this.AR_masteryLabel.Size = new System.Drawing.Size(44, 13);
             this.AR_masteryLabel.TabIndex = 17;
             this.AR_masteryLabel.Text = "Mastery";
+            this.AR_masteryLabel.Visible = false;
             // 
             // AR_useRubyLabel
             // 
@@ -2563,6 +2549,7 @@
             this.raidTab.Controls.Add(this.RD_limitCheckBox);
             this.raidTab.Controls.Add(this.RD_mainPanel);
             this.raidTab.Controls.Add(this.RD_enableCheckBox);
+            this.raidTab.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.raidTab.Location = new System.Drawing.Point(4, 22);
             this.raidTab.Name = "raidTab";
             this.raidTab.Size = new System.Drawing.Size(488, 366);
@@ -2601,120 +2588,23 @@
             // 
             // RD_mainPanel
             // 
-            this.RD_mainPanel.Controls.Add(this.RD_DragonLVCheckBox);
-            this.RD_mainPanel.Controls.Add(this.RD_TryOwnDragonCheckBox);
-            this.RD_mainPanel.Controls.Add(this.RD_StopOnDragonFound_Checkbox);
-            this.RD_mainPanel.Controls.Add(this.RD_DragonLimit_lbl);
-            this.RD_mainPanel.Controls.Add(this.RD_DragonLVNum);
-            this.RD_mainPanel.Controls.Add(this.RD_DragonLimitNumericBox);
-            this.RD_mainPanel.Controls.Add(this.RD_DragonLimitCheckBox);
             this.RD_mainPanel.Controls.Add(this.RD_skillGroupBox);
             this.RD_mainPanel.Location = new System.Drawing.Point(0, 30);
             this.RD_mainPanel.Name = "RD_mainPanel";
             this.RD_mainPanel.Size = new System.Drawing.Size(487, 332);
             this.RD_mainPanel.TabIndex = 15;
             // 
-            // RD_DragonLVCheckBox
-            // 
-            this.RD_DragonLVCheckBox.AutoSize = true;
-            this.RD_DragonLVCheckBox.Location = new System.Drawing.Point(9, 26);
-            this.RD_DragonLVCheckBox.Name = "RD_DragonLVCheckBox";
-            this.RD_DragonLVCheckBox.Size = new System.Drawing.Size(92, 17);
-            this.RD_DragonLVCheckBox.TabIndex = 29;
-            this.RD_DragonLVCheckBox.Tag = "5";
-            this.RD_DragonLVCheckBox.Text = "Dragon LV >=";
-            this.RD_DragonLVCheckBox.UseVisualStyleBackColor = true;
-            this.RD_DragonLVCheckBox.CheckedChanged += new System.EventHandler(this.limitCheckBox_CheckedChanged);
-            // 
-            // RD_TryOwnDragonCheckBox
-            // 
-            this.RD_TryOwnDragonCheckBox.AutoSize = true;
-            this.RD_TryOwnDragonCheckBox.Location = new System.Drawing.Point(9, 49);
-            this.RD_TryOwnDragonCheckBox.Name = "RD_TryOwnDragonCheckBox";
-            this.RD_TryOwnDragonCheckBox.Size = new System.Drawing.Size(104, 17);
-            this.RD_TryOwnDragonCheckBox.TabIndex = 29;
-            this.RD_TryOwnDragonCheckBox.Text = "Try Own Dragon";
-            this.RD_TryOwnDragonCheckBox.UseVisualStyleBackColor = true;
-            this.RD_TryOwnDragonCheckBox.CheckedChanged += new System.EventHandler(this.RD_TryOwnDragon_Checkbox_CheckedChanged);
-            // 
-            // RD_StopOnDragonFound_Checkbox
-            // 
-            this.RD_StopOnDragonFound_Checkbox.AutoSize = true;
-            this.RD_StopOnDragonFound_Checkbox.Enabled = false;
-            this.RD_StopOnDragonFound_Checkbox.Location = new System.Drawing.Point(9, 72);
-            this.RD_StopOnDragonFound_Checkbox.Name = "RD_StopOnDragonFound_Checkbox";
-            this.RD_StopOnDragonFound_Checkbox.Size = new System.Drawing.Size(144, 17);
-            this.RD_StopOnDragonFound_Checkbox.TabIndex = 29;
-            this.RD_StopOnDragonFound_Checkbox.Text = "Pause On Dragon Found";
-            this.RD_StopOnDragonFound_Checkbox.UseVisualStyleBackColor = true;
-            this.RD_StopOnDragonFound_Checkbox.Visible = false;
-            this.RD_StopOnDragonFound_Checkbox.CheckedChanged += new System.EventHandler(this.RD_StopOnDragonFound_Checkbox_CheckedChanged);
-            // 
-            // RD_DragonLimit_lbl
-            // 
-            this.RD_DragonLimit_lbl.AutoSize = true;
-            this.RD_DragonLimit_lbl.Location = new System.Drawing.Point(101, 6);
-            this.RD_DragonLimit_lbl.Name = "RD_DragonLimit_lbl";
-            this.RD_DragonLimit_lbl.Size = new System.Drawing.Size(85, 13);
-            this.RD_DragonLimit_lbl.TabIndex = 28;
-            this.RD_DragonLimit_lbl.Text = "times per dragon";
-            // 
-            // RD_DragonLVNum
-            // 
-            this.RD_DragonLVNum.Location = new System.Drawing.Point(100, 25);
-            this.RD_DragonLVNum.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.RD_DragonLVNum.Name = "RD_DragonLVNum";
-            this.RD_DragonLVNum.Size = new System.Drawing.Size(37, 20);
-            this.RD_DragonLVNum.TabIndex = 27;
-            this.RD_DragonLVNum.Tag = "5";
-            this.RD_DragonLVNum.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.RD_DragonLVNum.ValueChanged += new System.EventHandler(this.limitNumericBox_ValueChanged);
-            // 
-            // RD_DragonLimitNumericBox
-            // 
-            this.RD_DragonLimitNumericBox.Location = new System.Drawing.Point(59, 3);
-            this.RD_DragonLimitNumericBox.Name = "RD_DragonLimitNumericBox";
-            this.RD_DragonLimitNumericBox.Size = new System.Drawing.Size(37, 20);
-            this.RD_DragonLimitNumericBox.TabIndex = 27;
-            this.RD_DragonLimitNumericBox.Tag = "4";
-            this.RD_DragonLimitNumericBox.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.RD_DragonLimitNumericBox.ValueChanged += new System.EventHandler(this.limitNumericBox_ValueChanged);
-            // 
-            // RD_DragonLimitCheckBox
-            // 
-            this.RD_DragonLimitCheckBox.Location = new System.Drawing.Point(9, 5);
-            this.RD_DragonLimitCheckBox.Name = "RD_DragonLimitCheckBox";
-            this.RD_DragonLimitCheckBox.Size = new System.Drawing.Size(47, 17);
-            this.RD_DragonLimitCheckBox.TabIndex = 26;
-            this.RD_DragonLimitCheckBox.Tag = "4";
-            this.RD_DragonLimitCheckBox.Text = "Limit";
-            this.RD_DragonLimitCheckBox.UseVisualStyleBackColor = true;
-            this.RD_DragonLimitCheckBox.CheckedChanged += new System.EventHandler(this.limitCheckBox_CheckedChanged);
-            // 
             // RD_skillGroupBox
             // 
             this.RD_skillGroupBox.Controls.Add(this.RD_masteryComboBox);
             this.RD_skillGroupBox.Controls.Add(this.label2);
             this.RD_skillGroupBox.Controls.Add(this.RD_bothSkillRadio);
-            this.RD_skillGroupBox.Controls.Add(this.RD_team2Panel);
             this.RD_skillGroupBox.Controls.Add(this.RD_manualSkillRadio);
             this.RD_skillGroupBox.Controls.Add(this.RD_autoSkillRadio);
             this.RD_skillGroupBox.Controls.Add(this.RD_team1Panel);
-            this.RD_skillGroupBox.Location = new System.Drawing.Point(228, 5);
+            this.RD_skillGroupBox.Location = new System.Drawing.Point(9, 3);
             this.RD_skillGroupBox.Name = "RD_skillGroupBox";
-            this.RD_skillGroupBox.Size = new System.Drawing.Size(254, 243);
+            this.RD_skillGroupBox.Size = new System.Drawing.Size(303, 243);
             this.RD_skillGroupBox.TabIndex = 25;
             this.RD_skillGroupBox.TabStop = false;
             this.RD_skillGroupBox.Tag = "2";
@@ -2734,6 +2624,7 @@
             this.RD_masteryComboBox.Size = new System.Drawing.Size(46, 21);
             this.RD_masteryComboBox.TabIndex = 16;
             this.RD_masteryComboBox.Tag = "3";
+            this.RD_masteryComboBox.Visible = false;
             this.RD_masteryComboBox.SelectedIndexChanged += new System.EventHandler(this.masteryComboBox_SelectedIndexChanged);
             // 
             // label2
@@ -2744,6 +2635,7 @@
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 15;
             this.label2.Text = "Mastery";
+            this.label2.Visible = false;
             // 
             // RD_bothSkillRadio
             // 
@@ -2756,228 +2648,6 @@
             this.RD_bothSkillRadio.Text = "Both";
             this.RD_bothSkillRadio.UseVisualStyleBackColor = true;
             this.RD_bothSkillRadio.CheckedChanged += new System.EventHandler(this.skillTypeRadio_CheckedChanged);
-            // 
-            // RD_team2Panel
-            // 
-            this.RD_team2Panel.Controls.Add(this.label17);
-            this.RD_team2Panel.Controls.Add(this.RD_team2LoopCheckBox);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill15Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill10Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill09Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill08Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill14Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill07Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill06Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill05Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill13Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill04Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill03Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill02Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill12Button);
-            this.RD_team2Panel.Controls.Add(this.RD_team2Label);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill11Button);
-            this.RD_team2Panel.Controls.Add(this.RD_t2Skill01Button);
-            this.RD_team2Panel.Location = new System.Drawing.Point(6, 154);
-            this.RD_team2Panel.Name = "RD_team2Panel";
-            this.RD_team2Panel.Size = new System.Drawing.Size(241, 76);
-            this.RD_team2Panel.TabIndex = 9;
-            this.RD_team2Panel.Tag = "6";
-            // 
-            // label17
-            // 
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label17.Location = new System.Drawing.Point(51, 12);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(27, 10);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "A.Skill";
-            // 
-            // RD_team2LoopCheckBox
-            // 
-            this.RD_team2LoopCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.RD_team2LoopCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_team2LoopCheckBox.Location = new System.Drawing.Point(8, 23);
-            this.RD_team2LoopCheckBox.Name = "RD_team2LoopCheckBox";
-            this.RD_team2LoopCheckBox.Size = new System.Drawing.Size(40, 20);
-            this.RD_team2LoopCheckBox.TabIndex = 12;
-            this.RD_team2LoopCheckBox.Text = "Loop";
-            this.RD_team2LoopCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RD_team2LoopCheckBox.UseVisualStyleBackColor = true;
-            this.RD_team2LoopCheckBox.CheckedChanged += new System.EventHandler(this.skillLoopCheckBox_CheckedChanged);
-            // 
-            // RD_t2Skill15Button
-            // 
-            this.RD_t2Skill15Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill15Button.Location = new System.Drawing.Point(205, 3);
-            this.RD_t2Skill15Button.Name = "RD_t2Skill15Button";
-            this.RD_t2Skill15Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill15Button.TabIndex = 10;
-            this.RD_t2Skill15Button.Tag = "14";
-            this.RD_t2Skill15Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill15Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill10Button
-            // 
-            this.RD_t2Skill10Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill10Button.Location = new System.Drawing.Point(205, 50);
-            this.RD_t2Skill10Button.Name = "RD_t2Skill10Button";
-            this.RD_t2Skill10Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill10Button.TabIndex = 10;
-            this.RD_t2Skill10Button.Tag = "9";
-            this.RD_t2Skill10Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill10Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill09Button
-            // 
-            this.RD_t2Skill09Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill09Button.Location = new System.Drawing.Point(173, 50);
-            this.RD_t2Skill09Button.Name = "RD_t2Skill09Button";
-            this.RD_t2Skill09Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill09Button.TabIndex = 9;
-            this.RD_t2Skill09Button.Tag = "8";
-            this.RD_t2Skill09Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill09Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill08Button
-            // 
-            this.RD_t2Skill08Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill08Button.Location = new System.Drawing.Point(141, 50);
-            this.RD_t2Skill08Button.Name = "RD_t2Skill08Button";
-            this.RD_t2Skill08Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill08Button.TabIndex = 8;
-            this.RD_t2Skill08Button.Tag = "7";
-            this.RD_t2Skill08Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill08Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill14Button
-            // 
-            this.RD_t2Skill14Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill14Button.Location = new System.Drawing.Point(173, 3);
-            this.RD_t2Skill14Button.Name = "RD_t2Skill14Button";
-            this.RD_t2Skill14Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill14Button.TabIndex = 9;
-            this.RD_t2Skill14Button.Tag = "13";
-            this.RD_t2Skill14Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill14Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill07Button
-            // 
-            this.RD_t2Skill07Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill07Button.Location = new System.Drawing.Point(109, 50);
-            this.RD_t2Skill07Button.Name = "RD_t2Skill07Button";
-            this.RD_t2Skill07Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill07Button.TabIndex = 7;
-            this.RD_t2Skill07Button.Tag = "6";
-            this.RD_t2Skill07Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill07Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill06Button
-            // 
-            this.RD_t2Skill06Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill06Button.Location = new System.Drawing.Point(77, 50);
-            this.RD_t2Skill06Button.Name = "RD_t2Skill06Button";
-            this.RD_t2Skill06Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill06Button.TabIndex = 6;
-            this.RD_t2Skill06Button.Tag = "5";
-            this.RD_t2Skill06Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill06Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill05Button
-            // 
-            this.RD_t2Skill05Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill05Button.Location = new System.Drawing.Point(205, 26);
-            this.RD_t2Skill05Button.Name = "RD_t2Skill05Button";
-            this.RD_t2Skill05Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill05Button.TabIndex = 5;
-            this.RD_t2Skill05Button.Tag = "4";
-            this.RD_t2Skill05Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill05Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill13Button
-            // 
-            this.RD_t2Skill13Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill13Button.Location = new System.Drawing.Point(141, 3);
-            this.RD_t2Skill13Button.Name = "RD_t2Skill13Button";
-            this.RD_t2Skill13Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill13Button.TabIndex = 8;
-            this.RD_t2Skill13Button.Tag = "12";
-            this.RD_t2Skill13Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill13Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill04Button
-            // 
-            this.RD_t2Skill04Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill04Button.Location = new System.Drawing.Point(173, 26);
-            this.RD_t2Skill04Button.Name = "RD_t2Skill04Button";
-            this.RD_t2Skill04Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill04Button.TabIndex = 4;
-            this.RD_t2Skill04Button.Tag = "3";
-            this.RD_t2Skill04Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill04Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill03Button
-            // 
-            this.RD_t2Skill03Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill03Button.Location = new System.Drawing.Point(141, 26);
-            this.RD_t2Skill03Button.Name = "RD_t2Skill03Button";
-            this.RD_t2Skill03Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill03Button.TabIndex = 3;
-            this.RD_t2Skill03Button.Tag = "2";
-            this.RD_t2Skill03Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill03Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill02Button
-            // 
-            this.RD_t2Skill02Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill02Button.Location = new System.Drawing.Point(109, 26);
-            this.RD_t2Skill02Button.Name = "RD_t2Skill02Button";
-            this.RD_t2Skill02Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill02Button.TabIndex = 2;
-            this.RD_t2Skill02Button.Tag = "1";
-            this.RD_t2Skill02Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill02Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill12Button
-            // 
-            this.RD_t2Skill12Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill12Button.Location = new System.Drawing.Point(109, 3);
-            this.RD_t2Skill12Button.Name = "RD_t2Skill12Button";
-            this.RD_t2Skill12Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill12Button.TabIndex = 7;
-            this.RD_t2Skill12Button.Tag = "11";
-            this.RD_t2Skill12Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill12Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_team2Label
-            // 
-            this.RD_team2Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_team2Label.Location = new System.Drawing.Point(2, 3);
-            this.RD_team2Label.Name = "RD_team2Label";
-            this.RD_team2Label.Size = new System.Drawing.Size(41, 17);
-            this.RD_team2Label.TabIndex = 0;
-            this.RD_team2Label.Text = "Team2";
-            // 
-            // RD_t2Skill11Button
-            // 
-            this.RD_t2Skill11Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill11Button.Location = new System.Drawing.Point(77, 3);
-            this.RD_t2Skill11Button.Name = "RD_t2Skill11Button";
-            this.RD_t2Skill11Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill11Button.TabIndex = 6;
-            this.RD_t2Skill11Button.Tag = "10";
-            this.RD_t2Skill11Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill11Button.Click += new System.EventHandler(this.skillButton_Click);
-            // 
-            // RD_t2Skill01Button
-            // 
-            this.RD_t2Skill01Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t2Skill01Button.Location = new System.Drawing.Point(77, 26);
-            this.RD_t2Skill01Button.Name = "RD_t2Skill01Button";
-            this.RD_t2Skill01Button.Size = new System.Drawing.Size(23, 23);
-            this.RD_t2Skill01Button.TabIndex = 1;
-            this.RD_t2Skill01Button.Tag = "0";
-            this.RD_t2Skill01Button.UseVisualStyleBackColor = true;
-            this.RD_t2Skill01Button.Click += new System.EventHandler(this.skillButton_Click);
             // 
             // RD_manualSkillRadio
             // 
@@ -3027,14 +2697,14 @@
             this.RD_team1Panel.Controls.Add(this.RD_t1Skill01Button);
             this.RD_team1Panel.Location = new System.Drawing.Point(7, 72);
             this.RD_team1Panel.Name = "RD_team1Panel";
-            this.RD_team1Panel.Size = new System.Drawing.Size(241, 76);
+            this.RD_team1Panel.Size = new System.Drawing.Size(280, 76);
             this.RD_team1Panel.TabIndex = 8;
             this.RD_team1Panel.Tag = "5";
             // 
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label16.Location = new System.Drawing.Point(50, 12);
+            this.label16.Location = new System.Drawing.Point(75, 10);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(27, 10);
             this.label16.TabIndex = 13;
@@ -3056,7 +2726,7 @@
             // RD_t1Skill15Button
             // 
             this.RD_t1Skill15Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill15Button.Location = new System.Drawing.Point(204, 3);
+            this.RD_t1Skill15Button.Location = new System.Drawing.Point(236, 3);
             this.RD_t1Skill15Button.Name = "RD_t1Skill15Button";
             this.RD_t1Skill15Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill15Button.TabIndex = 10;
@@ -3067,7 +2737,7 @@
             // RD_t1Skill10Button
             // 
             this.RD_t1Skill10Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill10Button.Location = new System.Drawing.Point(204, 50);
+            this.RD_t1Skill10Button.Location = new System.Drawing.Point(236, 50);
             this.RD_t1Skill10Button.Name = "RD_t1Skill10Button";
             this.RD_t1Skill10Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill10Button.TabIndex = 10;
@@ -3078,7 +2748,7 @@
             // RD_t1Skill09Button
             // 
             this.RD_t1Skill09Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill09Button.Location = new System.Drawing.Point(172, 50);
+            this.RD_t1Skill09Button.Location = new System.Drawing.Point(204, 50);
             this.RD_t1Skill09Button.Name = "RD_t1Skill09Button";
             this.RD_t1Skill09Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill09Button.TabIndex = 9;
@@ -3089,7 +2759,7 @@
             // RD_t1Skill14Button
             // 
             this.RD_t1Skill14Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill14Button.Location = new System.Drawing.Point(172, 3);
+            this.RD_t1Skill14Button.Location = new System.Drawing.Point(204, 3);
             this.RD_t1Skill14Button.Name = "RD_t1Skill14Button";
             this.RD_t1Skill14Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill14Button.TabIndex = 9;
@@ -3100,7 +2770,7 @@
             // RD_t1Skill08Button
             // 
             this.RD_t1Skill08Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill08Button.Location = new System.Drawing.Point(140, 50);
+            this.RD_t1Skill08Button.Location = new System.Drawing.Point(172, 50);
             this.RD_t1Skill08Button.Name = "RD_t1Skill08Button";
             this.RD_t1Skill08Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill08Button.TabIndex = 8;
@@ -3111,7 +2781,7 @@
             // RD_t1Skill07Button
             // 
             this.RD_t1Skill07Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill07Button.Location = new System.Drawing.Point(108, 50);
+            this.RD_t1Skill07Button.Location = new System.Drawing.Point(140, 50);
             this.RD_t1Skill07Button.Name = "RD_t1Skill07Button";
             this.RD_t1Skill07Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill07Button.TabIndex = 7;
@@ -3122,7 +2792,7 @@
             // RD_t1Skill06Button
             // 
             this.RD_t1Skill06Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill06Button.Location = new System.Drawing.Point(76, 50);
+            this.RD_t1Skill06Button.Location = new System.Drawing.Point(108, 50);
             this.RD_t1Skill06Button.Name = "RD_t1Skill06Button";
             this.RD_t1Skill06Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill06Button.TabIndex = 6;
@@ -3133,7 +2803,7 @@
             // RD_t1Skill13Button
             // 
             this.RD_t1Skill13Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill13Button.Location = new System.Drawing.Point(140, 3);
+            this.RD_t1Skill13Button.Location = new System.Drawing.Point(172, 3);
             this.RD_t1Skill13Button.Name = "RD_t1Skill13Button";
             this.RD_t1Skill13Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill13Button.TabIndex = 8;
@@ -3144,7 +2814,7 @@
             // RD_t1Skill05Button
             // 
             this.RD_t1Skill05Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill05Button.Location = new System.Drawing.Point(204, 26);
+            this.RD_t1Skill05Button.Location = new System.Drawing.Point(236, 26);
             this.RD_t1Skill05Button.Name = "RD_t1Skill05Button";
             this.RD_t1Skill05Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill05Button.TabIndex = 5;
@@ -3155,7 +2825,7 @@
             // RD_t1Skill04Button
             // 
             this.RD_t1Skill04Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill04Button.Location = new System.Drawing.Point(172, 26);
+            this.RD_t1Skill04Button.Location = new System.Drawing.Point(204, 26);
             this.RD_t1Skill04Button.Name = "RD_t1Skill04Button";
             this.RD_t1Skill04Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill04Button.TabIndex = 4;
@@ -3166,7 +2836,7 @@
             // RD_t1Skill03Button
             // 
             this.RD_t1Skill03Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill03Button.Location = new System.Drawing.Point(140, 26);
+            this.RD_t1Skill03Button.Location = new System.Drawing.Point(172, 26);
             this.RD_t1Skill03Button.Name = "RD_t1Skill03Button";
             this.RD_t1Skill03Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill03Button.TabIndex = 3;
@@ -3177,7 +2847,7 @@
             // RD_t1Skill12Button
             // 
             this.RD_t1Skill12Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill12Button.Location = new System.Drawing.Point(108, 3);
+            this.RD_t1Skill12Button.Location = new System.Drawing.Point(140, 3);
             this.RD_t1Skill12Button.Name = "RD_t1Skill12Button";
             this.RD_t1Skill12Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill12Button.TabIndex = 7;
@@ -3188,7 +2858,7 @@
             // RD_t1Skill02Button
             // 
             this.RD_t1Skill02Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill02Button.Location = new System.Drawing.Point(108, 26);
+            this.RD_t1Skill02Button.Location = new System.Drawing.Point(140, 26);
             this.RD_t1Skill02Button.Name = "RD_t1Skill02Button";
             this.RD_t1Skill02Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill02Button.TabIndex = 2;
@@ -3201,14 +2871,14 @@
             this.RD_team1Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.RD_team1Label.Location = new System.Drawing.Point(3, 3);
             this.RD_team1Label.Name = "RD_team1Label";
-            this.RD_team1Label.Size = new System.Drawing.Size(41, 17);
+            this.RD_team1Label.Size = new System.Drawing.Size(68, 17);
             this.RD_team1Label.TabIndex = 0;
-            this.RD_team1Label.Text = "Team1";
+            this.RD_team1Label.Text = "Skill Queue";
             // 
             // RD_t1Skill11Button
             // 
             this.RD_t1Skill11Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill11Button.Location = new System.Drawing.Point(76, 3);
+            this.RD_t1Skill11Button.Location = new System.Drawing.Point(108, 3);
             this.RD_t1Skill11Button.Name = "RD_t1Skill11Button";
             this.RD_t1Skill11Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill11Button.TabIndex = 6;
@@ -3219,7 +2889,7 @@
             // RD_t1Skill01Button
             // 
             this.RD_t1Skill01Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.RD_t1Skill01Button.Location = new System.Drawing.Point(76, 26);
+            this.RD_t1Skill01Button.Location = new System.Drawing.Point(108, 26);
             this.RD_t1Skill01Button.Name = "RD_t1Skill01Button";
             this.RD_t1Skill01Button.Size = new System.Drawing.Size(23, 23);
             this.RD_t1Skill01Button.TabIndex = 1;
@@ -5020,7 +4690,7 @@
             // splitterStatusLabel
             // 
             this.splitterStatusLabel.Name = "splitterStatusLabel";
-            this.splitterStatusLabel.Size = new System.Drawing.Size(294, 17);
+            this.splitterStatusLabel.Size = new System.Drawing.Size(297, 17);
             this.splitterStatusLabel.Spring = true;
             // 
             // tsslCursorPosition
@@ -5031,8 +4701,8 @@
             // tsPixel
             // 
             this.tsPixel.Name = "tsPixel";
-            this.tsPixel.Size = new System.Drawing.Size(55, 17);
-            this.tsPixel.Text = "Nulled.io";
+            this.tsPixel.Size = new System.Drawing.Size(52, 17);
+            this.tsPixel.Text = "plusagin";
             // 
             // tsslBuildInfo
             // 
@@ -5433,6 +5103,66 @@
             this.aiPause.UseVisualStyleBackColor = true;
             this.aiPause.Click += new System.EventHandler(this.aiPause_Click);
             // 
+            // devTab
+            // 
+            this.devTab.Controls.Add(this.tbNewY);
+            this.devTab.Controls.Add(this.tbNewX);
+            this.devTab.Controls.Add(this.btnGetColor);
+            this.devTab.Controls.Add(this.tbColor);
+            this.devTab.Controls.Add(this.tbY);
+            this.devTab.Controls.Add(this.tbX);
+            this.devTab.Location = new System.Drawing.Point(4, 22);
+            this.devTab.Name = "devTab";
+            this.devTab.Size = new System.Drawing.Size(488, 366);
+            this.devTab.TabIndex = 9;
+            this.devTab.Text = "Dev";
+            this.devTab.UseVisualStyleBackColor = true;
+            // 
+            // tbX
+            // 
+            this.tbX.Location = new System.Drawing.Point(55, 16);
+            this.tbX.Name = "tbX";
+            this.tbX.Size = new System.Drawing.Size(100, 20);
+            this.tbX.TabIndex = 0;
+            // 
+            // tbY
+            // 
+            this.tbY.Location = new System.Drawing.Point(55, 42);
+            this.tbY.Name = "tbY";
+            this.tbY.Size = new System.Drawing.Size(100, 20);
+            this.tbY.TabIndex = 1;
+            // 
+            // tbColor
+            // 
+            this.tbColor.Location = new System.Drawing.Point(55, 68);
+            this.tbColor.Name = "tbColor";
+            this.tbColor.Size = new System.Drawing.Size(100, 20);
+            this.tbColor.TabIndex = 2;
+            // 
+            // btnGetColor
+            // 
+            this.btnGetColor.Location = new System.Drawing.Point(55, 146);
+            this.btnGetColor.Name = "btnGetColor";
+            this.btnGetColor.Size = new System.Drawing.Size(75, 23);
+            this.btnGetColor.TabIndex = 3;
+            this.btnGetColor.Text = "get color";
+            this.btnGetColor.UseVisualStyleBackColor = true;
+            this.btnGetColor.Click += new System.EventHandler(this.btnGetColor_Click);
+            // 
+            // tbNewX
+            // 
+            this.tbNewX.Location = new System.Drawing.Point(55, 94);
+            this.tbNewX.Name = "tbNewX";
+            this.tbNewX.Size = new System.Drawing.Size(100, 20);
+            this.tbNewX.TabIndex = 4;
+            // 
+            // tbNewY
+            // 
+            this.tbNewY.Location = new System.Drawing.Point(55, 120);
+            this.tbNewY.Name = "tbNewY";
+            this.tbNewY.Size = new System.Drawing.Size(100, 20);
+            this.tbNewY.TabIndex = 5;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.aiButton;
@@ -5492,12 +5222,8 @@
             this.raidTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RD_limitNumericBox)).EndInit();
             this.RD_mainPanel.ResumeLayout(false);
-            this.RD_mainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RD_DragonLVNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RD_DragonLimitNumericBox)).EndInit();
             this.RD_skillGroupBox.ResumeLayout(false);
             this.RD_skillGroupBox.PerformLayout();
-            this.RD_team2Panel.ResumeLayout(false);
             this.RD_team1Panel.ResumeLayout(false);
             this.resourcesTab.ResumeLayout(false);
             this.RS_collectQuestsGroupBox.ResumeLayout(false);
@@ -5564,6 +5290,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.goldPictureBox)).EndInit();
             this.resourcesTableLayoutPanel.ResumeLayout(false);
             this.resourcesTableLayoutPanel.PerformLayout();
+            this.devTab.ResumeLayout(false);
+            this.devTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -6112,35 +5840,15 @@
 		
 		private global::System.Windows.Forms.Button RD_t1Skill10Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill01Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill02Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill03Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill04Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill05Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill06Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill07Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill08Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill09Button;
 
-		
-		private global::System.Windows.Forms.Button RD_t2Skill10Button;
 
 		
 		private global::System.Windows.Forms.Label RD_team1Label;
@@ -6151,14 +5859,8 @@
 		
 		private global::System.Windows.Forms.Panel RD_team1Panel;
 
-		
-		private global::System.Windows.Forms.Label RD_team2Label;
 
-		
-		private global::System.Windows.Forms.CheckBox RD_team2LoopCheckBox;
 
-		
-		private global::System.Windows.Forms.Panel RD_team2Panel;
 
 		
 		private global::System.Windows.Forms.TabPage resourcesTab;
@@ -6419,9 +6121,6 @@
         private System.Windows.Forms.Button LG_LogPixel;
         private System.Windows.Forms.CheckBox GB_WaitForKeys;
 		private System.Windows.Forms.ToolStripStatusLabel tsslCursorPosition;
-		private System.Windows.Forms.Label RD_DragonLimit_lbl;
-		private System.Windows.Forms.NumericUpDown RD_DragonLimitNumericBox;
-		private System.Windows.Forms.CheckBox RD_DragonLimitCheckBox;
 		private System.Windows.Forms.CheckBox AD_StopOnFullHeroes_Checkbox;
         private System.Windows.Forms.Button LG_SaveScreen;
         private System.Windows.Forms.Label HeroCountLabel;
@@ -6432,12 +6131,8 @@
         private System.Windows.Forms.CheckBox AD_StopOnFullItems_Checkbox;
         private System.Windows.Forms.CheckBox ST_AutoProfileCheckBox;
         private System.Windows.Forms.CheckBox AD_StopOnLV30_Checkbox;
-        private System.Windows.Forms.CheckBox RD_StopOnDragonFound_Checkbox;
         private System.Windows.Forms.ComboBox RD_masteryComboBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox RD_DragonLVCheckBox;
-        private System.Windows.Forms.NumericUpDown RD_DragonLVNum;
-        private System.Windows.Forms.CheckBox RD_TryOwnDragonCheckBox;
         private System.Windows.Forms.Button AD_w3Skill15Button;
         private System.Windows.Forms.Button AD_w3Skill14Button;
         private System.Windows.Forms.Button AD_w3Skill13Button;
@@ -6453,11 +6148,6 @@
         private System.Windows.Forms.Button AD_w1Skill13Button;
         private System.Windows.Forms.Button AD_w1Skill12Button;
         private System.Windows.Forms.Button AD_w1Skill11Button;
-        private System.Windows.Forms.Button RD_t2Skill15Button;
-        private System.Windows.Forms.Button RD_t2Skill14Button;
-        private System.Windows.Forms.Button RD_t2Skill13Button;
-        private System.Windows.Forms.Button RD_t2Skill12Button;
-        private System.Windows.Forms.Button RD_t2Skill11Button;
         private System.Windows.Forms.Button RD_t1Skill15Button;
         private System.Windows.Forms.Button RD_t1Skill14Button;
         private System.Windows.Forms.Button RD_t1Skill13Button;
@@ -6548,11 +6238,17 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox SPD_dunDifficultyComboBox;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnGetColor;
+        private System.Windows.Forms.TextBox tbColor;
+        private System.Windows.Forms.TextBox tbY;
+        private System.Windows.Forms.TextBox tbX;
+        private System.Windows.Forms.TabPage devTab;
+        private System.Windows.Forms.TextBox tbNewY;
+        private System.Windows.Forms.TextBox tbNewX;
     }
 }

@@ -172,9 +172,12 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly PixelMapping TopChest = new PixelMapping
         {
-            X = 696,
+            /*X = 696,
             Y = 27,
-            Color = 4077875,
+            Color = 4077875,*/
+            X = 767,
+            Y = 30,
+            Color = 5261380,
             Type = MappingType.ANCHOR
         };
 
@@ -182,7 +185,8 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 924,
             Y = 29,
-            Color = 16112769,
+            //Color = 16112769,
+            Color = 15980922,
             Type = MappingType.ANCHOR
         };
 
@@ -190,7 +194,8 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 946,
             Y = 27,
-            Color = 14073726,
+            //Color = 14073726,
+            Color = 10652767,
             Type = MappingType.ANCHOR
         };
 

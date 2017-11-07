@@ -22,33 +22,33 @@ namespace SevenKnightsAI.Classes.Mappings
         };
         public static readonly PixelMapping CheckPos1 = new PixelMapping
         {
-            X = 264,
-            Y = 184,
-            Color = 16754182,
+            X = 868,
+            Y = 202,
+            Color = 13939542,
             Type = MappingType.BOTH
         };
 
         public static readonly PixelMapping CheckPos2 = new PixelMapping
         {
-            X = 264,
-            Y = 258,
-            Color = 16754182,
+            X = 868,
+            Y = 276,
+            Color = 13939542,
             Type = MappingType.BOTH
         };
 
         public static readonly PixelMapping CheckPos3 = new PixelMapping
         {
-            X = 264,
-            Y = 332,
-            Color = 16754182,
+            X = 868,
+            Y = 350,
+            Color = 13939542,
             Type = MappingType.BOTH
         };
 
         public static readonly PixelMapping CheckPos4 = new PixelMapping
         {
-            X = 264,
-            Y = 406,
-            Color = 16754182,
+            X = 868,
+            Y = 424,
+            Color = 13939542,
             Type = MappingType.BOTH
         };
 
@@ -56,7 +56,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 868,
             Y = 200,
-            Color = 0,
+            Color = 13807957,
             Type = MappingType.BOTH
         };
 
@@ -64,7 +64,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 868,
             Y = 270,
-            Color = 0,
+            Color = 13807957,
             Type = MappingType.BOTH
         };
 
@@ -72,7 +72,7 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 868,
             Y = 350,
-            Color = 0,
+            Color = 13807957,
             Type = MappingType.BOTH
         };
 
@@ -80,11 +80,19 @@ namespace SevenKnightsAI.Classes.Mappings
         {
             X = 868,
             Y = 420,
-            Color = 0,
+            Color = 13807957,
             Type = MappingType.BOTH
         };
 
-        public static readonly PixelMapping GreenIconOnNewTab = new PixelMapping
+        public static readonly PixelMapping AttackTeamSetting = new PixelMapping
+        {
+            X = 47,
+            Y = 496,
+            Color = 7694137,
+            Type = MappingType.ANCHOR
+        };
+
+        /*public static readonly PixelMapping GreenIconOnNewTab = new PixelMapping
         {
             X = 214,
             Y = 69,
@@ -122,7 +130,7 @@ namespace SevenKnightsAI.Classes.Mappings
             Y = 500,
             Color = 0,
             Type = MappingType.BUTTON
-        };
+        };*/
 
         public static readonly PixelMapping NewTab = new PixelMapping
         {
@@ -234,7 +242,7 @@ namespace SevenKnightsAI.Classes.Mappings
 
         public static readonly Rectangle EntryCount = new Rectangle
         {
-            X = 765,
+            X = 449,
             Y = 16,
             Height = 22,
             Width = 20

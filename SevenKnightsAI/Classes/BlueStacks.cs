@@ -113,6 +113,20 @@ namespace SevenKnightsAI.Classes
             return result;
         }
 
+        public int GetPixelNoOffset(int x, int y)
+        {
+            int result;
+            try
+            {
+                result = this.MainWindowAS.GetPixel(x,y);
+            }
+            catch
+            {
+                result = -1;
+            }
+            return result;
+        }
+
         [DllImport("user32.dll")]
         public static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, out uint ProcessId);
 
