@@ -4725,7 +4725,7 @@ namespace SevenKnightsAI.Classes
                         break;
                     }
                     //this.CaptureFrame();
-                    if (this.MatchMapping(PosArray[num1], 5))
+                    if (this.MatchMapping(PosArray[num1], 5, true))
                     {
                         this.Log("Position = " + (num1 + 1), Color.Gray);
                         RD_AttName(DGNamearray[num1], "Lobby Owner");
